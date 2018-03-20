@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" href="8biteggo.png">
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script src="eggmenujs.js"></script>
+      <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+      <link rel="stylesheet" href="eggmenucss.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+      <title>Egg hunt</title>
+    </script>
+  </head>
+  <body>
+    <i class="fab fa-whmcs toggle_menu opacity_one"></i>
+    <div class="sidebar_menu hide_menu">
+      <i class="fas fa-times"></i>
+      <center>
+        <a href="eggmenu.html"><h1 class="boxed_item">EGG <span class="logo_bold">HUNT</span></h1></a>
+        <h2 class="logo_title">An Egg Hunting Game</h2>
+      </center>
+
+      <ul class="navigation_select">
+        <li class="navigation_item">GAME</li>
+        <li class="navigation_item">LEADERBOARDS</li>
+        <li class="navigation_item">GRAPHS</li>
+        <li class="navigation_item">SETTINGS</li>
+        <li class="navigation_item"><a href="https://github.com/maresiaerik/DIN17SP-WebProject-2" target="_blank">ABOUT</a></li>
+      </ul>
+      <center>
+        <button id="signbtn" onclick="document.getElementById('form01').style.display='block'">
+          <i class="fa fa-user"></i>
+          SIGN UP
+        </button>
+      </center>
+    </div>
+
+    <div id="form01" class="modal">
+      <span onclick="document.getElementById('form01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <form class="modal-content" action="/action_page.php">
+        <div class="container">
+          <h1 id="signh1">Sign Up</h1>
+          <p id="signp">Please fill in this form to create an account.</p>
+          <hr>
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="user" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <label for="psw-repeat"><b>Repeat Password</b></label>
+            <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+            <center id="forbtns">
+            <div class="clearfix">
+            <button type="button" onclick="document.getElementById('form01').style.display='none'" class="cancelbtn">Cancel</button>
+            <button type="submit" class="signupbtn">Sign Up</button>
+          </div>
+        </center>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
