@@ -341,7 +341,15 @@ hr {
   padding: 5px;
   background-color: #ff5b5b;
 }
-
+#game-canvas
+{
+    margin-top: 10%;
+    display: flex;
+   /* This centers our sketch horizontally. */
+   justify-content: center;
+   /* This centers our sketch vertically. */
+   align-items: center;
+}
 #outbtn:hover
 {
   background-color: white;

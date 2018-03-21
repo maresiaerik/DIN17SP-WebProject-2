@@ -1,4 +1,6 @@
 
+// All global variables
+
 let canvas;
 let x = 550 ;
 let y = 350;
@@ -14,7 +16,7 @@ let keyUp    = '87';
 let keyDown  = '83';
 let staticPos = 0;
 let run = 1;
-let num = 1;
+let directionOfRun = 1;
 let interval;
 let bunnyRight;
 let leftDirection = 0;
@@ -22,20 +24,24 @@ let rightDirection = 1;
 let downDirection = 2;
 let upDirection = 3;
 
-
+//Setup done to start the canvas
 function setup()
 {
   canvas = createCanvas(1100, 700);
-  // canvas.parent('game-canvas');
+  canvas.parent('game-canvas');
   usrRightMovement = [loadImage('../Character_avatar/Rabbit/bunnyStaticRight.png'), loadImage('../Character_avatar/Rabbit/bunnyRunRight.png')];
   usrLeftMovement = [loadImage('../Character_avatar/Rabbit/bunnyStaticLeft.png'), loadImage('../Character_avatar/Rabbit/bunnyRunLeft.png')];
   usrUpMovement = [loadImage('../Character_avatar/Rabbit/bunnyStaticUp.png'), loadImage('../Character_avatar/Rabbit/bunnyRunUp.png')];
   usrDownMovement = [loadImage('../Character_avatar/Rabbit/bunnyStaticDown.png'), loadImage('../Character_avatar/Rabbit/bunnyRunDown.png')];
 }
-
+// Loop that draws to the canvas
 function draw()
 {
+  //Drawing a blank background clears previous drawings
   background(255,255,255);
+
+// Checks if key is pressed, cheks what key it is and runs the
+// Run function with the parameters to define direction
 
   if(keyIsPressed == true)
   {
@@ -56,29 +62,30 @@ function draw()
       Run(usrUpMovement,run, upDirection);
     }
   }
+  // Movement stopped, checks what was the last direction
   else
   {
-    StopMovement(num);
+    StopMovement(directionOfRun);
   }
 }
-
-function StopMovement(num)
+// Assigns the appropriate static position
+function StopMovement(directionOfRun)
 {
-  switch (num)
+  switch (directionOfRun)
   {
-    case 0:
+    case leftDirection:
     background(255,255,255);
       image(usrLeftMovement[staticPos], x, y, bunnyWidth, bunnyHeight);
       break;
-    case 1:
+    case rightDirection:
       background(255,255,255);
       image(usrRightMovement[staticPos], x, y, bunnyWidth, bunnyHeight);
       break;
-    case 2:
+    case downDirection:
       background(255,255,255);
       image(usrDownMovement[staticPos], x, y, bunnyWidth, bunnyHeight);
       break;
-    case 3:
+    case upDirection:
       background(255,255,255);
       image(usrUpMovement[staticPos], x, y, bunnyWidth, bunnyHeight);
       break;
@@ -87,14 +94,14 @@ function StopMovement(num)
       image(usrRightMovement[staticPos], x, y, bunnyWidth, bunnyHeight);
   }
 }
-
+// Makes the character run in given direction
 function Run(direction, run, id)
 {
   background(255, 255, 255);
   image(direction[run], x, y, bunnyWidth, bunnyHeight);
-  num = id;
-  interval = setInterval(function ()
-  {
-  Run(usrLeftMovement[staticPos], id)
-}, 100);
+  directionOfRun = id;
+//   interval = setInterval(function ()
+//   {
+//   Run(usrLeftMovement[staticPos], id)
+// }, 100);
 }
