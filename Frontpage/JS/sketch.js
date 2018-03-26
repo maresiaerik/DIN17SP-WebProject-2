@@ -27,7 +27,7 @@ let upDirection = 3;
 //Setup done to start the canvas
 function setup()
 {
-  canvas = createCanvas(1100, 700);
+  canvas = createCanvas(800, 600);
   canvas.parent('game-canvas');
   usrRightMovement = [loadImage('../Character_avatar/Rabbit/bunnyStaticRight.png'), loadImage('../Character_avatar/Rabbit/bunnyRunRight.png')];
   usrLeftMovement = [loadImage('../Character_avatar/Rabbit/bunnyStaticLeft.png'), loadImage('../Character_avatar/Rabbit/bunnyRunLeft.png')];
