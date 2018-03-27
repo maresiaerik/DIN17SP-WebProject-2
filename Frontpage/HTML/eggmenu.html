@@ -26,10 +26,10 @@
       </center>
 
       <ul class="navigation_select">
-        <li class="navigation_item">LEADERBOARDS</li>
-        <li class="navigation_item">GRAPHS</li>
-        <li class="navigation_item">SETTINGS</li>
-        <li class="navigation_item"><a href="https://github.com/maresiaerik/DIN17SP-WebProject-2" target="_blank">ABOUT</a></li>
+        <button class="navigation_item">LEADERBOARD</button>
+        <button class="navigation_item">GRAPHS</button>
+        <button class="navigation_item" onclick="document.getElementById('form04').style.display='block'">SETTINGS</button>
+        <button class="navigation_item"><a href="https://github.com/maresiaerik/DIN17SP-WebProject-2" target="_blank">ABOUT</a></button>
       </ul>
       <center>
         <button id="inbtn" onclick="document.getElementById('form02').style.display='block'">
@@ -110,6 +110,7 @@
         </div>
       </form>
     </div>
+    <br>
     <!-- Actual Web page -->
     <div>
       <div id="game-canvas"></div>
