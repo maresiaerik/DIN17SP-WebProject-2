@@ -1,0 +1,57 @@
+EGG HUNT
+
+-WEBSITE
+	-Login
+	-Create User
+	-Admin User
+	
+	-Hiscore
+	-Statistics
+
+-GRID
+	
+	-TILES:
+		-Grass
+		-Bush
+
+	-World size "25x25y", visible size: "10x10y"
+		~If the visible size exceeds the world size: load "grass" tiles
+	-Load grid from array based on center point
+		~If center point is 5x5y: spawn point is 0x0y
+	
+	-Take a step (up, down, left, right)
+		-Turn character
+		-Check tile properties
+			1:Can I move there?
+			2:Is there an egg?
+				~Collect egg
+		-Animate center character
+		-Move grid tiles by the size of one tile, over the course of the player's speed,
+		 in the opposite direction of the taken step
+		-Upload information into database
+	
+	-Refresh timer
+		-Retrieve information from database every 0,2(?) seconds
+		-Check what players are online and in your visible grid
+			-Move players to new position
+			~No need to check tile properties: information was checked before it was uploaded
+	
+	-Eggs
+		-Egg cap (10)
+		-Respawn time (5s / 25 game ticks)
+		-Properties:
+			-Position (random: 	check tile properties before spawn. I.e. Can the player reach it?
+						Is there an egg already?)
+			-Type			
+				-Yield (score)
+				-AI
+				-Sprite
+
+	-Admin overlay
+		-List players
+			-Sort: 1: Online, 2: Alphabetically
+			-Suspend user
+				-Duration (end date)
+				-Reason (comment/dropdown)
+			
+	

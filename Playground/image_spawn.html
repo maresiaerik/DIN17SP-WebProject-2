@@ -4,143 +4,18 @@
     <meta charset="utf-8">
     <title></title>
 
-    <script type = "text/javascript"
-             src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-          </script>
-
-    <script type ="text/javascript" language ="javascript">
-       $(document).ready(function() {
-
-             //var name = $("#name").val();
-             $("#stage").load('result.php');
-          });
-       });
-    </script>
   </head>
 
-  <body onload="DrawTest()">
-    <p>Enter your name and click on the button:</p>
-      <input type = "input" id = "name" size = "40" /><br />
-
-      <div id = "stage" style = "background-color:cc0;">
-         STAGE
-      </div>
-
-      <input type = "button" id = "driver" value = "Show Result" />
+  <body onload="DrawGrid()" onkeydown="input(event)">
+    <script src="player.js">
+      
+    </script>
   </body>
 
-  <canvas id="myCanvas" width="800" height="480" style="border:1px solid #000000;">
+  <canvas id="myCanvas" width="750" height="450" style="border:1px solid #000000;" >
   </canvas>
 
-
-
-
-
-
-<script type="text/javascript" language="javascript">
-
-/*
-var test = <?php echo test();?>
-
-console.log(test);
-*/
-var canvas = document.getElementById("myCanvas");
-var context = canvas.getContext("2d");
-
-var fixed_tile_size = 64;
-
-var tile_size = 50;
-
-var egg_position = 0;
-
-function DrawTest()
-{
-  var image = new Image(tile_size,tile_size);
-  //image.src = 'https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0464/6979/rr12x12_Pixel_Block_Solid_Grass_PRINT_FILE_shop_thumb.jpg';
-
-  image.src = 'https://mdn.mozillademos.org/files/11641/tiles.png';
-
-  egg = new Image(tile_size, tile_size);
-
-  egg.src = 'https://jacobl14.files.wordpress.com/2011/05/yoshiegg.png';
-
-  egg_position++;
-
-  for(let layer = 0; layer < 3; layer++)
-  {
-    for(let y = 0; y < Math.ceil(canvas.height / tile_size); y++)
-    {
-      for(let x = 0; x < Math.ceil(canvas.width / tile_size); x++)
-      {
-        context.drawImage(image, 0, 0, fixed_tile_size, fixed_tile_size, tile_size * x, tile_size * y, tile_size, tile_size);
-
-          //DrawBorder(x * tile_size, y * tile_size, image.width, image.height);
-      }
-    }
-  }
-
-
-
-
-  context.drawImage(egg, tile_size * egg_position, tile_size, egg.width, egg.height);
-
-  setTimeout( "DrawTest()", 1 ) ;
-}
-
-
-
-function DrawBorder(x, y, w, h)
-{
-  context.strokeStyle = '#f00';  // some color/style
-  context.lineWidth = 1;         // thickness
-  context.strokeRect(x, y, w, h);
-}
-
-
-
-
-/*
-var animate, left=0, egg=null;
-
-function init()
-{
-   egg = new Image(tile_size, tile_size);
-
-   egg.src = 'https://jacobl14.files.wordpress.com/2011/05/yoshiegg.png';
-   context.drawImage(egg, tile_size, tile_size, egg.width, egg.height);
-
-   context.style.position= 'absolute';
-   context.style.top = '240px';
-   context.style.left = '-300px';
-   context.style.visibility='hidden';
-
-   moveRight();
-}
-
-function moveRight(){
-    left = parseInt(egg.style.left, 10);
-
-    if (10 >= left) {
-        egg.style.left = (left + 50) + 'px';
-        egg.style.visibility='visible';
-
-        animate = setTimeout(function(){moveRight();},20); // call moveRight in 20msec
-
-        //stopanimate = setTimeout(moveRight,20);
-    } else {
-        stop();
-    }
-    //f();
-}
-
-function stop(){
-   clearTimeout(animate);
-}
-
-window.onload = function() {init();};
-*/
-
-
+<script src="world.js">
 
 </script>
 
