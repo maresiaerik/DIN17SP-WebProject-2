@@ -1,40 +1,46 @@
+
 let player = {
     x : 4,
-    y : 4
+    y : 4,
+    moving : false
   }
+
+let control_scheme = ["w", "a", "s", "d"];
 
 function input(event)
 {
     var keypressed = event.key;
 
-    if(keypressed)
+    if(control_scheme.includes(keypressed) && !player.moving)
     {
         switch (keypressed)
         {
-            case "w" : !CheckTile(player.x, player.y-1) ? player.y-- : null;
+            case "w" : CheckTile(player.x, player.y-1) ? null : (player.y--, tile_offset.y = -tile_size, SetGrid());
                 break;
 
-            case "a" : !CheckTile(player.x-1, player.y) ? player.x-- : null;
+            case "a" : CheckTile(player.x-1, player.y) ? null : (player.x--, tile_offset.x = -tile_size, SetGrid());
                 break;
             
-            case "s" : !CheckTile(player.x, player.y+1) ? player.y++ : null;
+            case "s" : CheckTile(player.x, player.y+1) ? null : (player.y++, tile_offset.y = tile_size, SetGrid());
                 break;
             
-            case "d" : !CheckTile(player.x+1, player.y) ? player.x++ : null;
+            case "d" : CheckTile(player.x+1, player.y) ? null : (player.x++, tile_offset.x = tile_size, SetGrid());
                 break;
 
             default : null;
-        }
-
-        DrawGrid();
+        } 
+        
+        
     }
 }
 
+
+
 function CheckTile(x, y)
 {
-    if(grid[1][x] != null)
+    if(foreground[y] != null)
     {
-        if(grid[1][x][y] != null)
-            return grid[1][x][y].collision;
+        if(foreground[y][x] != null)
+            return foreground[y][x].collision;  
     }
 }
