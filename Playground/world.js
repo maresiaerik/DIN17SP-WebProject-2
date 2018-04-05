@@ -28,33 +28,75 @@ let fixed_start = {
 let grass = new Tile(0, 0, false);
 let dirt  = new Tile(1, 0, false);
 let tree  = new Tile(2, 0, true);
-let ttop  = new Tile(3, 0, false);  
+let tTop  = new Tile(3, 0, false);  
 let bush  = new Tile(4, 0, true);
 
 let test = false;
 
 let background = [
-    [grass,grass,grass,grass,grass,grass,grass,grass,grass],
-    [grass,grass,grass,grass,grass,grass,grass,grass,grass],
-    [grass,grass,grass,grass,grass,grass,grass,grass,grass],
-    [grass,grass,grass,grass,grass,grass,grass,grass,grass],
-    [grass,grass,grass,grass,grass,grass,grass,grass,grass],
-    [grass,grass,grass,grass,grass,grass,grass,grass,grass],
-    [grass,grass,grass,grass,grass,grass,grass,grass,grass],
-    [grass,grass,grass,grass,grass,grass,grass,grass,grass],
-    [grass,grass,grass,grass,grass,grass,grass,grass,grass]
+  [grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass],
+  [grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass],
+  [grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass],
+  [grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass],
+  [grass, grass, grass, dirt, dirt, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass],
+  [grass, grass, grass, dirt, dirt, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass],
+  [grass, grass, grass, dirt, dirt, dirt, dirt, dirt, dirt, dirt, dirt, dirt, dirt, dirt, dirt, dirt, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass],
+  [grass, grass, grass, dirt, dirt, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass],
+  [grass, grass, grass, dirt, dirt, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass],
+  [grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass],
+  [grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass],
+  [grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass],
+  [grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass],
+  [grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, dirt, dirt, dirt, dirt, dirt, dirt, dirt, dirt, dirt, dirt, dirt, grass, grass, grass],
+  [grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass],
+  [grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass],
+  [grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass],
+  [grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass],
+  [grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass],
+  [grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass],
+  [grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass],
+  [grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt, grass, grass, grass],
+  [grass, dirt,  dirt,  dirt,  dirt,  dirt,  grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt,  grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, dirt,  grass, grass, grass],
+  [grass, dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  dirt,  grass, grass, grass],
+  [grass, dirt,  dirt,  dirt,  dirt,  dirt,  grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass],
+  [grass, dirt,  dirt,  dirt,  dirt,  dirt,  grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass],
+  [grass, dirt,  dirt,  dirt,  dirt,  dirt,  grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass],
+  [grass, dirt,  dirt,  dirt,  dirt,  dirt,  grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass],
+  [grass, dirt,  dirt,  dirt,  dirt,  dirt,  grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass],
+  [grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass]
   ];
 
 let foreground = [
-    [bush,bush,bush,bush,bush,bush,bush,bush,bush],
-    [null,null,null,null,null,null,null,null,bush],
-    [bush,null,null,null,null,null,null,null,bush],
-    [bush,null,null,null,null,null,null,null,bush],
-    [bush,null,null,ttop,ttop,null,null,null,bush],
-    [bush,null,null,tree,tree,null,null,null,bush],
-    [bush,null,null,null,null,null,null,null,bush],
-    [bush,null,null,null,null,null,null,null,bush],
-    [bush,bush,bush,bush,bush,bush,bush,bush,bush]
+    [bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush],
+    [bush, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, bush, null, null, null, null, null, null, null, null, null, null, bush],
+    [bush, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, bush],
+    [bush, null, bush, bush, bush, bush, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, bush, null, bush],
+    [bush, null, bush, null, null, bush, tTop, tTop, tTop, tTop, tTop, tTop, tTop, tTop, tTop, tTop, null, null, null, null, null, null, null, tTop, null, null, null, null, null, bush],
+    [bush, null, bush, null, null, bush, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, null, null, null, null, null, null, null, tree, null, null, null, null, null, bush],
+    [bush, null, bush, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, bush],
+    [bush, null, bush, null, null, bush, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, bush],
+    [bush, null, bush, null, null, bush, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, bush],
+    [bush, null, bush, bush, bush, bush, null, null, null, null, null, null, null, null, null, null, null, null, null, tTop, null, null, null, null, null, null, null, null, null, bush],
+    [bush, null, null, null, null, null, null, null, null, null, null, bush, null, null, null, null, null, null, null, tree, null, null, null, null, null, null, null, null, null, bush],
+    [bush, null, null, null, null, null, null, tTop, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, bush, null, bush],
+    [bush, null, null, null, null, null, null, tree, null, null, bush, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, bush],
+    [bush, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, bush],
+    [bush, null, null, null, null, null, null, null, null, null, null, bush, null, null, null, null, null, null, null, null, tTop, tTop, tTop, null, null, null, null, null, null, bush],
+    [bush, null, null, bush, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, tree, tree, tree, null, null, null, null, null, null, bush],
+    [bush, null, null, null, null, null, null, null, null, null, null, null, null, null, tTop, null, null, null, null, null, null, null, null, null, null, null, null, null, null, bush],
+    [bush, null, null, null, null, null, null, null, null, null, null, null, null, null, tree, null, null, null, null, null, null, null, null, null, null, null, null, tTop, null, bush],
+    [bush, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, tree, null, bush],
+    [bush, tTop, null, null, null, null, tTop, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, bush],
+    [bush, tree, null, null, null, null, tree, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, bush],
+    [bush, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, bush],
+    [bush, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, bush],
+    [bush, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, bush],
+    [bush, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, tTop, null, null, null, null, null, null, null, null, bush],
+    [bush, null, null, null, null, null, null, null, null, null, tTop, null, null, null, null, null, null, null, null, null, tree, null, null, null, null, null, tTop, null, null, bush],
+    [bush, null, null, null, null, null, null, null, null, null, tree, null, null, null, bush, null, null, null, null, bush, null, null, null, null, null, null, tree, null, null, bush],
+    [bush, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, bush],
+    [bush, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, bush],
+    [bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush],
   ];
 
 
@@ -70,6 +112,7 @@ let tile_offset = {
 
 function SetGrid()
 {
+  console.log('test');
   player.moving = true;
 
   ChangeOffset();
@@ -163,7 +206,16 @@ function DrawGrid()
 
   function DrawElements()
   {
-    context.drawImage(egg, canvas_center.x, canvas_center.y, egg.width, egg.height);
+    // context.drawImage(egg, canvas_center.x, canvas_center.y, egg.width, egg.height);
+    context.drawImage(player.image,
+      playerSpriteX,
+      playerSpriteY,
+      32,
+      32,
+      canvas_center.x,
+      canvas_center.y,
+      tile_size,
+      tile_size);
   }
 
   function DrawForeground()

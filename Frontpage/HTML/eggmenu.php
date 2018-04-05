@@ -4,11 +4,7 @@
     <meta charset="utf-8">
     <link rel="icon" href="https://orig00.deviantart.net/1039/f/2012/008/7/5/8bit_egg_by_xxx515xxx-d4ls0ll.png">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="../JS/sketch.js"></script>
-    <script src="../JS/p5.min.js"></script>
-    <!-- <script src="../JS/p5.js"></script> -->
-    <script src="../JS/addons/p5.dom.min.js"></script>
-    <script src="../JS/addons/p5.sound.min.js"></script>
+    <script src="../JS/world.js"></script>
     <script src="../JS/eggmenujs.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/eggmenucss.css">
@@ -16,7 +12,7 @@
       <title>Egg hunt</title>
     </script>
   </head>
-  <body>
+  <body onload="SetGrid()" >
 
     <?php
         if(isset($_SESSION['logged_in']))
@@ -129,7 +125,11 @@
     <br>
     <!-- Actual Web page -->
     <div>
-      <div id="game-canvas"></div>
+      <div id="game-canvas">
+        <canvas id="myCanvas" width="750" height="450" style="border:1px solid #000000;"></canvas>
+        <script src="world.js"></script>
+        <script src="player.js"></script>
+      </div>
     </div>
     <div class="flex-container">
       <div class="right">
