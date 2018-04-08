@@ -56,56 +56,31 @@
         </button>
       </center>
     </div>
-    <div id="form01" class="modal">
-        <span onclick="document.getElementById('form01').style.display='none'" class="close" title="Close Modal">&times;</span>
-        <form class="modal-content" action="action_page.php" method="post">
-          <div class="container">
-            <center>
-            </center>
-            <p id="signp">Please fill in this form to create an account.</p>
-            <hr>
-              <label  for="uname"><b>Username</b></label>
-              <input type="text" placeholder="Enter Username" name="user" required>
   
-              <label for="psw"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" name="psw" required>
-  
-              <label for="psw-repeat"><b>Repeat Password</b></label>
-              <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-              
-              <div class="clearfix">
-              <button type="button" onclick="document.getElementById('form01').style.display='none'" class="cancelbtn"><b>Cancel</b></button>
-              <button type="submit" class="signupbtn"><b>Sign Up</b></button>
-            </div>
-          </div>
-        </form>
-      </div>
-  
-      <div id="form02" class="modal">
+      <div class="login-page modal" id="form02">
+        <div class="form">
         <span onclick="document.getElementById('form02').style.display='none'" class="close" title="Close Modal">&times;</span>
-        <form class="modal-content" action="action_page.php" method="post">
-          <div class="container">
-            <center>
-              <h1>Log in</h1>
-              <br>
-            </center>
-            <hr>
-              <div id="login-msg"></div>
-              <span id="text-login-msg"><i class="fas fa-angle-double-right"></i>Type your username and password.</span>
-              <input type="text" placeholder="Enter Username" name="user" required>
-              <input type="password" placeholder="Enter Password" name="psw" required>
-              <center id="forbtns">
-              <div class="clearfix">
-              <button type="button" onclick="document.getElementById('form02').style.display='none'" class="cancelbtn"><b>Cancel</b></button>
-              <button type="submit" class="signupbtn"><b>Log in</b></button>
-           </div>
-          </center>
-          </div>
+        <form class="login-form" action="action_page.php" method="post">
+        <h1 id="signh1">Login</h1>
+        <input type="text" placeholder="Username">
+        <input type="text" placeholder="Password">
+        <button class="signupbtn">Login</button>
+        <button type="button" onclick="document.getElementById('form02').style.display='none'" class="cancelbtn"><b>Cancel</b></button>
+        <p class="message"><a href="#">First time logging in?</a></p>
         </form>
+        
+        <form class="register-form" action="action_page.php" method="post">
+          <h1 id="signh1">Register</h1>
+          <input type="text" placeholder="Username">
+          <input type="text" placeholder="Password">
+          <input type="text" placeholder="Confirm password">
+          <button class="signupbtn">Register!</button>
+          <button type="button" onclick="document.getElementById('form02').style.display='none'" class="cancelbtn"><b>Cancel</b></button>
+          <p class="message"><a href="#">Already registered?</a></p>
+        </form>
+        </div>
       </div>
 
-
-  
       <div id="form03" class="modal">
         <span onclick="document.getElementById('form03').style.display='none'" class="close" title="Close Modal">&times;</span>
         <form class="modal-content" action="action_page.php">
@@ -126,7 +101,7 @@
     <!-- Actual Web page -->
     <div>
       <div id="game-canvas">
-        <canvas id="myCanvas" width="750" height="450" style="border:1px solid #000000;"></canvas>
+        <canvas id="myCanvas" width="750" height="450" style="border:1px solid white;"></canvas>
         <script src="world.js"></script>
         <script src="player.js"></script>
       </div>
@@ -150,6 +125,9 @@
   </div>
   <script>
     document.getElementById("defaultOpen").click();
+    $('.message a').click(function(){
+          $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+      });
   </script>
   </body>
 </html>
