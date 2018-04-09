@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <link rel="icon" href="https://orig00.deviantart.net/1039/f/2012/008/7/5/8bit_egg_by_xxx515xxx-d4ls0ll.png">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="../JS/world.js"></script>
     <script src="../JS/eggmenujs.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/eggmenucss.css">
@@ -28,7 +27,7 @@
     <div class="sidebar_menu hide_menu">
       <i class="fas fa-times"></i>
       <center>
-        <a href="eggmenu.html"><h1 class="boxed_item">EGG <span class="logo_bold">HUNT</span></h1></a>
+        <a href="#"><h1 class="boxed_item">EGG <span class="logo_bold">HUNT</span></h1></a>
         <h2 class="logo_title">An Egg Hunting Game</h2>
       </center>
 
@@ -39,20 +38,15 @@
         <button class="navigation_item"><a href="https://github.com/maresiaerik/DIN17SP-WebProject-2" target="_blank">ABOUT</a></button>
       </ul>
       <center>
-          <button class="tablinks" onclick="document.getElementById('form02').style.display='block'" id="defaultOpen">
+          <button class="tablinks-in" onclick="document.getElementById('form02').style.display='block'" id="defaultOpen">
               <i class="fas fa-sign-in-alt"></i>
               LOG IN
             </button>
       </center>
       <center>
-        <button class="tablinks" onclick="document.getElementById('form03').style.display='block'">
+        <button class="tablinks-out" onclick="document.getElementById('form03').style.display='block'">
           <i class="fas fa-sign-out-alt"></i>
           LOG OUT
-        </button>
-      </center>
-      <center>
-        <button class="tablinks" onclick="document.getElementById('form01').style.display='block'">
-          <i class="fa fa-user"></i>SIGN UP
         </button>
       </center>
     </div>
@@ -81,22 +75,6 @@
         </div>
       </div>
 
-      <div id="form03" class="modal">
-        <span onclick="document.getElementById('form03').style.display='none'" class="close" title="Close Modal">&times;</span>
-        <form class="modal-content" action="action_page.php">
-          <div class="container">
-            <h1 id="signh1">Successfully logged out!</h1>
-            <hr>
-              <center id="forbtns">
-              <div class="clearfix">
-              <button type="button" onclick="document.getElementById('form03').style.display='none'" class="cancelbtn"><b>Close window</b></button>
-            </div>
-          </center>
-          </div>
-        </form>
-      </div>
-
-
     <br>
     <!-- Actual Web page -->
     <div>
@@ -109,17 +87,17 @@
     <div class="flex-container">
       <div class="right">
         <h3 class="h3title"><i class="fas fa-info"></i>How to play</h3>
-        <p>You can use arrow and WASD keys to move</p>
-        <p>Collect eggs to increase your score</p>
+        <p id="boxtext">You can use arrow and WASD keys to move</p>
+        <p id="boxtext">Collect eggs to increase your score</p>
+        <p id="boxtext"></p>
+        <p id="boxtext"></p>
         <br>
       </div>
     <div class="left">
       <h3 class="h3title"><i class="fas fa-users"></i>Online users</h3>
       <ul>
-        <li>User example</li>
-        <li>User example</li>
-        <li>User example</li>
-        <li>User example</li>
+        <li>Users displayed as a table here:</li>
+
       </ul>
     </div>
   </div>

@@ -119,6 +119,7 @@ a
 .navigation_item:hover
 {
   color: rgb(218, 255, 206);
+  border-bottom: 2px solid;
 }
 
 .boxed_item_smaller
@@ -379,7 +380,6 @@ padding: 15px;
   width: 502px;
   margin-bottom: 10px;
   float: right;
-  
 }
 
 .left
@@ -425,34 +425,40 @@ padding: 15px;
   height: 120px;
 }
 
-#login_button
+
+.tablinks-in
 {
-  padding: 5px;
-}
-
-#logout_button
-{
-
-}
-
-#signup_button
-{
-
-}
-
-.tablinks
-{
-  padding: 5px;
-  border-radius: 3px;
-  width: 100px;
+  font-size: 20px;
+  padding: 10px 36px;
+  background-color: rgba(20, 17, 0, 0.5);
+  border: 2px solid black;
+  border-bottom-color: #406b23;
+  color: white;
+  border-radius: 2px;
   margin: 5px;
-  background-color: rgb(154, 165, 186);
 }
 
-.tablinks:hover
+.tablinks-out
 {
+  font-size: 20px;
+  padding: 10px 25px;
+  background-color: rgba(20, 17, 0, 0.5);
+  border: 2px solid black;
+  border-bottom-color: #9c3435;
+  color: white;
+  border-radius: 2px;
+  margin: 5px;
+}
+
+.tablinks-in:hover
+{
+  background-color: #4e575e;
   transition: all 0.3s ease-in-out;
-  background-color: rgb(218, 255, 206)
+}
+.tablinks-out:hover
+{
+  background-color: #4e575e;
+  transition: all 0.3s ease-in-out;
 }
 
 #text-login-msg
@@ -478,4 +484,9 @@ padding: 15px;
 .message
 {
   font-size: 17px;
+}
+
+#boxtext
+{
+  margin-left: 2px;
 }
