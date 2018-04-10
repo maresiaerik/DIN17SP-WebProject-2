@@ -33,7 +33,7 @@
 
       <ul class="navigation_select">
         <button class="navigation_item">LEADERBOARD</button>
-        <button class="navigation_item">GRAPHS</button>
+        <button class="navigation_item" onclick="document.getElementById('form04').style.display='block'">GRAPHS</button>
         <button class="navigation_item">SETTINGS</button>
         <button class="navigation_item"><a href="https://github.com/maresiaerik/DIN17SP-WebProject-2" target="_blank">ABOUT</a></button>
       </ul>
@@ -49,6 +49,7 @@
           LOG OUT
         </button>
       </center>
+      <i class="fas fa-search-plus">Zoom!</i>
     </div>
   
       <div class="login-page modal" id="form02">
@@ -56,8 +57,8 @@
         <span onclick="document.getElementById('form02').style.display='none'" class="close" title="Close Modal">&times;</span>
         <form class="login-form" action="action_page.php" method="post">
         <h1 id="signh1">Login</h1>
-        <input type="text" placeholder="Username">
-        <input type="text" placeholder="Password">
+        <input type="text" placeholder="Username" required>
+        <input type="text" placeholder="Password" required>
         <button class="signupbtn">Login</button>
         <button type="button" onclick="document.getElementById('form02').style.display='none'" class="cancelbtn"><b>Cancel</b></button>
         <p class="message"><a href="#">First time logging in?</a></p>
@@ -65,9 +66,9 @@
         
         <form class="register-form" action="action_page.php" method="post">
           <h1 id="signh1">Register</h1>
-          <input type="text" placeholder="Username">
-          <input type="text" placeholder="Password">
-          <input type="text" placeholder="Confirm password">
+          <input type="text" placeholder="Username" required>
+          <input type="text" placeholder="Password" required>
+          <input type="text" placeholder="Confirm password" required>
           <button class="signupbtn">Register!</button>
           <button type="button" onclick="document.getElementById('form02').style.display='none'" class="cancelbtn"><b>Cancel</b></button>
           <p class="message"><a href="#">Already registered?</a></p>
@@ -79,7 +80,7 @@
     <!-- Actual Web page -->
     <div>
       <div id="game-canvas">
-        <canvas id="myCanvas" width="750" height="450" style="border:1px solid white;"></canvas>
+        <canvas class="canvas"></canvas>
         <script src="world.js"></script>
         <script src="player.js"></script>
       </div>
@@ -106,6 +107,10 @@
     $('.message a').click(function(){
           $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
       });
+
+      $('.fa-search-plus').click(function(){
+          $('canvas').toggleClass('canvas2');
+     });
   </script>
   </body>
 </html>
