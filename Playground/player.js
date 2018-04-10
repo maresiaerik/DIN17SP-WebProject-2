@@ -1,130 +1,169 @@
 
 
-let tileSize = 32;
 let upKeyCode = 87;
 let leftKeyCode = 65;
 let downKeyCode = 83;
 let rightKeyCode = 68;
 
-let playerSpriteX = 0;
-let playerSpriteY = (2 * tileSize);
+let pressed_keys = [];
+let active_key = 0;
 
-
-
-
-//Define object Player
-let player =
+class Player
 {
-  x : 3, // default coordinates on grid
-  y : 6,
-  movement:
+  constructor()
   {
-    staticRight:
-    {
-      x : (0 * tileSize),
-      y : (2 * tileSize)
-    },
-    runRight:
-    {
-      x : (1 * tileSize),
-      y : (2 * tileSize)
-    },
-    staticLeft:
-    {
-      x : (0 * tileSize),
-      y : (3 * tileSize)
-    },
-    runLeft:
-    {
-      x : (1 * tileSize),
-      y : (3 * tileSize)
-    },
-    staticDown:
-    {
-      x : (1 * tileSize),
-      y : (0 * tileSize)
-    },
-    runDown:
-    {
-      x : (0 * tileSize),
-      y : (0 * tileSize)
-    },
-    staticUp:
-    {
-      x : (0 * tileSize),
-      y : (1 * tileSize)
-    },
-    runUp:
-    {
-      x : (1 * tileSize),
-      y : (1 * tileSize)
+    this.moving = false;
+    this.image = new Image(tile_size, tile_size);
+
+    this.position = {
+      x : 4, //position
+      y : 6
     }
-  },
-  moving: false,
-  image: new Image(tile_size, tile_size)
+
+    this.size = 32;
+
+    this.speed = (tile_size / 10);
+
+    this.sheet_row = 0;
+
+    this.sprite =
+    {
+        x : 0,
+        y : 0
+    };
+
+    this.draw_sprite(0,1);
+  }
+
+  draw_sprite(x, y)
+  {
+    this.sprite.x = x * this.size;
+    this.sprite.y = y * this.size;
+
+    this.image.src = 'BunnySheet.png';
+
+    context.drawImage(this.image,
+                      this.sprite.x,
+                      this.sprite.y,
+                      this.size,
+                      this.size,
+                      canvas_center.x,
+                      canvas_center.y,
+                      tile_size,
+                      tile_size);
+  }
+
+  move_down()
+  {
+    this.position.y++; 
+    tile_offset.y = tile_size; 
+
+    this.sheet_row = 0;
+
+    SetGrid();
+  };
+
+  move_up()
+  {
+      this.position.y--; 
+      tile_offset.y = -tile_size;
+
+      this.sheet_row = 1;
+
+      SetGrid();
+  };
+
+  move_right()
+  {
+    this.position.x++; 
+    tile_offset.x = tile_size; 
+
+    this.sheet_row = 2;
+
+    SetGrid();
+  };
+
+  move_left()
+  {
+    this.position.x--; 
+    tile_offset.x = -tile_size; 
+
+    this.sheet_row = 3;
+
+    SetGrid();
+  }; 
+
+  move()
+  {
+    this.sprite.y = this.sheet_row;
+    
+    this.step_distance = (tile_size / 1.5);
+
+    if(tile_offset.x > 0 && tile_offset.x <  this.step_distance || 
+       tile_offset.x < 0 && tile_offset.x > -this.step_distance ||
+       tile_offset.y > 0 && tile_offset.y <  this.step_distance || 
+       tile_offset.y < 0 && tile_offset.y > -this.step_distance)
+    {
+      this.sprite.x = 1;
+    } else {
+      this.sprite.x = 0;
+    }
+  }
 };
 
-player.image.src = 'BunnySheet.png';
+let player = new Player();
 
 let keys = [upKeyCode, leftKeyCode, downKeyCode, rightKeyCode];
 
 $(document).keydown(function(event)
 {
-    let keypressed = event.which
-    if (keys.includes(keypressed) && !player.moving)
-    {
-      switch (keypressed)
-      {
-          case upKeyCode:   CheckTile(player.x, player.y-1) ? null : (player.y--, tile_offset.y = -tile_size, SetGrid());
-                            playerSpriteX = player.movement.runUp.x;
-                            playerSpriteY = player.movement.runUp.y;
-                            break;
+  //Push key to array if the last index key is not the same
+  //Prevents "keydown" repeat
+  if(pressed_keys[pressed_keys.length-1] != event.which)
+  {
+    pressed_keys.push(event.which);
 
-          case leftKeyCode :  CheckTile(player.x-1, player.y) ? null : (player.x--, tile_offset.x = -tile_size, SetGrid());
-                              playerSpriteX = player.movement.runLeft.x;
-                              playerSpriteY = player.movement.runLeft.y;
-                              break;
-
-          case downKeyCode :  CheckTile(player.x, player.y+1) ? null : (player.y++, tile_offset.y = tile_size, SetGrid());
-                              playerSpriteX = player.movement.runDown.x;
-                              playerSpriteY = player.movement.runDown.y;
-                              break;
-
-          case rightKeyCode:  CheckTile(player.x+1, player.y) ? null : (player.x++, tile_offset.x = tile_size, SetGrid());
-                              playerSpriteX = player.movement.runRight.x;
-                              playerSpriteY = player.movement.runRight.y;
-                              break;
-          default : null;
-      }
-  }
+    Move(); 
+  }  
 });
+
+function Move()
+{
+  let active_key = pressed_keys[pressed_keys.length - 1];
+
+  if (keys.includes(active_key) && !player.moving)
+  {
+    switch (active_key)
+    {
+      case upKeyCode:     CheckTile(player.position.x, player.position.y-1) ? null : player.move_up();
+                          break;
+
+      case leftKeyCode :  CheckTile(player.position.x-1, player.position.y) ? null : player.move_left();
+                          break;
+
+      case downKeyCode :  CheckTile(player.position.x, player.position.y+1) ? null : player.move_down();
+                          break;
+
+      case rightKeyCode:  CheckTile(player.position.x+1, player.position.y) ? null : player.move_right();
+                          break;
+
+      default : null;
+    }
+  }
+
+  if(pressed_keys.length > 0)
+    setTimeout(Move, 10);
+}
 
 $(document).keyup(function(event)
 {
-  let keyup = event.which;
-  switch (keyup)
-  {
-    case upKeyCode:     playerSpriteX = player.movement.staticUp.x;
-                        playerSpriteY = player.movement.staticUp.y;
-                        break;
-    case leftKeyCode:   playerSpriteX = player.movement.staticLeft.x;
-                        playerSpriteY = player.movement.staticLeft.y;
-                        break;
-    case downKeyCode:   playerSpriteX = player.movement.staticDown.x;
-                        playerSpriteY = player.movement.staticDown.y;
-                        break;
-    case rightKeyCode:  playerSpriteX = player.movement.staticRight.x;
-                        playerSpriteY = player.movement.staticRight.y;
-                        break;
-    default:
-                        playerSpriteX = player.movement.staticRight.x;
-                        playerSpriteY = player.movement.staticRight.y;
-
-  }
-    DrawGrid();
+  let index = pressed_keys.indexOf(event.which);
+  pressed_keys.splice(index, 1);
 });
 
-
+//Add pressed key to array
+//use direction of last index
+//on key up: remove key from array
 
 function CheckTile(x, y)
 {
