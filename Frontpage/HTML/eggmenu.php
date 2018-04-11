@@ -14,12 +14,18 @@
   <body onload="SetGrid()" >
 
     <ul class="top-ul">
-      <li><a href="http://jqueryui.com/themeroller/" id="show-option" title="You can use WASD and ARROW keys to move, collect eggs to increase score and compete on the leaderboard"><i class="fas fa-search-plus"></i></a></li>
+      <li><a href="#"><i class="fas fa-search-plus"></i></a></li>
       <!--<i class="fas fa-search-minus"></i>-->
       <li><a href="#"><i class="fas fa-volume-up"></i></a></li>
-      <li><a href="#" class="how-tooltip">How to play</a></li>
+      <li><a href="#" class="how-tooltip"><i class="fas fa-question"></i></a></li>
       <li style="float:right"><a class="active" href="https://github.com/maresiaerik/DIN17SP-WebProject-2" target="_blank"><i class="fab fa-github-square"></i></a></li>
     </ul>
+
+    <div id="tooltip">
+    <img src="wasd.png" id="wasd" height="145" width="220"><img src="arrow.png" id="arrow" height="145" width="220">
+    <br>
+       You can use WASD and ARROW keys to move, collect eggs to increase score and compete on the leaderboard!
+    </div>
 
     <i class="fab fa-whmcs toggle_menu opacity_one"></i>
     <div class="sidebar_menu hide_menu">
@@ -78,7 +84,8 @@
         <table>Generated php table here</table>
         </div>
       </div>
-
+    <br>
+    <br>
     <br>
     <!-- Actual Web page -->
     <div>
@@ -123,7 +130,7 @@
   });
 
     $(document).ready(function(){
-      $('#show-option').hover(function(){
+      $('.how-tooltip').hover(function(){
       $('#tooltip').css("display","block");
     },function(){
       $('#tooltip').css("display","none");

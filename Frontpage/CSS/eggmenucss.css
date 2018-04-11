@@ -114,8 +114,10 @@ a
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: rgb(31, 48, 76);
+  background-color: #344857;
+  /**background-color: rgb(31, 48, 76);**/
   border-bottom: 1px solid rgb(70, 89, 119);
+  background: linear-gradient(to bottom,#4E575E 0%,#34393D 50%,#282B30 53%,#202427 100%);
 }
 
 li {
@@ -433,14 +435,6 @@ padding: 15px;
 }
 
 
-#egglogo
-{ 
-  padding: 5px;
-  width: 120px;
-  height: 120px;
-}
-
-
 .tablinks-in
 {
   font-family: 'Orbitron';
@@ -563,13 +557,43 @@ padding: 15px;
   color: greenyellow;
 }
 
+.fa-question
+{
+  color: greenyellow;
+}
+
 .leaderpage
 {
   font-family: 'Orbitron';
   width: 50%;
-  border: 2px solid black;
-  background-color: rgba(20, 17, 0, 0.6);
+  border: 2px solid white;
+  background-color: rgba(31, 48, 76, 1);
   color: white;
   margin: 20px;
 }
 
+#tooltip
+{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 20px;
+  position: absolute;
+  z-index: 2;
+  width: 500px;
+  padding: 5px;
+  color: white;
+  background-color: rgb(31, 48, 76);
+  border: 2px solid greenyellow;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  display: none;
+}
+
+#wasd 
+{
+  padding: 10px;
+}
+
+#arrow 
+{
+  padding: 10px;
+}
