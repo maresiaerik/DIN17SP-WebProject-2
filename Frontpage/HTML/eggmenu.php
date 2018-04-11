@@ -13,15 +13,12 @@
   </head>
   <body onload="SetGrid()" >
 
-    <?php
-        if(isset($_SESSION['logged_in']))
-        {
-          echo 'Welcome '$_SESSION['user'];
-        }
-        else {
-          echo 'Welcome Quest';
-        }
-     ?>
+    <ul class="top-ul">
+      <li><a href="#news"><i class="fas fa-search-plus"></i></a></li>
+      <i class="fas fa-search-minus"></i>
+      <li><a href="#contact"><i class="fas fa-volume-up"></i></a></li>
+      <li style="float:right"><a class="active" href="https://github.com/maresiaerik/DIN17SP-WebProject-2" target="_blank"><i class="fab fa-github-square"></i></a></li>
+    </ul>
 
     <i class="fab fa-whmcs toggle_menu opacity_one"></i>
     <div class="sidebar_menu hide_menu">
@@ -32,10 +29,9 @@
       </center>
 
       <ul class="navigation_select">
-        <button class="navigation_item">LEADERBOARD</button>
-        <button class="navigation_item" onclick="document.getElementById('form04').style.display='block'">GRAPHS</button>
+        <button class="navigation_item" id="leaderbtn">LEADERBOARD</button>
+        <button class="navigation_item">GRAPHS</button>
         <button class="navigation_item">SETTINGS</button>
-        <button class="navigation_item"><a href="https://github.com/maresiaerik/DIN17SP-WebProject-2" target="_blank">ABOUT</a></button>
       </ul>
       <center>
           <button class="tablinks-in" onclick="document.getElementById('form02').style.display='block'" id="defaultOpen">
@@ -49,7 +45,6 @@
           LOG OUT
         </button>
       </center>
-      <i class="fas fa-search-plus">Zoom!</i>
     </div>
   
       <div class="login-page modal" id="form02">
@@ -73,6 +68,14 @@
           <button type="button" onclick="document.getElementById('form02').style.display='none'" class="cancelbtn"><b>Cancel</b></button>
           <p class="message"><a href="#">Already registered?</a></p>
         </form>
+        </div>
+      </div>
+
+      <div class="leaderpage modal" id="leaderform">
+        <div class="leaderform">
+        <span onclick="document.getElementById('leaderform').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <h1 id="signh1">Leaderboard</h1>
+        <table>Generated php table here</table>
         </div>
       </div>
 
@@ -108,9 +111,20 @@
           $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
       });
 
-      $('.fa-search-plus').click(function(){
-          $('canvas').toggleClass('canvas2');
-     });
+    $('.fa-search-plus').click(function(){
+        $('canvas').toggleClass('canvas2');
+      });
+
+    $('.fa-search-minus').hide();
+    $('.fa-search-plus').click(function(){
+        $('.fa-search-plus').toggleClass('.fa-search-minus');
+    });
+
+    $(document).ready(function(){
+    $('#leaderbtn').click(function(){
+        $('#leaderform').toggle();
+    });
+  });
   </script>
   </body>
 </html>

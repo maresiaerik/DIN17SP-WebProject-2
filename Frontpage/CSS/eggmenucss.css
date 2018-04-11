@@ -63,24 +63,15 @@ a
   opacity: 1;
 }
 
-.fa-search-plus
-{
-  font-size: 20px;
-  padding: 10px;
-  color: white;
-  background-color: rgb(31, 48, 76);
-}
-
 .boxed_item
 {
-  font-family: sans-serif;
-  font-weight: 200;
-  padding: 10px 20px;
+  font-family: 'Orbitron';
+  padding: 10px 10px;
   display: inline-block;
   border: solid 2px white;
-  border-radius: 5px;
+  border-radius: 10px;
   box-sizing: border-box;
-  font-size: 32px;
+  font-size: 35px;
   color: rgb(255, 244, 132);
   text-align: center;
   margin-top: 70px;
@@ -128,6 +119,41 @@ a
 {
   color: rgb(218, 255, 206);
   border-bottom: 2px solid;
+}
+
+.top-ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(31, 48, 76);
+  border-bottom: 1px solid rgb(70, 89, 119);
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 5px 6px;
+  text-decoration: none;
+}
+
+.zoombtn
+{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  border: 0;
+  color: white;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.fa-github-square
+{
+  font-size: 20px;
 }
 
 .boxed_item_smaller
@@ -216,6 +242,7 @@ input[type=text]:hover, input[type=password]:hover
 }
 
 .modal {
+    font-family: 'Orbitron';
     display: none;
     position: fixed;
     z-index: 1;
@@ -260,6 +287,7 @@ hr {
 
 .cancelbtn
 {
+  font-family: 'Orbitron';
   font-size: 20px;
   padding: 5px 30px;
   background-color: rgba(20, 17, 0, 0.5);
@@ -283,6 +311,7 @@ hr {
 
 .signupbtn
 {
+  font-family: 'Orbitron';
   font-size: 20px;
   padding: 5px 30px;
   background-color: rgba(20, 17, 0, 0.5);
@@ -306,6 +335,7 @@ hr {
 
 #signh1
 {
+  font-family: 'Orbitron';
   text-align: center;
   padding: 10px;
   border-bottom: 2px solid rgba(20, 17, 0, 0.5);
@@ -364,6 +394,11 @@ padding: 15px;
 {
   margin: 15px 0 0;
   color: black;
+}
+
+.message:hover
+{
+  text-shadow:  0 0 3px #FF0000;
 }
 
 .form .register-form
@@ -435,6 +470,7 @@ padding: 15px;
 
 .tablinks-in
 {
+  font-family: 'Orbitron';
   font-size: 20px;
   padding: 10px 36px;
   background-color: rgba(20, 17, 0, 0.5);
@@ -448,6 +484,7 @@ padding: 15px;
 
 .tablinks-out
 {
+  font-family: 'Orbitron';
   font-size: 20px;
   padding: 10px 25px;
   background-color: rgba(20, 17, 0, 0.5);
@@ -513,10 +550,17 @@ padding: 15px;
   height: 600px;
 }
 
-.zoom-button
+.fa-search-plus
 {
   cursor: pointer;
-  border: 0;
-  color: white;
+}
+
+.leaderpage
+{
+  font-family: 'Orbitron';
+  width: 50%;
+  border: 2px solid black;
   background-color: rgb(12, 18, 28);
+  color: white;
+  margin: 20px;
 }
