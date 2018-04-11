@@ -1,14 +1,22 @@
-var canvas = document.getElementById("myCanvas");
-var context = canvas.getContext("2d");
+let canvas = document.getElementById("myCanvas");
+let context = canvas.getContext("2d");
 
-var fixed_tile_size = 64;
-var tile_size = 50;
+let fixed_tile_size = 64;
+let tile_size = 50;
 
-var tile_sheet = new Image();
+let tile_sheet = new Image();
 tile_sheet.src = 'tiles.png';
 
-egg = new Image(tile_size, tile_size);
-egg.src = 'https://jacobl14.files.wordpress.com/2011/05/yoshiegg.png';
+let draw_center = {
+  min : {
+    x : 0,
+    y : 0
+  },
+  max : {
+    x : 0,
+    y : 0
+  }
+}
 
 function Tile(sprite_index_x, sprite_index_y, collision)
 {
@@ -124,9 +132,9 @@ function SetGrid()
 {
   player.moving = true;
 
-  Move();
+  MoveGrid();
 
-  function Move()
+  function MoveGrid()
   { 
     if(tile_offset.x > 0)
       tile_offset.x -= player.speed;
@@ -138,13 +146,13 @@ function SetGrid()
     if(tile_offset.y < 0)
       tile_offset.y += player.speed;
 
-    player.move();
+    player.Move();
 
     DrawGrid();
 
     if(tile_offset.x != 0 || tile_offset.y != 0)
     {
-      setTimeout(Move, 10);
+      setTimeout(MoveGrid, 10);
     } else {
       player.moving = false;
     }
@@ -153,7 +161,7 @@ function SetGrid()
 
 function DrawGrid()
 {
-  let draw_center = {
+  draw_center = {
     min : {
       x : canvas_center.x - (player.position.x * tile_size),
       y : canvas_center.y - (player.position.y * tile_size)
@@ -224,7 +232,12 @@ function DrawGrid()
   
   function DrawElements()
   {
-    player.draw_sprite(player.sprite.x,player.sprite.y);
+    for(let egg = 0; egg < egg_list.length; egg++)
+    {
+      egg_list[egg].DrawSprite(egg_list[egg].position.x, egg_list[egg].position.y);
+    }
+
+    player.DrawSprite(player.sprite.x,player.sprite.y);
   }
 
   function DrawTile(x,y)

@@ -1,9 +1,14 @@
 
 
-let upKeyCode = 87;
-let leftKeyCode = 65;
-let downKeyCode = 83;
-let rightKeyCode = 68;
+let w_key = 87;
+let a_key = 65;
+let s_key = 83;
+let d_key = 68;
+
+let a_up_key = 38;
+let a_left_key = 37;
+let a_down_key = 40;
+let a_right_key = 39;
 
 let pressed_keys = [];
 let active_key = 0;
@@ -32,10 +37,10 @@ class Player
         y : 0
     };
 
-    this.draw_sprite(0,1);
+    this.DrawSprite(0,1);
   }
 
-  draw_sprite(x, y)
+  DrawSprite(x, y)
   {
     this.sprite.x = x * this.size;
     this.sprite.y = y * this.size;
@@ -53,7 +58,7 @@ class Player
                       tile_size);
   }
 
-  move_down()
+  MoveDown()
   {
     this.position.y++; 
     tile_offset.y = tile_size; 
@@ -63,7 +68,7 @@ class Player
     SetGrid();
   };
 
-  move_up()
+  MoveUp()
   {
       this.position.y--; 
       tile_offset.y = -tile_size;
@@ -73,7 +78,7 @@ class Player
       SetGrid();
   };
 
-  move_right()
+  MoveRight()
   {
     this.position.x++; 
     tile_offset.x = tile_size; 
@@ -83,17 +88,17 @@ class Player
     SetGrid();
   };
 
-  move_left()
+  MoveLeft()
   {
     this.position.x--; 
     tile_offset.x = -tile_size; 
 
     this.sheet_row = 3;
-
+    
     SetGrid();
   }; 
 
-  move()
+  Move()
   {
     this.sprite.y = this.sheet_row;
     
@@ -109,11 +114,12 @@ class Player
       this.sprite.x = 0;
     }
   }
-};
+}
 
 let player = new Player();
 
-let keys = [upKeyCode, leftKeyCode, downKeyCode, rightKeyCode];
+let keys = [w_key, a_key, s_key, d_key, 
+            a_up_key, a_left_key, a_down_key, a_right_key];
 
 $(document).keydown(function(event)
 {
@@ -135,16 +141,20 @@ function Move()
   {
     switch (active_key)
     {
-      case upKeyCode:     CheckTile(player.position.x, player.position.y-1) ? null : player.move_up();
+      case a_up_key:
+      case w_key :    CheckTile(player.position.x, player.position.y-1) ? null : player.MoveUp();
                           break;
 
-      case leftKeyCode :  CheckTile(player.position.x-1, player.position.y) ? null : player.move_left();
+      case a_left_key:
+      case a_key :  CheckTile(player.position.x-1, player.position.y) ? null : player.MoveLeft();
                           break;
 
-      case downKeyCode :  CheckTile(player.position.x, player.position.y+1) ? null : player.move_down();
+      case a_down_key:
+      case s_key :  CheckTile(player.position.x, player.position.y+1) ? null : player.MoveDown();
                           break;
-
-      case rightKeyCode:  CheckTile(player.position.x+1, player.position.y) ? null : player.move_right();
+                          
+      case a_right_key:
+      case d_key:  CheckTile(player.position.x+1, player.position.y) ? null : player.MoveRight();
                           break;
 
       default : null;
