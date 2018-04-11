@@ -47,21 +47,9 @@ a
   transition: all 0.3s ease-in-out;
 }
 
-.fa-times
-{
-  right: 10px;
-  top: 10px;
-  opacity: 0.7;
-  cursor: pointer;
-  position: absolute;
-  color: white;
-  transition: all 0.3s ease-in-out;
-}
 
-.fa-times:hover
-{
-  opacity: 1;
-}
+
+
 
 .boxed_item
 {
@@ -151,10 +139,7 @@ li a {
   cursor: pointer;
 }
 
-.fa-github-square
-{
-  font-size: 20px;
-}
+
 
 .boxed_item_smaller
 {
@@ -406,7 +391,7 @@ padding: 15px;
   display: none;
 }
 
-.flex-container
+/**.flex-container
 {
   display: flex;
   flex-wrap: wrap;
@@ -433,7 +418,7 @@ padding: 15px;
   width: 302px;
   margin-bottom: 10px;
   float: left;
-}
+}**/
 
 .h3title
 {
@@ -446,19 +431,7 @@ padding: 15px;
   line-height: 35px;
   background: linear-gradient(to bottom,#4E575E 0%,#34393D 60%,#282B30 53%,#202427 100%);
 }
-.fa-info
-{
-  margin-top: 7px;
-  margin-right: 7px;
-  color: greenyellow;
-}
 
-.fa-users
-{
-  margin-top: 7px;
-  margin-right: 7px;
-  color: greenyellow;
-}
 
 #egglogo
 { 
@@ -516,11 +489,7 @@ padding: 15px;
   background-color:rgb(154, 165, 186);
 }
 
-.fa-angle-double-right
-{
-  color: rgb(31, 48, 76);
-  padding: 3px;
-}
+
 
 #createbutton 
 {
@@ -550,9 +519,48 @@ padding: 15px;
   height: 600px;
 }
 
+.fa-info
+{
+  margin-top: 7px;
+  margin-right: 7px;
+  color: greenyellow;
+}
+
+.fa-users
+{
+  margin-top: 7px;
+  margin-right: 7px;
+  color: greenyellow;
+}
+
+.fa-github-square
+{
+  font-size: 20px;
+}
+
+.fa-times
+{
+  right: 10px;
+  top: 10px;
+  opacity: 0.7;
+  cursor: pointer;
+  position: absolute;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+.fa-times:hover
+{
+  opacity: 1;
+}
+
 .fa-search-plus
 {
   cursor: pointer;
+}
+
+.fa-search-plus2
+{
+  color: greenyellow;
 }
 
 .leaderpage
@@ -560,7 +568,8 @@ padding: 15px;
   font-family: 'Orbitron';
   width: 50%;
   border: 2px solid black;
-  background-color: rgb(12, 18, 28);
+  background-color: rgba(20, 17, 0, 0.6);
   color: white;
   margin: 20px;
 }
+

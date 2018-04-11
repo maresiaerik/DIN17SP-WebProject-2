@@ -7,16 +7,17 @@
     <script src="../JS/eggmenujs.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/eggmenucss.css">
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
-      <title>Egg hunt</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+    <title>Egg hunt</title>
     </script>
   </head>
   <body onload="SetGrid()" >
 
     <ul class="top-ul">
-      <li><a href="#"><i class="fas fa-search-plus"></i></a></li>
-      <i class="fas fa-search-minus"></i>
+      <li><a href="http://jqueryui.com/themeroller/" id="show-option" title="You can use WASD and ARROW keys to move, collect eggs to increase score and compete on the leaderboard"><i class="fas fa-search-plus"></i></a></li>
+      <!--<i class="fas fa-search-minus"></i>-->
       <li><a href="#"><i class="fas fa-volume-up"></i></a></li>
+      <li><a href="#" class="how-tooltip">How to play</a></li>
       <li style="float:right"><a class="active" href="https://github.com/maresiaerik/DIN17SP-WebProject-2" target="_blank"><i class="fab fa-github-square"></i></a></li>
     </ul>
 
@@ -31,7 +32,6 @@
       <ul class="navigation_select">
         <button class="navigation_item" id="leaderbtn">LEADERBOARD</button>
         <button class="navigation_item">GRAPHS</button>
-        <button class="navigation_item">SETTINGS</button>
       </ul>
       <center>
           <button class="tablinks-in" onclick="document.getElementById('form02').style.display='block'" id="defaultOpen">
@@ -88,7 +88,7 @@
         <script src="player.js"></script>
       </div>
     </div>
-    <div class="flex-container">
+    <!--<div class="flex-container">
       <div class="right">
         <h3 class="h3title"><i class="fas fa-info"></i>How to play</h3>
         <p id="boxtext">You can use arrow and WASD keys to move</p>
@@ -104,7 +104,7 @@
 
       </ul>
     </div>
-  </div>
+  </div>-->
   <script>
     document.getElementById("defaultOpen").click();
     $('.message a').click(function(){
@@ -115,16 +115,26 @@
         $('canvas').toggleClass('canvas2');
       });
 
-    $('.fa-search-minus').hide();
-    $('.fa-search-plus').click(function(){
-        $('.fa-search-plus').toggleClass('.fa-search-minus');
-    });
 
     $(document).ready(function(){
     $('#leaderbtn').click(function(){
         $('#leaderform').toggle();
     });
   });
+
+    $(document).ready(function(){
+      $('#show-option').hover(function(){
+      $('#tooltip').css("display","block");
+    },function(){
+      $('#tooltip').css("display","none");
+    });
+    $(document).mouseover(function(event){
+      var mx = event.pageX+15;
+      var my = event.pageY+15;
+      $('#tooltip').css('left',mx+'px').css('top',my+'px');
+    });
+  });
+
   </script>
   </body>
 </html>
