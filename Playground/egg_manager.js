@@ -1,8 +1,8 @@
 //1. Check egg limit before spawning
 //2. Try Spawn Egg
-//3. Randomize Tile
+//3. Randomize position
 //4. Check Tile (collision, egg)
-//5. Place Tile
+//5. Place Egg
 //6. Add placed egg (int)
 //7. Place all active eggs
 //8. Else set interval (5s)
@@ -10,6 +10,11 @@
 let egg_limit = 10;
 
 let egg_list = [];
+
+let position = {
+    x: 0,
+    y: 0
+}
 
 class Egg
 {
@@ -58,10 +63,39 @@ class Egg
     } 
 }
 
-SpawnEgg(4,6);
+GetEggs();
+
+function GetEggs()
+{
+    console.log("test");
+    
+    for(let i = 0; i < 5; i++)
+    {
+        SpawnEgg(0,0);
+    }
+
+    EggSpawner();
+}
+
+function EggSpawner()
+{
+    if(egg_list.length < egg_limit)
+        SpawnEgg(0,0);
+
+    setInterval(EggSpawner, 1000);
+}
+
+SpawnEgg(4,7);
 SpawnEgg(5,3);
 
-function SpawnEgg(x,y)
+//EggCheck
+
+function GetPosition(){
+
+    return position;
+}
+
+function SpawnEgg()
 {
     let new_egg = new Egg(x,y);
 

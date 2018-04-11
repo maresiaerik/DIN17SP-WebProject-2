@@ -128,6 +128,8 @@ let tile_offset = {
   y : 0
 }
 
+
+
 function SetGrid()
 {
   player.moving = true;
