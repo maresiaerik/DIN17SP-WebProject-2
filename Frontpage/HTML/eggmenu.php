@@ -14,9 +14,9 @@
   <body onload="SetGrid()" >
 
     <ul class="top-ul">
-      <li><a href="#news"><i class="fas fa-search-plus"></i></a></li>
+      <li><a href="#"><i class="fas fa-search-plus"></i></a></li>
       <i class="fas fa-search-minus"></i>
-      <li><a href="#contact"><i class="fas fa-volume-up"></i></a></li>
+      <li><a href="#"><i class="fas fa-volume-up"></i></a></li>
       <li style="float:right"><a class="active" href="https://github.com/maresiaerik/DIN17SP-WebProject-2" target="_blank"><i class="fab fa-github-square"></i></a></li>
     </ul>
 
