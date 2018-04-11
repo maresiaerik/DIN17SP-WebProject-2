@@ -13,15 +13,12 @@
   </head>
   <body onload="SetGrid()" >
 
-    <?php
-        if(isset($_SESSION['logged_in']))
-        {
-          echo 'Welcome '$_SESSION['user'];
-        }
-        else {
-          echo 'Welcome Quest';
-        }
-     ?>
+    <ul class="top-ul">
+      <li><a href="#"><i class="fas fa-search-plus"></i></a></li>
+      <i class="fas fa-search-minus"></i>
+      <li><a href="#"><i class="fas fa-volume-up"></i></a></li>
+      <li style="float:right"><a class="active" href="https://github.com/maresiaerik/DIN17SP-WebProject-2" target="_blank"><i class="fab fa-github-square"></i></a></li>
+    </ul>
 
     <i class="fab fa-whmcs toggle_menu opacity_one"></i>
     <div class="sidebar_menu hide_menu">
@@ -32,10 +29,9 @@
       </center>
 
       <ul class="navigation_select">
-        <button class="navigation_item">LEADERBOARD</button>
+        <button class="navigation_item" id="leaderbtn">LEADERBOARD</button>
         <button class="navigation_item">GRAPHS</button>
         <button class="navigation_item">SETTINGS</button>
-        <button class="navigation_item"><a href="https://github.com/maresiaerik/DIN17SP-WebProject-2" target="_blank">ABOUT</a></button>
       </ul>
       <center>
           <button class="tablinks-in" onclick="document.getElementById('form02').style.display='block'" id="defaultOpen">
@@ -56,8 +52,8 @@
         <span onclick="document.getElementById('form02').style.display='none'" class="close" title="Close Modal">&times;</span>
         <form class="login-form" action="action_page.php" method="post">
         <h1 id="signh1">Login</h1>
-        <input type="text" placeholder="Username">
-        <input type="text" placeholder="Password">
+        <input type="text" placeholder="Username" required>
+        <input type="text" placeholder="Password" required>
         <button class="signupbtn">Login</button>
         <button type="button" onclick="document.getElementById('form02').style.display='none'" class="cancelbtn"><b>Cancel</b></button>
         <p class="message"><a href="#">First time logging in?</a></p>
@@ -65,9 +61,9 @@
         
         <form class="register-form" action="action_page.php" method="post">
           <h1 id="signh1">Register</h1>
-          <input type="text" placeholder="Username">
-          <input type="text" placeholder="Password">
-          <input type="text" placeholder="Confirm password">
+          <input type="text" placeholder="Username" required>
+          <input type="text" placeholder="Password" required>
+          <input type="text" placeholder="Confirm password" required>
           <button class="signupbtn">Register!</button>
           <button type="button" onclick="document.getElementById('form02').style.display='none'" class="cancelbtn"><b>Cancel</b></button>
           <p class="message"><a href="#">Already registered?</a></p>
@@ -75,11 +71,19 @@
         </div>
       </div>
 
+      <div class="leaderpage modal" id="leaderform">
+        <div class="leaderform">
+        <span onclick="document.getElementById('leaderform').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <h1 id="signh1">Leaderboard</h1>
+        <table>Generated php table here</table>
+        </div>
+      </div>
+
     <br>
     <!-- Actual Web page -->
     <div>
       <div id="game-canvas">
-        <canvas id="myCanvas" width="750" height="450" style="border:1px solid white;"></canvas>
+        <canvas class="canvas"></canvas>
         <script src="world.js"></script>
         <script src="player.js"></script>
       </div>
@@ -106,6 +110,21 @@
     $('.message a').click(function(){
           $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
       });
+
+    $('.fa-search-plus').click(function(){
+        $('canvas').toggleClass('canvas2');
+      });
+
+    $('.fa-search-minus').hide();
+    $('.fa-search-plus').click(function(){
+        $('.fa-search-plus').toggleClass('.fa-search-minus');
+    });
+
+    $(document).ready(function(){
+    $('#leaderbtn').click(function(){
+        $('#leaderform').toggle();
+    });
+  });
   </script>
   </body>
 </html>
