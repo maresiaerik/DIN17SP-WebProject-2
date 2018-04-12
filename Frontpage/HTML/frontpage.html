@@ -2,11 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="pragma" content="no-cache">
     <link rel="icon" href="https://orig00.deviantart.net/1039/f/2012/008/7/5/8bit_egg_by_xxx515xxx-d4ls0ll.png">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="../JS/eggmenujs.js"></script>
+    <script src="../JS/egg.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
-    <link rel="stylesheet" href="../CSS/eggmenucss.css">
+    <link rel="stylesheet" href="../CSS/egg-css.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
     <title>Egg hunt</title>
     </script>
@@ -14,17 +17,28 @@
   <body onload="SetGrid()" >
 
     <ul class="top-ul">
+      <li><a href="#"><i class="fas fa-user"></i></a></li>
+      <li><a href="#" class="how-tooltip"><i class="fas fa-question"></i></a></li>
       <li><a href="#"><i class="fas fa-search-plus"></i></a></li>
       <!--<i class="fas fa-search-minus"></i>-->
       <li><a href="#"><i class="fas fa-volume-up"></i></a></li>
-      <li><a href="#" class="how-tooltip"><i class="fas fa-question"></i></a></li>
       <li style="float:right"><a class="active" href="https://github.com/maresiaerik/DIN17SP-WebProject-2" target="_blank"><i class="fab fa-github-square"></i></a></li>
     </ul>
 
     <div id="tooltip">
     <img src="wasd.png" id="wasd" height="145" width="220"><img src="arrow.png" id="arrow" height="145" width="220">
-    <br>
+    <hr>
        You can use WASD and ARROW keys to move, collect eggs to increase score and compete on the leaderboard!
+    </div>
+
+    <div id="tooltip2">
+      <h3>Online users</h3>
+      <hr>
+      <table>
+        php generated user-table here..
+      </table>
+    
+       
     </div>
 
     <i class="fab fa-whmcs toggle_menu opacity_one"></i>
@@ -37,7 +51,7 @@
 
       <ul class="navigation_select">
         <button class="navigation_item" id="leaderbtn">LEADERBOARD</button>
-        <button class="navigation_item">GRAPHS</button>
+        <button class="navigation_item" id="graphbtn">GRAPHS</button>
       </ul>
       <center>
           <button class="tablinks-in" onclick="document.getElementById('form02').style.display='block'" id="defaultOpen">
@@ -77,15 +91,21 @@
         </div>
       </div>
 
-      <div class="leaderpage modal" id="leaderform">
+      <div class="leaderpage modal" id="leader-close">
         <div class="leaderform">
-        <span onclick="document.getElementById('leaderform').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <span onclick="document.getElementById('leader-close').style.display='none'" class="close" title="Close Modal">&times;</span>
         <h1 id="signh1">Leaderboard</h1>
         <table>Generated php table here</table>
         </div>
       </div>
-    <br>
-    <br>
+
+      <div class="graphpage modal" id="graph-close">
+        <div class="graphform">
+        <span onclick="document.getElementById('graph-close').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <h1 id="signh1">Game Graphs</h1>
+        <table>Google chart based graphs, generated into this form...</table>
+        </div>
+      </div>
     <br>
     <!-- Actual Web page -->
     <div>
@@ -93,25 +113,9 @@
         <canvas class="canvas"></canvas>
         <script src="world.js"></script>
         <script src="player.js"></script>
+        <script src="egg_manager.js"></script>
       </div>
     </div>
-    <!--<div class="flex-container">
-      <div class="right">
-        <h3 class="h3title"><i class="fas fa-info"></i>How to play</h3>
-        <p id="boxtext">You can use arrow and WASD keys to move</p>
-        <p id="boxtext">Collect eggs to increase your score</p>
-        <p id="boxtext"></p>
-        <p id="boxtext"></p>
-        <br>
-      </div>
-    <div class="left">
-      <h3 class="h3title"><i class="fas fa-users"></i>Online users</h3>
-      <ul>
-        <li>Users displayed as a table here:</li>
-
-      </ul>
-    </div>
-  </div>-->
   <script>
     document.getElementById("defaultOpen").click();
     $('.message a').click(function(){
@@ -125,9 +129,15 @@
 
     $(document).ready(function(){
     $('#leaderbtn').click(function(){
-        $('#leaderform').toggle();
+        $('.leaderpage').toggle();
     });
   });
+
+    $(document).ready(function(){
+      $('#graphbtn').click(function(){
+        $('.graphpage').toggle();
+      });
+    });
 
     $(document).ready(function(){
       $('.how-tooltip').hover(function(){
@@ -136,12 +146,25 @@
       $('#tooltip').css("display","none");
     });
     $(document).mouseover(function(event){
-      var mx = event.pageX+15;
+      var mx = event.pageX+50;
       var my = event.pageY+15;
       $('#tooltip').css('left',mx+'px').css('top',my+'px');
     });
   });
 
+
+    $(document).ready(function(){
+      $('.fa-user').hover(function(){
+      $('#tooltip2').css("display","block");
+    },function(){
+      $('#tooltip2').css("display","none");
+    });
+    $(document).mouseover(function(event){
+      var mx = event.pageX+50;
+      var my = event.pageY+15;
+      $('#tooltip2').css('left',mx+'px').css('top',my+'px');
+    });
+  });
   </script>
   </body>
 </html>

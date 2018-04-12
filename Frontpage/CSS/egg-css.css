@@ -228,7 +228,8 @@ input[type=text]:hover, input[type=password]:hover
   background-color: #ddd;
 }
 
-.modal {
+.modal
+{
     font-family: 'Orbitron';
     display: none;
     position: fixed;
@@ -562,6 +563,24 @@ padding: 15px;
   color: greenyellow;
 }
 
+.fa-user
+{
+  color: greenyellow;
+}
+
+.fa-user:a
+
+
+.graphpage
+{
+  font-family: 'Orbitron';
+  width: 50%;
+  border: 2px solid white;
+  background-color: rgba(31, 48, 76, 1);
+  color: white;
+  margin: 20px;
+}
+
 .leaderpage
 {
   font-family: 'Orbitron';
@@ -572,7 +591,8 @@ padding: 15px;
   margin: 20px;
 }
 
-#tooltip
+
+#tooltip,#tooltip2
 {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 20px;
