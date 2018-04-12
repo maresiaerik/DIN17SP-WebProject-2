@@ -200,7 +200,7 @@ function CheckEgg(new_position)
   {
     player.collected_eggs ++;
 
-    egg_limit --;
+    spawned_eggs --;
 
     document.getElementById("egg_counter").innerHTML = "Eggs: " + player.collected_eggs;
 
