@@ -47,21 +47,9 @@ a
   transition: all 0.3s ease-in-out;
 }
 
-.fa-times
-{
-  right: 10px;
-  top: 10px;
-  opacity: 0.7;
-  cursor: pointer;
-  position: absolute;
-  color: white;
-  transition: all 0.3s ease-in-out;
-}
 
-.fa-times:hover
-{
-  opacity: 1;
-}
+
+
 
 .boxed_item
 {
@@ -126,8 +114,10 @@ a
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: rgb(31, 48, 76);
+  background-color: #344857;
+  /**background-color: rgb(31, 48, 76);**/
   border-bottom: 1px solid rgb(70, 89, 119);
+  background: linear-gradient(to bottom,#4E575E 0%,#34393D 50%,#282B30 53%,#202427 100%);
 }
 
 li {
@@ -140,20 +130,6 @@ li a {
   text-align: center;
   padding: 5px 6px;
   text-decoration: none;
-}
-
-.zoombtn
-{
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  border: 0;
-  color: white;
-  background-color: inherit;
-  cursor: pointer;
-}
-
-.fa-github-square
-{
-  font-size: 20px;
 }
 
 .boxed_item_smaller
@@ -190,25 +166,6 @@ li a {
 
 }
 
-#signbtn
-{
-  font-family: 'Orbitron', sans-serif;
-  font-size: 17px;
-  background-color: rgb(154, 165, 186);
-  border: solid 1px;
-  border-radius: 5px;
-  transition: all 0.3s ease-in-out;
-  margin: 0 0 20px 0;
-  width: 180px;
-  padding: 5px;
-}
-
-#signbtn:hover
-{
-  background-color: white;
-  color: #111;
-  transition: all 0.3s ease-in-out;
-}
 
 /*************************************/
 
@@ -241,7 +198,8 @@ input[type=text]:hover, input[type=password]:hover
   background-color: #ddd;
 }
 
-.modal {
+.modal
+{
     font-family: 'Orbitron';
     display: none;
     position: fixed;
@@ -259,12 +217,14 @@ input[type=text]:hover, input[type=password]:hover
 
 
 
-hr {
+hr 
+{
     border: 1px solid #f1f1f1;
     margin-bottom: 25px;
 }
 
-.close {
+.close 
+{
     position: absolute;
     right: 35px;
     top: 15px;
@@ -273,17 +233,6 @@ hr {
     color: #f1f1f1;
 }
 
-.close:hover,
-.close:focus {
-    color: #f44336;
-    cursor: pointer;
-}
-
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-}
 
 .cancelbtn
 {
@@ -304,10 +253,6 @@ hr {
   transition: all 0.3s ease-in-out;
 }
 
-.container
-{
-  padding: 16px;
-}
 
 .signupbtn
 {
@@ -339,13 +284,6 @@ hr {
   text-align: center;
   padding: 10px;
   border-bottom: 2px solid rgba(20, 17, 0, 0.5);
-}
-
-#signp
-{
-  text-align: center;
-  padding: 10px;
-  font-size: 18px;
 }
 
 #game-canvas
@@ -406,68 +344,6 @@ padding: 15px;
   display: none;
 }
 
-.flex-container
-{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.right
-{
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  margin-top: 5px;
-  color: white;
-  border: 2px solid black;
-  width: 502px;
-  margin-bottom: 10px;
-  float: right;
-}
-
-.left
-{
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  margin-top: 5px;
-  color: white;
-  border: 2px solid black;
-  width: 302px;
-  margin-bottom: 10px;
-  float: left;
-}
-
-.h3title
-{
-  font-size: 20px;
-  padding-left: 10px;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  background-color: #4e575e;
-  display: flex;
-  border-bottom: 1px solid grey;
-  line-height: 35px;
-  background: linear-gradient(to bottom,#4E575E 0%,#34393D 60%,#282B30 53%,#202427 100%);
-}
-.fa-info
-{
-  margin-top: 7px;
-  margin-right: 7px;
-  color: greenyellow;
-}
-
-.fa-users
-{
-  margin-top: 7px;
-  margin-right: 7px;
-  color: greenyellow;
-}
-
-#egglogo
-{ 
-  padding: 5px;
-  width: 120px;
-  height: 120px;
-}
-
-
 .tablinks-in
 {
   font-family: 'Orbitron';
@@ -516,25 +392,9 @@ padding: 15px;
   background-color:rgb(154, 165, 186);
 }
 
-.fa-angle-double-right
-{
-  color: rgb(31, 48, 76);
-  padding: 3px;
-}
-
-#createbutton 
-{
-  border: 1px solid rgb(31, 48, 76);
-}
-
 .message
 {
   font-size: 17px;
-}
-
-#boxtext
-{
-  margin-left: 2px;
 }
 
 .canvas
@@ -550,17 +410,103 @@ padding: 15px;
   height: 600px;
 }
 
+.fa-info
+{
+  margin-top: 7px;
+  margin-right: 7px;
+  color: greenyellow;
+}
+
+.fa-users
+{
+  margin-top: 7px;
+  margin-right: 7px;
+  color: greenyellow;
+}
+
+.fa-github-square
+{
+  font-size: 20px;
+}
+
+.fa-times
+{
+  right: 10px;
+  top: 10px;
+  opacity: 0.7;
+  cursor: pointer;
+  position: absolute;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+.fa-times:hover
+{
+  opacity: 1;
+}
+
 .fa-search-plus
 {
   cursor: pointer;
+}
+
+.fa-search-plus2
+{
+  color: greenyellow;
+}
+
+.fa-question
+{
+  color: greenyellow;
+}
+
+.fa-user
+{
+  color: greenyellow;
+}
+
+.graphpage
+{
+  font-family: 'Orbitron';
+  width: 50%;
+  border: 2px solid white;
+  background-color: rgba(31, 48, 76, 1);
+  color: white;
+  margin: 20px;
 }
 
 .leaderpage
 {
   font-family: 'Orbitron';
   width: 50%;
-  border: 2px solid black;
-  background-color: rgb(12, 18, 28);
+  border: 2px solid white;
+  background-color: rgba(31, 48, 76, 1);
   color: white;
   margin: 20px;
+}
+
+
+#tooltip,#tooltip2
+{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 20px;
+  position: absolute;
+  z-index: 2;
+  width: 500px;
+  padding: 5px;
+  color: white;
+  background-color: rgb(31, 48, 76);
+  border: 2px solid greenyellow;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  display: none;
+}
+
+#wasd 
+{
+  padding: 10px;
+}
+
+#arrow 
+{
+  padding: 10px;
 }
