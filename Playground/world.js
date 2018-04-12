@@ -18,7 +18,7 @@ let draw_center = {
   }
 }
 
-function Tile(sprite_index_x, sprite_index_y, collision)
+function Tile(sprite_index_x, sprite_index_y, collision, egg)
 {
   this.sprite = {
     x : (sprite_index_x * fixed_tile_size),
@@ -26,13 +26,14 @@ function Tile(sprite_index_x, sprite_index_y, collision)
     };
 
   this.collision = collision;
+  this.egg = egg;
 }
 
-let grass = new Tile(0, 0, false);
-let dirt  = new Tile(1, 0, false);
-let tree  = new Tile(2, 0, true);
-let tTop  = new Tile(3, 0, false);  
-let bush  = new Tile(4, 0, true);
+let grass = new Tile(0, 0, false, false);
+let dirt  = new Tile(1, 0, false, false);
+let tree  = new Tile(2, 0, true,  false);
+let tTop  = new Tile(3, 0, false, false);  
+let bush  = new Tile(4, 0, true,  false);
 
 // let background = [
 // [grass,grass,grass,grass,grass],
@@ -128,8 +129,6 @@ let tile_offset = {
   y : 0
 }
 
-
-
 function SetGrid()
 {
   player.moving = true;
@@ -192,7 +191,9 @@ function DrawGrid()
 
   DrawLayer(background);
 
-  DrawElements();
+  DrawEggs();
+
+  DrawPlayers();
 
   DrawLayer(foreground);
 
@@ -200,9 +201,9 @@ function DrawGrid()
 
   function DrawMeadow()
   {
-    for(let y = -1; y <= Math.ceil(canvas.height / tile_size); y++)
+    for(let y = -1; y <= Math.ceil(canvas.height / tile_size) + 1; y++)
     {
-      for(let x = -1; x <= Math.ceil(canvas.width / tile_size); x++)
+      for(let x = -1; x <= Math.ceil(canvas.width / tile_size) + 1; x++)
       {
         if(CheckBorder(x,y))
           context.drawImage(tile_sheet, 0, 0, fixed_tile_size, fixed_tile_size, (tile_size * x) + tile_offset.x, (tile_size * y) + tile_offset.y, tile_size, tile_size);
@@ -212,9 +213,9 @@ function DrawGrid()
 
   function DrawLayer(layer)
   {
-    for(let y = (draw_center.min.y / tile_size); y <= Math.ceil(canvas.height / tile_size); y++)
+    for(let y = (draw_center.min.y / tile_size); y <= Math.ceil(canvas.height / tile_size) + 1; y++)
     {
-      for(let x = (draw_center.min.x / tile_size); x <= Math.ceil(canvas.width / tile_size); x++)
+      for(let x = (draw_center.min.x / tile_size); x <= Math.ceil(canvas.width / tile_size) + 1; x++)
       {
         if(CheckBorder(x,y))
           break;
@@ -231,16 +232,6 @@ function DrawGrid()
       } 
     }
   }
-  
-  function DrawElements()
-  {
-    for(let egg = 0; egg < egg_list.length; egg++)
-    {
-      egg_list[egg].DrawSprite(egg_list[egg].position.x, egg_list[egg].position.y);
-    }
-
-    player.DrawSprite(player.sprite.x,player.sprite.y);
-  }
 
   function DrawTile(x,y)
   {
@@ -253,6 +244,34 @@ function DrawGrid()
                       draw_center.min.y + (y * tile_size) + tile_offset.y, 
                       tile_size, 
                       tile_size);
+  }
+
+  function DrawEggs()
+  {
+    for(let y = (draw_center.min.y / tile_size); y <= Math.ceil(canvas.height / tile_size) + 1; y++)
+    {
+      for(let x = (draw_center.min.x / tile_size); x <= Math.ceil(canvas.width / tile_size) + 1; x++)
+      {
+        if(CheckBorder(x,y))
+          break;
+
+          let fixed_start = {
+            x : x - (draw_center.min.x / tile_size),
+            y : y - (draw_center.min.y / tile_size)
+          }
+
+          egg = egg_layer[fixed_start.y][fixed_start.x];
+
+          if(egg != null)
+            egg.DrawSprite(fixed_start.x, fixed_start.y);
+      } 
+    }
+  }
+
+
+  function DrawPlayers()
+  {
+    player.DrawSprite(player.sprite.x,player.sprite.y);
   }
 
   function DrawGrid()

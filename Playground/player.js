@@ -27,7 +27,7 @@ class Player
 
     this.size = 32;
 
-    this.speed = (tile_size / 10);
+    this.speed = (tile_size / 20);
 
     this.sheet_row = 0;
 
@@ -37,13 +37,15 @@ class Player
         y : 0
     };
 
+    this.collected_eggs = 0;
+
     this.DrawSprite(0,1);
   }
 
   DrawSprite(x, y)
   {
-    this.sprite.x = x * this.size;
-    this.sprite.y = y * this.size;
+    this.sprite.x = x;
+    this.sprite.y = y;
 
     this.image.src = 'BunnySheet.png';
 
@@ -65,17 +67,21 @@ class Player
 
     this.sheet_row = 0;
 
+    CheckEgg(this.position);
+
     SetGrid();
   };
 
   MoveUp()
   {
-      this.position.y--; 
-      tile_offset.y = -tile_size;
+    this.position.y--; 
+    tile_offset.y = -tile_size;
 
-      this.sheet_row = 1;
+    this.sheet_row = 1;
 
-      SetGrid();
+    CheckEgg(this.position);
+
+    SetGrid();
   };
 
   MoveRight()
@@ -84,6 +90,8 @@ class Player
     tile_offset.x = tile_size; 
 
     this.sheet_row = 2;
+
+    CheckEgg(this.position);
 
     SetGrid();
   };
@@ -95,12 +103,14 @@ class Player
 
     this.sheet_row = 3;
     
+    CheckEgg(this.position);
+
     SetGrid();
   }; 
 
   Move()
   {
-    this.sprite.y = this.sheet_row;
+    this.sprite.y = this.sheet_row * this.size;
     
     this.step_distance = (tile_size / 1.5);
 
@@ -109,7 +119,7 @@ class Player
        tile_offset.y > 0 && tile_offset.y <  this.step_distance || 
        tile_offset.y < 0 && tile_offset.y > -this.step_distance)
     {
-      this.sprite.x = 1;
+      this.sprite.x = 1 * this.size;
     } else {
       this.sprite.x = 0;
     }
@@ -142,19 +152,19 @@ function Move()
     switch (active_key)
     {
       case a_up_key:
-      case w_key :    CheckTile(player.position.x, player.position.y-1) ? null : player.MoveUp();
+      case w_key :    CheckCollision(player.position.x, player.position.y-1) ? null : player.MoveUp();
                           break;
 
       case a_left_key:
-      case a_key :  CheckTile(player.position.x-1, player.position.y) ? null : player.MoveLeft();
+      case a_key :    CheckCollision(player.position.x-1, player.position.y) ? null : player.MoveLeft();
                           break;
 
       case a_down_key:
-      case s_key :  CheckTile(player.position.x, player.position.y+1) ? null : player.MoveDown();
+      case s_key :    CheckCollision(player.position.x, player.position.y+1) ? null : player.MoveDown();
                           break;
                           
       case a_right_key:
-      case d_key:  CheckTile(player.position.x+1, player.position.y) ? null : player.MoveRight();
+      case d_key:     CheckCollision(player.position.x+1, player.position.y) ? null : player.MoveRight();
                           break;
 
       default : null;
@@ -175,11 +185,25 @@ $(document).keyup(function(event)
 //use direction of last index
 //on key up: remove key from array
 
-function CheckTile(x, y)
+function CheckCollision(x, y)
 {
     if(foreground[y] != null)
     {
         if(foreground[y][x] != null)
             return foreground[y][x].collision;  
     }
+}
+
+function CheckEgg(new_position)
+{
+  if(egg_layer[new_position.y][new_position.x] != null)
+  {
+    player.collected_eggs ++;
+
+    egg_limit --;
+
+    document.getElementById("egg_counter").innerHTML = "Eggs: " + player.collected_eggs;
+
+    egg_layer[new_position.y][new_position.x] = null;
+  }
 }

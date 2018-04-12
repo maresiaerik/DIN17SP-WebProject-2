@@ -7,13 +7,20 @@
 //7. Place all active eggs
 //8. Else set interval (5s)
 
-let egg_limit = 10;
+let spawned_eggs = 0;
+let egg_limit = 25;
 
-let egg_list = [];
+let egg_layer = 
+[
+    []
+];
 
-let position = {
-    x: 0,
-    y: 0
+for(let y = 0; y < background.length; y++)
+{
+    egg_layer[y] = [];
+    
+    for(let x = 0; x < background[y].length; x++)
+        egg_layer[y][x] = null;
 }
 
 class Egg
@@ -39,9 +46,10 @@ class Egg
 
     DrawSprite(x, y)
     {
+        /*
         this.sprite.x   =   x * this.size;
         this.sprite.y   =   y * this.size;
-
+*/
         this.image.src  =   'yoshiegg.png';
         
         context.drawImage(  this.image, 
@@ -67,38 +75,53 @@ GetEggs();
 
 function GetEggs()
 {
-    console.log("test");
-    
     for(let i = 0; i < 5; i++)
     {
-        SpawnEgg(0,0);
-    }
+        let new_position = {
+            x: 0,
+            y: 0
+        }
 
+        SpawnEgg(new_position);
+    }
+    console.log("Get Eggs");
     EggSpawner();
 }
 
 function EggSpawner()
 {
-    if(egg_list.length < egg_limit)
-        SpawnEgg(0,0);
+    if(spawned_eggs < egg_limit)
+        SpawnEgg(GetPosition());
 
-    setInterval(EggSpawner, 1000);
+    setTimeout(EggSpawner, 1000);
 }
 
-SpawnEgg(4,7);
-SpawnEgg(5,3);
-
-//EggCheck
-
-function GetPosition(){
-
-    return position;
-}
-
-function SpawnEgg()
+function GetPosition()
 {
-    let new_egg = new Egg(x,y);
+    let random_position = {
+        x: Math.floor((Math.random() * background[0].length)),
+        y: Math.floor((Math.random() * background.length))
+    }
 
-    egg_list.push(new_egg);
+    while(  foreground[random_position.y][random_position.x] != null && 
+            foreground[random_position.y][random_position.x].collision &&
+            egg_layer[random_position.y][random_position.x] != null)
+            {
+                random_position.x = Math.floor((Math.random() * background[0].length));
+                random_position.y = Math.floor((Math.random() * background.length));
+            }
+
+    return random_position;
+}
+
+function SpawnEgg(new_position)
+{ 
+    let new_egg = new Egg(new_position.x, new_position.y);
+
+    egg_layer[new_position.y][new_position.x] = new_egg;
+
+    spawned_eggs ++;
+
+    DrawGrid();
 }
 
