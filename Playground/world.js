@@ -18,7 +18,7 @@ let draw_center = {
   }
 }
 
-function Tile(sprite_index_x, sprite_index_y, collision, egg)
+function Tile(sprite_index_x, sprite_index_y, collision)
 {
   this.sprite = {
     x : (sprite_index_x * fixed_tile_size),
@@ -26,14 +26,13 @@ function Tile(sprite_index_x, sprite_index_y, collision, egg)
     };
 
   this.collision = collision;
-  this.egg = egg;
 }
 
-let grass = new Tile(0, 0, false, false);
-let dirt  = new Tile(1, 0, false, false);
-let tree  = new Tile(2, 0, true,  false);
-let tTop  = new Tile(3, 0, false, false);  
-let bush  = new Tile(4, 0, true,  false);
+let grass = new Tile(0, 0, false);
+let dirt  = new Tile(1, 0, false);
+let tree  = new Tile(2, 0, true);
+let tTop  = new Tile(3, 0, false);  
+let bush  = new Tile(4, 0, true);
 
 // let background = [
 // [grass,grass,grass,grass,grass],

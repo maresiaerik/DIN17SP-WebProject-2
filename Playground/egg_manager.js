@@ -8,7 +8,9 @@
 //8. Else set interval (5s)
 
 let spawned_eggs = 0;
-let egg_limit = 25;
+let egg_limit = 50;
+
+let cooldown = 1000;
 
 let egg_layer = 
 [
@@ -28,6 +30,7 @@ class Egg
     constructor(new_x, new_y)
     {  
         this.image = new Image(tile_size, tile_size);
+        this.image.src  =   'yoshiegg.png';
 
         this.position = {
             x : new_x, 
@@ -41,33 +44,16 @@ class Egg
             x : 0,
             y : 0
         };
+
         this.DrawSprite(this.position.x, this.position.y);
     }
 
     DrawSprite(x, y)
     {
-        /*
-        this.sprite.x   =   x * this.size;
-        this.sprite.y   =   y * this.size;
-*/
-        this.image.src  =   'yoshiegg.png';
-        
         context.drawImage(  this.image, 
                             draw_center.min.x + (x * tile_size) + tile_offset.x, 
                             draw_center.min.y + (y * tile_size) + tile_offset.y,
                             tile_size, tile_size);
-
-        /*
-        context.drawImage(  this.image, 
-                            this.sprite.x, 
-                            this.sprite.y, 
-                            fixed_tile_size, 
-                            fixed_tile_size, 
-                            draw_center.min.x + (x * tile_size) + tile_offset.x, 
-                            draw_center.min.y + (y * tile_size) + tile_offset.y, 
-                            tile_size, 
-                            tile_size);
-*/
     } 
 }
 
@@ -93,7 +79,7 @@ function EggSpawner()
     if(spawned_eggs < egg_limit)
         SpawnEgg(GetPosition());
 
-    setTimeout(EggSpawner, 1000);
+    setTimeout(EggSpawner, cooldown);
 }
 
 function GetPosition()
@@ -103,13 +89,18 @@ function GetPosition()
         y: Math.floor((Math.random() * background.length))
     }
 
+    
+
     while(  foreground[random_position.y][random_position.x] != null && 
-            foreground[random_position.y][random_position.x].collision &&
+            foreground[random_position.y][random_position.x].collision ||
             egg_layer[random_position.y][random_position.x] != null)
             {
                 random_position.x = Math.floor((Math.random() * background[0].length));
                 random_position.y = Math.floor((Math.random() * background.length));
             }
+
+    if(foreground[random_position.y][random_position.x] != null)
+        console.log(foreground[random_position.y][random_position.x].collision);
 
     return random_position;
 }

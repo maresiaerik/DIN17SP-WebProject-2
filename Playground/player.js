@@ -19,6 +19,7 @@ class Player
   {
     this.moving = false;
     this.image = new Image(tile_size, tile_size);
+    this.image.src = 'BunnySheet.png';
 
     this.position = {
       x : 4, //position
@@ -46,8 +47,6 @@ class Player
   {
     this.sprite.x = x;
     this.sprite.y = y;
-
-    this.image.src = 'BunnySheet.png';
 
     context.drawImage(this.image,
                       this.sprite.x,
