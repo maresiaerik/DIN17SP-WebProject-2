@@ -1,5 +1,4 @@
 
-
 let w_key = 87;
 let a_key = 65;
 let s_key = 83;
@@ -12,6 +11,8 @@ let a_right_key = 39;
 
 let pressed_keys = [];
 let active_key = 0;
+
+let user_id = 1;
 
 class Player
 {
@@ -66,9 +67,7 @@ class Player
 
     this.sheet_row = 0;
 
-    CheckEgg(this.position);
-
-    SetGrid();
+    this.Move();
   };
 
   MoveUp()
@@ -78,9 +77,7 @@ class Player
 
     this.sheet_row = 1;
 
-    CheckEgg(this.position);
-
-    SetGrid();
+    this.Move();
   };
 
   MoveRight()
@@ -90,9 +87,7 @@ class Player
 
     this.sheet_row = 2;
 
-    CheckEgg(this.position);
-
-    SetGrid();
+    this.Move();
   };
 
   MoveLeft()
@@ -102,12 +97,38 @@ class Player
 
     this.sheet_row = 3;
     
-    CheckEgg(this.position);
-
-    SetGrid();
+    this.Move();
   }; 
 
   Move()
+  {
+    this.moving = true;
+
+    CheckEgg(this.position);
+    
+    this.SavePosition();
+  }
+
+  SavePosition()
+  {
+    var url = "http://localhost/DIN17SP-WebProject-2/egg_rest_api/index.php/api/user/users";
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.open('PUT', url, true);
+
+    var data = {};
+
+    data.id = user_id;
+    data.vectorX = this.position.x;
+    data.vectorY = this.position.y;
+
+    var jsonData = JSON.stringify(data);
+
+    xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhttp.send(jsonData);
+  }
+
+  Animate()
   {
     this.sprite.y = this.sheet_row * this.size;
     
@@ -126,6 +147,40 @@ class Player
 }
 
 let player = new Player();
+
+GetPosition();
+
+function GetPosition()
+{
+    var url = "http://localhost/DIN17SP-WebProject-2/egg_rest_api/index.php/api/user/users";
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.open('GET', url, true);
+
+    var jsonData = '';
+    var data = "";
+
+    xhttp.onreadystatechange=function()
+    {
+        if (this.readyState == 4 && this.status == 200)
+        {
+            jsonData = JSON.parse(xhttp.responseText);
+
+            for(x in jsonData)
+            {
+              if(parseInt(jsonData[x].id) == user_id)
+              {
+                player.position.x = jsonData[x].vectorX;
+                player.position.y = jsonData[x].vectorY;
+
+                break;
+              }
+            }
+        }
+    };
+
+    xhttp.send();
+}
 
 let keys = [w_key, a_key, s_key, d_key, 
             a_up_key, a_left_key, a_down_key, a_right_key];
@@ -169,9 +224,6 @@ function Move()
       default : null;
     }
   }
-
-  if(pressed_keys.length > 0)
-    setTimeout(Move, 10);
 }
 
 $(document).keyup(function(event)

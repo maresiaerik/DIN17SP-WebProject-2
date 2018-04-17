@@ -1,0 +1,15 @@
+CREATE DATABASE rest_api;
+GRANT ALL ON rest_api.* TO 'rest_user'@'localhost' IDENTIFIED BY 'rest_pass';
+
+USE rest_api;
+CREATE TABLE user(
+id INT PRIMARY KEY,
+name VARCHAR(255),
+email VARCHAR(255),
+fact VARCHAR(255)
+);
+
+INSERT INTO user VALUES(1,'Bill','bgate@oamk.fi','I am Bill');
+INSERT INTO user VALUES(2,'Jim','jim@oamk.fi','I am Jim');
+INSERT INTO user VALUES(3,'Ann','ann@oamk.fi','I am Ann');
+INSERT INTO user VALUES(4,'Bob','bobby@oamk.fi','I am Bob');

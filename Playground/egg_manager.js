@@ -89,8 +89,6 @@ function GetPosition()
         y: Math.floor((Math.random() * background.length))
     }
 
-    
-
     while(  foreground[random_position.y][random_position.x] != null && 
             foreground[random_position.y][random_position.x].collision ||
             egg_layer[random_position.y][random_position.x] != null)
@@ -98,9 +96,6 @@ function GetPosition()
                 random_position.x = Math.floor((Math.random() * background[0].length));
                 random_position.y = Math.floor((Math.random() * background.length));
             }
-
-    if(foreground[random_position.y][random_position.x] != null)
-        console.log(foreground[random_position.y][random_position.x].collision);
 
     return random_position;
 }
@@ -112,7 +107,5 @@ function SpawnEgg(new_position)
     egg_layer[new_position.y][new_position.x] = new_egg;
 
     spawned_eggs ++;
-
-    DrawGrid();
 }
 

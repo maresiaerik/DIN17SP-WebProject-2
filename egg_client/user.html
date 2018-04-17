@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="user.js"></script>
+    <title>REEEEEEEEEEEEEst Client</title>
+</head>
+<body>
+    <h1>User Data</h1>
+    <h2>Users</h2>
+    <button onclick="GetUsers()">Get All Users</button>
+    <button onclick="GetPositions()">Get All Positions</button>
+    <h2>Add User</h2>
+
+    <form id='UserForm'>
+
+        <label for="">username</label>
+        <br>
+        <input type="text" name="username" id="username"><br>
+
+        <label for="">password</label>
+        <br>
+        <input type="password" name="password" id="password"><br>
+
+    </form>
+    <button onclick="AddUser()">Add User</button>
+
+    <h2>Update User</h2>
+    <label for="">id</label>
+    <br>
+    <input type="number" id="update_id">
+    <br>
+    <label for="">Vector X</label>
+    <br>
+    <input type="number" id="update_x">
+    <br>
+    <label for="">Vector Y</label>
+    <br>
+    <input type="number" id="update_y">
+    <br>
+
+    <br>
+    <button onclick="UpdateUser()">Update User</button>
+
+    <h2>Delete User</h2>
+    <label for="">ID</label>
+    <br>
+    <input type="number" id="delete_id">
+    <br>
+    <button onclick="DeleteUser()">Delete sucker</button>
+
+    <div id='results'>
+
+    </div>
+</body>
+</html>

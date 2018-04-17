@@ -1,3 +1,4 @@
+
 let canvas = document.getElementById("myCanvas");
 let context = canvas.getContext("2d");
 
@@ -128,10 +129,26 @@ let tile_offset = {
   y : 0
 }
 
+function Start()
+{
+
+  
+  Update();
+}
+
+function Update()
+{
+  GetPosition();
+
+  SetGrid();
+
+  Move();
+
+  setTimeout(Update, 10);
+}
+
 function SetGrid()
 {
-  player.moving = true;
-
   MoveGrid();
 
   function MoveGrid()
@@ -146,16 +163,12 @@ function SetGrid()
     if(tile_offset.y < 0)
       tile_offset.y += player.speed;
 
-    player.Move();
+    player.Animate();
 
     DrawGrid();
 
-    if(tile_offset.x != 0 || tile_offset.y != 0)
-    {
-      setTimeout(MoveGrid, 10);
-    } else {
-      player.moving = false;
-    }
+    if(tile_offset.x == 0 && tile_offset.y == 0)
+      player.moving = false; 
   }
 }
 
@@ -291,35 +304,3 @@ function DrawBorder(x, y, w, h)
   context.lineWidth = 1;         // thickness
   context.strokeRect(x, y, w, h);
 }
-/*
-for(let y = 0; y <= Math.ceil(canvas.height / tile_size); y++)
-  {
-    for(let x = 0; x <= Math.ceil(canvas.width / tile_size); x++)
-    {
-      if(CheckBorder(x,y))
-      {
-        context.drawImage(tile_sheet, 0, 0, fixed_tile_size, fixed_tile_size, tile_size * x, tile_size * y, tile_size, tile_size);
-      } else {
-        for(let layer = 0; layer < grid.length; layer++)
-        {
-          let fixed_start = {
-            x : x - (draw_center.min.x / tile_size),
-            y : y - (draw_center.min.y / tile_size)
-          }
-
-          tile = grid[layer][fixed_start.y][fixed_start.x];
-
-          if(tile == null)
-            break;
-
-            if(layer == 1)
-              context.drawImage(egg, canvas_center.x, canvas_center.y, egg.width, egg.height);
-
-
-          context.drawImage(tile_sheet, tile.sprite.x, tile.sprite.y, fixed_tile_size, fixed_tile_size, draw_center.min.x + (fixed_start.x * tile_size), draw_center.min.y + (fixed_start.y * tile_size), tile_size, tile_size);
-        }
-      }
-      DrawBorder(0, 0, tile_size * x, tile_size * y);
-    }
-  }
-  */
