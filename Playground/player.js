@@ -14,6 +14,18 @@ let active_key = 0;
 
 let user_id = 1;
 
+let blop = document.getElementById('blop');
+blop.volume = 0.2;
+
+// let woosh = document.getElementById('woosh');
+
+let grassAudio = document.getElementById('grassA');
+grassAudio.volume = 0.5;
+
+let gravel = document.getElementById('gravel');
+gravel.volume = 0.2;
+
+
 class Player
 {
   constructor()
@@ -62,8 +74,8 @@ class Player
 
   MoveDown()
   {
-    this.position.y++; 
-    tile_offset.y = tile_size; 
+    this.position.y++;
+    tile_offset.y = tile_size;
 
     this.sheet_row = 0;
 
@@ -72,7 +84,7 @@ class Player
 
   MoveUp()
   {
-    this.position.y--; 
+    this.position.y--;
     tile_offset.y = -tile_size;
 
     this.sheet_row = 1;
@@ -82,8 +94,8 @@ class Player
 
   MoveRight()
   {
-    this.position.x++; 
-    tile_offset.x = tile_size; 
+    this.position.x++;
+    tile_offset.x = tile_size;
 
     this.sheet_row = 2;
 
@@ -92,20 +104,20 @@ class Player
 
   MoveLeft()
   {
-    this.position.x--; 
-    tile_offset.x = -tile_size; 
+    this.position.x--;
+    tile_offset.x = -tile_size;
 
     this.sheet_row = 3;
-    
+
     this.Move();
-  }; 
+  };
 
   Move()
   {
     this.moving = true;
 
     CheckEgg(this.position);
-    
+
     this.SavePosition();
   }
 
@@ -131,12 +143,12 @@ class Player
   Animate()
   {
     this.sprite.y = this.sheet_row * this.size;
-    
+
     this.step_distance = (tile_size / 1.5);
 
-    if(tile_offset.x > 0 && tile_offset.x <  this.step_distance || 
+    if(tile_offset.x > 0 && tile_offset.x <  this.step_distance ||
        tile_offset.x < 0 && tile_offset.x > -this.step_distance ||
-       tile_offset.y > 0 && tile_offset.y <  this.step_distance || 
+       tile_offset.y > 0 && tile_offset.y <  this.step_distance ||
        tile_offset.y < 0 && tile_offset.y > -this.step_distance)
     {
       this.sprite.x = 1 * this.size;
@@ -182,7 +194,7 @@ function GetPosition()
     xhttp.send();
 }
 
-let keys = [w_key, a_key, s_key, d_key, 
+let keys = [w_key, a_key, s_key, d_key,
             a_up_key, a_left_key, a_down_key, a_right_key];
 
 $(document).keydown(function(event)
@@ -193,13 +205,22 @@ $(document).keydown(function(event)
   {
     pressed_keys.push(event.which);
 
-    Move(); 
-  }  
+    Move();
+  }
 });
 
 function Move()
 {
   let active_key = pressed_keys[pressed_keys.length - 1];
+
+  if (background[player.position.y][player.position.x] == grass)
+  {
+    grassAudio.play();
+  }
+  if (background[player.position.y][player.position.x] == dirt)
+  {
+    gravel.play();
+  }
 
   if (keys.includes(active_key) && !player.moving)
   {
@@ -216,7 +237,7 @@ function Move()
       case a_down_key:
       case s_key :    CheckCollision(player.position.x, player.position.y+1) ? null : player.MoveDown();
                           break;
-                          
+
       case a_right_key:
       case d_key:     CheckCollision(player.position.x+1, player.position.y) ? null : player.MoveRight();
                           break;
@@ -241,7 +262,7 @@ function CheckCollision(x, y)
     if(foreground[y] != null)
     {
         if(foreground[y][x] != null)
-            return foreground[y][x].collision;  
+            return foreground[y][x].collision;
     }
 }
 
@@ -256,5 +277,6 @@ function CheckEgg(new_position)
     document.getElementById("egg_counter").innerHTML = "Eggs: " + player.collected_eggs;
 
     egg_layer[new_position.y][new_position.x] = null;
+      blop.play();
   }
 }

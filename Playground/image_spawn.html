@@ -11,15 +11,30 @@
     <title></title>
 
   </head>
-
   <body  onload="Start()">
+
+    <audio id="blop">
+      <source src="blop.mp3">
+        <source src="blop.wav">
+    </audio>
+    <audio id="woosh">
+      <!-- <source src="woosh.mp3"> -->
+      <source src="swoosh.wav">
+    </audio>
+    <audio id="grassA">
+      <source src="grass.wav">
+    </audio>
+    <audio id="gravel">
+      <!-- <source src="woosh.mp3"> -->
+      <source src="gravel.wav">
+    </audio>
     <canvas id="myCanvas" width="1000" height="600" style="border:1px solid #000000;"></canvas>
     <script src="world.js"></script>
     <script src="player.js"></script>
     <script src="egg_manager.js"></script>
 
     <p id="egg_counter">Eggs: 0</p>
-    
+
     <p id="results">...</p>
 
   </body>
