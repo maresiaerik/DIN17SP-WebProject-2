@@ -2,10 +2,12 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
     <meta http-equiv="pragma" content="no-cache">
     <link rel="icon" href="https://orig00.deviantart.net/1039/f/2012/008/7/5/8bit_egg_by_xxx515xxx-d4ls0ll.png">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="../JS/egg.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
@@ -22,6 +24,8 @@
       <li><a href="#"><i class="fas fa-search-plus"></i></a></li>
       <!--<i class="fas fa-search-minus"></i>-->
       <li><a href="#"><i class="fas fa-volume-up"></i></a></li>
+      <li><a href="#"><p id="egg_counter">Eggs collected: 0</p></a></li>
+      </li>
       <li style="float:right"><a class="active" href="https://github.com/maresiaerik/DIN17SP-WebProject-2" target="_blank"><i class="fab fa-github-square"></i></a></li>
     </ul>
 
@@ -60,7 +64,7 @@
             </button>
       </center>
       <center>
-        <button class="tablinks-out" onclick="document.getElementById('form03').style.display='block'">
+        <button class="tablinks-out" onclick="document.getElementById('logoutform').style.display='block'">
           <i class="fas fa-sign-out-alt"></i>
           LOG OUT
         </button>
@@ -73,7 +77,8 @@
         <form class="login-form" action="action_page.php" method="post">
         <h1 id="signh1">Login</h1>
         <input type="text" placeholder="Username" required>
-        <input type="text" placeholder="Password" required>
+        <input type="password" id="passInput" placeholder="Password" required>
+        <input type="checkbox" onclick="showPass()">Show password
         <button class="signupbtn">Login</button>
         <button type="button" onclick="document.getElementById('form02').style.display='none'" class="cancelbtn"><b>Cancel</b></button>
         <p class="message"><a href="#">First time logging in?</a></p>
@@ -82,20 +87,52 @@
         <form class="register-form" action="action_page.php" method="post">
           <h1 id="signh1">Register</h1>
           <input type="text" placeholder="Username" required>
-          <input type="text" placeholder="Password" required>
-          <input type="text" placeholder="Confirm password" required>
+          <input type="password" id="passInput" placeholder="Password" required>
+          <input type="password" id="passInput" placeholder="Confirm password" required>
+          <input type="checkbox" onclick="showPass()">Show password
           <button class="signupbtn">Register!</button>
           <button type="button" onclick="document.getElementById('form02').style.display='none'" class="cancelbtn"><b>Cancel</b></button>
           <p class="message"><a href="#">Already registered?</a></p>
         </form>
         </div>
       </div>
+     <div class="logout-page modal" id="logoutform">
+       <div class="form">
+         <span onclick="document.getElementById('logoutform').style.display='none'" class="close" title="Close modal">&times;</span>
+         <form class="logout-form">
+           <h1 id="signh1">Do you wish to logout?</h1>
+           <h3><a href="logout.php">Yes</a></h3>
+           <h3><a href="#" onclick="document.getElementById('logoutform').style.display='none'">No, i want to keep playing</a></h3>
+
+         </form>
+       </div>
+     </div>
 
       <div class="leaderpage modal" id="leader-close">
         <div class="leaderform">
         <span onclick="document.getElementById('leader-close').style.display='none'" class="close" title="Close Modal">&times;</span>
         <h1 id="signh1">Leaderboard</h1>
-        <table>Generated php table here</table>
+        <table border="1">
+          <tbody>
+            <tr>
+              <td>Username</td>
+              <td>Score</td>
+            </tr>
+          <!--
+            //PHP for leaderboard?
+            //Probably not correct
+            <?php
+            foreach ($h->result() as $row)
+            {
+              ?><tr>
+                <td><?php echo $row->Username;?</td>
+                <td><?php echo $row->Score;?</td>
+              </tr>
+              <?php}
+              ?>-->
+          </tbody>
+
+        </table>
         </div>
       </div>
 
@@ -103,17 +140,19 @@
         <div class="graphform">
         <span onclick="document.getElementById('graph-close').style.display='none'" class="close" title="Close Modal">&times;</span>
         <h1 id="signh1">Game Graphs</h1>
-        <table>Google chart based graphs, generated into this form...</table>
+
         </div>
       </div>
+
     <br>
     <!-- Actual Web page -->
     <div>
       <div id="game-canvas">
-        <canvas class="canvas"></canvas>
-        <script src="world.js"></script>
-        <script src="player.js"></script>
-        <script src="egg_manager.js"></script>
+        <canvas id="myCanvas" width="750" height="450" style="border:1px solid #000000;"></canvas>
+        <!--<canvas class="canvas"></canvas>-->
+        <script src="/Playground/world.js"></script>
+        <script src="/Playground/player.js"></script>
+        <script src="/Playground/egg_manager.js"></script>
       </div>
     </div>
   <script>
@@ -165,6 +204,7 @@
       $('#tooltip2').css('left',mx+'px').css('top',my+'px');
     });
   });
+
   </script>
   </body>
 </html>

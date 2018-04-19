@@ -1,6 +1,6 @@
 
 
-//SIDEBAR SCRIPT
+//Sidemenu script
 $(document).ready(function(){
   $(".fa-times").click(function(){
     $(".sidebar_menu").addClass("hide_menu");
@@ -13,8 +13,8 @@ $(document).ready(function(){
   });
 });
 
-//LOG IN FORM SCRIPT
-// GET THE MODEL
+//Login form script
+// Get the modal
 var modal = document.getElementById('form01');
 
 window.onclick = function(event) {
@@ -23,4 +23,12 @@ window.onclick = function(event) {
     }
 };
 
-
+//Code for showing/hiding password on input
+function showPass() {
+  var x = document.getElementById("passInput");
+  if (x.type === "password") {
+      x.type = "text";
+  } else {
+      x.type = "password";
+  }
+}
