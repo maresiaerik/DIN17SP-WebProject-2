@@ -282,7 +282,31 @@ function DrawGrid()
 
   function DrawPlayers()
   {
-    player.DrawSprite(player.sprite.x,player.sprite.y);
+    player.DrawSprite(player.sprite.x, player.sprite.y);
+
+    player_2.DrawSprite(player_2.sprite.x, player_2.sprite.y);
+
+    for(let y = (draw_center.min.y / tile_size); y <= Math.ceil(canvas.height / tile_size) + 1; y++)
+    {
+      for(let x = (draw_center.min.x / tile_size); x <= Math.ceil(canvas.width / tile_size) + 1; x++)
+      {
+        if(CheckBorder(x,y))
+          break;
+/*
+          let fixed_start = {
+            x : x - (draw_center.min.x / tile_size),
+            y : y - (draw_center.min.y / tile_size)
+          }
+
+          egg = egg_layer[fixed_start.y][fixed_start.x];
+
+          if(egg != null)
+
+          console.log(fixed_start.x);
+          player_2.DrawSprite(fixed_start.x, fixed_start.y);
+*/
+      } 
+    }
   }
 
   function DrawGrid()

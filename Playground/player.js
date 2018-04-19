@@ -25,14 +25,13 @@ gravel.volume = 0.2;
 
 class Player
 {
-  constructor()
+  constructor(new_user_id)
   {
-    this.user_id = document.getElementById("user_id").value;
-
+    this.user_id = new_user_id;
     this.loaded = false;
-    this.LoadPlayer();
 
     this.moving = false;
+
     this.image = new Image(tile_size, tile_size);
     this.image.src = 'BunnySheet.png';
 
@@ -56,40 +55,6 @@ class Player
     this.collected_eggs = 0;
 
     this.DrawSprite(0,1);
-  }
-
-  LoadPlayer()
-  {
-    var url = "http://localhost/DIN17SP-WebProject-2/egg_rest_api/index.php/api/user/users";
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.open('GET', url, true);
-
-    var jsonData = '';
-    var data = "";
-
-    xhttp.onreadystatechange=function()
-    {
-        if (this.readyState == 4 && this.status == 200)
-        {
-            jsonData = JSON.parse(xhttp.responseText);
-
-            for(let x in jsonData)
-            {
-              if(parseInt(jsonData[x].id) == player.user_id)
-              {
-                player.position.x = parseInt(jsonData[x].vectorX);
-                player.position.y = parseInt(jsonData[x].vectorY);
-
-                player.loaded = true;
-
-                break;
-              }
-            }
-        }
-    };
-
-    xhttp.send(); 
   }
 
   DrawSprite(x, y)
@@ -151,10 +116,6 @@ class Player
   Move()
   {
     this.moving = true;
-
-    CheckEgg(this.position);
-
-    this.SavePosition();
   }
 
   SavePosition()
@@ -195,7 +156,48 @@ class Player
   }
 }
 
-let player = new Player();
+function LoadPlayer(new_player)
+  {
+    var url = "http://localhost/DIN17SP-WebProject-2/egg_rest_api/index.php/api/user/users";
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.open('GET', url, true);
+
+    var jsonData = '';
+    var data = "";
+
+    xhttp.onreadystatechange=function()
+    {
+        if (this.readyState == 4 && this.status == 200)
+        {
+            jsonData = JSON.parse(xhttp.responseText);
+
+            for(let x in jsonData)
+            {
+              if(parseInt(jsonData[x].id) == new_player.user_id)
+              {
+                new_player.position.x = parseInt(jsonData[x].vectorX);
+                new_player.position.y = parseInt(jsonData[x].vectorY);
+
+                console.log(new_player.user_id); 
+                console.log(new_player.position);
+
+                new_player.loaded = true;
+
+                break;
+              }
+            }
+        }
+    };
+
+    xhttp.send(); 
+  }
+
+let player = new Player(document.getElementById("user_id").value);
+LoadPlayer(player);
+
+let player_2 = new Player(3);
+LoadPlayer(player_2);
 
 let keys = [w_key, a_key, s_key, d_key, 
             a_up_key, a_left_key, a_down_key, a_right_key];
@@ -232,23 +234,26 @@ function Move()
     switch (active_key)
     {
       case a_up_key:
-      case w_key :    CheckCollision(player.position.x, player.position.y-1) ? null : player.MoveUp();
-                          break;
+      case w_key :    CheckCollision(player.position.x, player.position.y-1) ? null : player.MoveUp();         
+                      break;
 
       case a_left_key:
       case a_key :    CheckCollision(player.position.x-1, player.position.y) ? null : player.MoveLeft();
-                          break;
+                      break;
 
       case a_down_key:
       case s_key :    CheckCollision(player.position.x, player.position.y+1) ? null : player.MoveDown();
-                          break;
+                      break;
 
       case a_right_key:
       case d_key:     CheckCollision(player.position.x+1, player.position.y) ? null : player.MoveRight();
-                          break;
+                      break;
 
       default : null;
     }
+    
+    CheckEgg(player.position)
+    player.SavePosition();
   }
 }
 
