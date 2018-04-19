@@ -12,6 +12,14 @@ let egg_limit = 50;
 
 let cooldown = 1000;
 
+let egg_sprites = [
+    'yoshiegg.png'
+];
+
+let egg_values = [
+    1
+];
+
 let egg_layer = 
 [
     []
@@ -27,10 +35,14 @@ for(let y = 0; y < background.length; y++)
 
 class Egg
 {
-    constructor(new_x, new_y)
+    constructor(new_x, new_y, new_type)
     {  
+        this.type = new_type;
+
+        this.value = egg_values[this.type];
+
         this.image = new Image(tile_size, tile_size);
-        this.image.src  =   'yoshiegg.png';
+        this.image.src  =  egg_sprites[this.type];
 
         this.position = {
             x : new_x, 
@@ -102,7 +114,7 @@ function GetPosition()
 
 function SpawnEgg(new_position)
 { 
-    let new_egg = new Egg(new_position.x, new_position.y);
+    let new_egg = new Egg(new_position.x, new_position.y, 0);
 
     egg_layer[new_position.y][new_position.x] = new_egg;
 

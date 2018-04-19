@@ -24,7 +24,7 @@ function Tile(sprite_index_x, sprite_index_y, collision)
   this.sprite = {
     x : (sprite_index_x * fixed_tile_size),
     y : (sprite_index_y * fixed_tile_size)
-    };
+  };
 
   this.collision = collision;
 }
@@ -131,18 +131,17 @@ let tile_offset = {
 
 function Start()
 {
-
-  
   Update();
 }
 
 function Update()
 {
-  GetPosition();
+  if(player.loaded)
+  {
+    SetGrid();
 
-  SetGrid();
-
-  Move();
+    Move();
+  }
 
   setTimeout(Update, 10);
 }

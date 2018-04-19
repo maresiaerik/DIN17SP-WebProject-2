@@ -12,8 +12,6 @@ let a_right_key = 39;
 let pressed_keys = [];
 let active_key = 0;
 
-let user_id = 1;
-
 let blop = document.getElementById('blop');
 blop.volume = 0.2;
 
@@ -25,18 +23,22 @@ grassAudio.volume = 0.5;
 let gravel = document.getElementById('gravel');
 gravel.volume = 0.2;
 
-
 class Player
 {
   constructor()
   {
+    this.user_id = document.getElementById("user_id").value;
+
+    this.loaded = false;
+    this.LoadPlayer();
+
     this.moving = false;
     this.image = new Image(tile_size, tile_size);
     this.image.src = 'BunnySheet.png';
 
     this.position = {
-      x : 4, //position
-      y : 6
+      x : 0, //position
+      y : 0
     }
 
     this.size = 32;
@@ -54,6 +56,40 @@ class Player
     this.collected_eggs = 0;
 
     this.DrawSprite(0,1);
+  }
+
+  LoadPlayer()
+  {
+    var url = "http://localhost/DIN17SP-WebProject-2/egg_rest_api/index.php/api/user/users";
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.open('GET', url, true);
+
+    var jsonData = '';
+    var data = "";
+
+    xhttp.onreadystatechange=function()
+    {
+        if (this.readyState == 4 && this.status == 200)
+        {
+            jsonData = JSON.parse(xhttp.responseText);
+
+            for(let x in jsonData)
+            {
+              if(parseInt(jsonData[x].id) == player.user_id)
+              {
+                player.position.x = parseInt(jsonData[x].vectorX);
+                player.position.y = parseInt(jsonData[x].vectorY);
+
+                player.loaded = true;
+
+                break;
+              }
+            }
+        }
+    };
+
+    xhttp.send(); 
   }
 
   DrawSprite(x, y)
@@ -128,9 +164,10 @@ class Player
 
     xhttp.open('PUT', url, true);
 
-    var data = {};
+    var data = {};  
 
-    data.id = user_id;
+    data.id = this.user_id;
+
     data.vectorX = this.position.x;
     data.vectorY = this.position.y;
 
@@ -160,41 +197,7 @@ class Player
 
 let player = new Player();
 
-GetPosition();
-
-function GetPosition()
-{
-    var url = "http://localhost/DIN17SP-WebProject-2/egg_rest_api/index.php/api/user/users";
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.open('GET', url, true);
-
-    var jsonData = '';
-    var data = "";
-
-    xhttp.onreadystatechange=function()
-    {
-        if (this.readyState == 4 && this.status == 200)
-        {
-            jsonData = JSON.parse(xhttp.responseText);
-
-            for(x in jsonData)
-            {
-              if(parseInt(jsonData[x].id) == user_id)
-              {
-                player.position.x = jsonData[x].vectorX;
-                player.position.y = jsonData[x].vectorY;
-
-                break;
-              }
-            }
-        }
-    };
-
-    xhttp.send();
-}
-
-let keys = [w_key, a_key, s_key, d_key,
+let keys = [w_key, a_key, s_key, d_key, 
             a_up_key, a_left_key, a_down_key, a_right_key];
 
 $(document).keydown(function(event)
@@ -209,6 +212,8 @@ $(document).keydown(function(event)
   }
 });
 
+//Add pressed key to array
+//use direction of last index
 function Move()
 {
   let active_key = pressed_keys[pressed_keys.length - 1];
@@ -247,22 +252,19 @@ function Move()
   }
 }
 
+//on key up: remove key from array
 $(document).keyup(function(event)
 {
   let index = pressed_keys.indexOf(event.which);
   pressed_keys.splice(index, 1);
 });
 
-//Add pressed key to array
-//use direction of last index
-//on key up: remove key from array
-
 function CheckCollision(x, y)
 {
     if(foreground[y] != null)
     {
         if(foreground[y][x] != null)
-            return foreground[y][x].collision;
+          return foreground[y][x].collision;          
     }
 }
 
@@ -270,11 +272,13 @@ function CheckEgg(new_position)
 {
   if(egg_layer[new_position.y][new_position.x] != null)
   {
-    player.collected_eggs ++;
+    let new_egg = egg_layer[new_position.y][new_position.x];
+
+    player.collected_eggs += new_egg.value;
 
     spawned_eggs --;
 
-    document.getElementById("egg_counter").innerHTML = "Eggs: " + player.collected_eggs;
+    document.getElementById("egg_counter").innerHTML = "Score: " + player.collected_eggs;
 
     egg_layer[new_position.y][new_position.x] = null;
       blop.play();
