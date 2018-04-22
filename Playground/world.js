@@ -8,6 +8,8 @@ let tile_size = 50;
 let tile_sheet = new Image();
 tile_sheet.src = 'tiles.png';
 
+let refresh_rate = 10;
+
 let draw_center = {
   min : {
     x : 0,
@@ -19,14 +21,30 @@ let draw_center = {
   }
 }
 
-function Tile(sprite_index_x, sprite_index_y, collision)
+class Tile
 {
-  this.sprite = {
-    x : (sprite_index_x * fixed_tile_size),
-    y : (sprite_index_y * fixed_tile_size)
-  };
+  constructor(sprite_index_x, sprite_index_y, collision)
+  {
+    this.sprite = {
+      x : (sprite_index_x * fixed_tile_size),
+      y : (sprite_index_y * fixed_tile_size)
+    };
 
-  this.collision = collision;
+    this.collision = collision;
+  }
+
+  DrawSprite(x,y)
+  {
+    context.drawImage(tile_sheet, 
+                      this.sprite.x, 
+                      this.sprite.y, 
+                      fixed_tile_size, 
+                      fixed_tile_size, 
+                      draw_center.min.x + (x * tile_size) + tile_offset.x, 
+                      draw_center.min.y + (y * tile_size) + tile_offset.y, 
+                      tile_size, 
+                      tile_size);
+  }
 }
 
 let grass = new Tile(0, 0, false);
@@ -118,12 +136,6 @@ let foreground = [
     [bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush],
   ];
 
-
-let canvas_center = {
-  x : (canvas.width / 2) - (tile_size / 2),
-  y : (canvas.height / 2) - (tile_size / 2)
-}
-
 let tile_offset = {
   x : 0,
   y : 0
@@ -131,17 +143,31 @@ let tile_offset = {
 
 function Start()
 {
+  LoadOnlinePlayers();
+
   Update();
 }
 
 function Update()
 {
-  if(player.loaded)
+  if(refresh_rate >= 1000)
+  {
+    online_players[main_player].SavePosition();
+    LoadOnlinePlayers();
+
+    refresh_rate = 0;
+  }
+
+  if(online_players[main_player].loaded)
   {
     SetGrid();
 
-    Move();
+    PlayerInput();
+
+    MovePlayers();
   }
+
+  refresh_rate ++;
 
   setTimeout(Update, 10);
 }
@@ -153,34 +179,51 @@ function SetGrid()
   function MoveGrid()
   { 
     if(tile_offset.x > 0)
-      tile_offset.x -= player.speed;
+      tile_offset.x -= online_players[main_player].speed;
     if(tile_offset.x < 0)
-      tile_offset.x += player.speed;
+      tile_offset.x += online_players[main_player].speed;
 
     if(tile_offset.y > 0)
-      tile_offset.y -= player.speed;
+      tile_offset.y -= online_players[main_player].speed;
     if(tile_offset.y < 0)
-      tile_offset.y += player.speed;
+      tile_offset.y += online_players[main_player].speed;
 
-    player.Animate();
+      online_players[main_player].Animate();
 
     DrawGrid();
 
     if(tile_offset.x == 0 && tile_offset.y == 0)
-      player.moving = false; 
+      online_players[main_player].moving = false; 
   }
 }
 
 function DrawGrid()
 {
+  let canvas_size = {
+    min : {
+      x : online_players[main_player].position.x - Math.ceil((canvas.width / tile_size) / 2),
+      y : online_players[main_player].position.y - Math.ceil((canvas.height / tile_size) / 2)
+    },
+
+    max : {
+      x : online_players[main_player].position.x + Math.ceil((canvas.width / tile_size) / 2),
+      y : online_players[main_player].position.y + Math.ceil((canvas.height / tile_size) / 2)
+    }
+  }
+
+  let canvas_center = {
+    x : (canvas.width / 2) - (tile_size / 2),
+    y : (canvas.height / 2) - (tile_size / 2)
+  }
+
   draw_center = {
     min : {
-      x : canvas_center.x - (player.position.x * tile_size),
-      y : canvas_center.y - (player.position.y * tile_size)
+      x : canvas_center.x - (online_players[main_player].position.x * tile_size),
+      y : canvas_center.y - (online_players[main_player].position.y * tile_size)
     },
     max : {
-      x : canvas_center.x + (((background[0].length - 1) - player.position.x)  * tile_size),
-      y : canvas_center.y + (((background.length - 1) - player.position.y) * tile_size)
+      x : canvas_center.x + (((background[0].length - 1) - online_players[main_player].position.x)  * tile_size),
+      y : canvas_center.y + (((background.length - 1) - online_players[main_player].position.y) * tile_size)
     }
   }
 
@@ -202,7 +245,7 @@ function DrawGrid()
 
   DrawLayer(background);
 
-  DrawEggs();
+  DrawLayer(egg_layer);
 
   DrawPlayers();
 
@@ -224,89 +267,49 @@ function DrawGrid()
 
   function DrawLayer(layer)
   {
-    for(let y = (draw_center.min.y / tile_size); y <= Math.ceil(canvas.height / tile_size) + 1; y++)
+    for(let y = canvas_size.min.y; y < canvas_size.max.y + 1; y++)
     {
-      for(let x = (draw_center.min.x / tile_size); x <= Math.ceil(canvas.width / tile_size) + 1; x++)
+      while( y < 0 )
+        y++;
+
+      if(y >= layer.length)
+        break;
+
+      for(let x = canvas_size.min.x; x < canvas_size.max.x + 1; x++)
       {
-        if(CheckBorder(x,y))
+        while( x < 0 )
+          x++;
+
+        if(x >= layer[y].length)
           break;
 
-          let fixed_start = {
-            x : x - (draw_center.min.x / tile_size),
-            y : y - (draw_center.min.y / tile_size)
-          }
+        tile = layer[y][x];
 
-          tile = layer[fixed_start.y][fixed_start.x];
-
-          if(tile != null)
-            DrawTile(fixed_start.x,fixed_start.y);
-      } 
+        if(tile != null)
+          tile.DrawSprite(x, y);
+      }
     }
   }
-
-  function DrawTile(x,y)
-  {
-    context.drawImage(tile_sheet, 
-                      tile.sprite.x, 
-                      tile.sprite.y, 
-                      fixed_tile_size, 
-                      fixed_tile_size, 
-                      draw_center.min.x + (x * tile_size) + tile_offset.x, 
-                      draw_center.min.y + (y * tile_size) + tile_offset.y, 
-                      tile_size, 
-                      tile_size);
-  }
-
-  function DrawEggs()
-  {
-    for(let y = (draw_center.min.y / tile_size); y <= Math.ceil(canvas.height / tile_size) + 1; y++)
-    {
-      for(let x = (draw_center.min.x / tile_size); x <= Math.ceil(canvas.width / tile_size) + 1; x++)
-      {
-        if(CheckBorder(x,y))
-          break;
-
-          let fixed_start = {
-            x : x - (draw_center.min.x / tile_size),
-            y : y - (draw_center.min.y / tile_size)
-          }
-
-          egg = egg_layer[fixed_start.y][fixed_start.x];
-
-          if(egg != null)
-            egg.DrawSprite(fixed_start.x, fixed_start.y);
-      } 
-    }
-  }
-
 
   function DrawPlayers()
   {
-    player.DrawSprite(player.sprite.x, player.sprite.y);
-
-    player_2.DrawSprite(player_2.sprite.x, player_2.sprite.y);
-
-    for(let y = (draw_center.min.y / tile_size); y <= Math.ceil(canvas.height / tile_size) + 1; y++)
+    for(let index in online_players)
     {
-      for(let x = (draw_center.min.x / tile_size); x <= Math.ceil(canvas.width / tile_size) + 1; x++)
+      let new_player = online_players[index];  
+
+      if(CheckInnerBorder(new_player.position.x, new_player.position.y))
       {
-        if(CheckBorder(x,y))
-          break;
-/*
-          let fixed_start = {
-            x : x - (draw_center.min.x / tile_size),
-            y : y - (draw_center.min.y / tile_size)
-          }
+        new_player.DrawSprite(new_player.sprite.x, new_player.sprite.y);
+      }
+    } 
+  }
 
-          egg = egg_layer[fixed_start.y][fixed_start.x];
-
-          if(egg != null)
-
-          console.log(fixed_start.x);
-          player_2.DrawSprite(fixed_start.x, fixed_start.y);
-*/
-      } 
-    }
+  function CheckInnerBorder(x, y)
+  {
+    return( x > canvas_size.min.x &&
+            x < canvas_size.max.x &&
+            y > canvas_size.min.y &&
+            y < canvas_size.max.y );
   }
 
   function DrawGrid()

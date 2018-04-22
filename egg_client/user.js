@@ -34,10 +34,10 @@ function GetPositions()
             for(x in jsonData)
             {
                 var id = jsonData[x].id;
-                var vectorX = jsonData[x].vectorX;
-                var vectorY = jsonData[x].vectorY;
+                var vector_x = jsonData[x].vector_x;
+                var vector_y = jsonData[x].vector_x;
 
-                data += id + "," + vectorX + "," + vectorY + "<br>";
+                data += id + "," + vector_x + "," + vector_y + "<br>";
             }
 
             document.getElementById('results').innerHTML = data;
@@ -80,8 +80,8 @@ function UpdateUser()
     var data = {};
 
     data.id = document.getElementById('update_id').value;
-    data.vectorX = document.getElementById('update_x').value;
-    data.vectorY = document.getElementById('update_y').value;
+    data.vector_x = document.getElementById('update_x').value;
+    data.vector_y = document.getElementById('update_y').value;
 
     var jsonData = JSON.stringify(data);
 
@@ -101,7 +101,7 @@ function UpdateUser()
 
 function DeleteUser()
 {
-    var url = "http://localhost/DIN17SP-WebProject-2/egg_rest_api/index.php/api/user/users/";
+    var url = "http://localhost/DIN17SP-WebProject-2/egg_rest_api/index.php/api/user/users";
     var xhttp = new XMLHttpRequest();
 
     var id=parseInt(document.getElementById('delete_id').value);
