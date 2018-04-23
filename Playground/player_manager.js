@@ -20,7 +20,12 @@ class Player
     this.image.src = 'BunnySheet.png';
 
     this.position = {
-      x : 0, //position
+      x : 0,
+      y : 0
+    }
+
+    this.offset = {
+      x : 0,
       y : 0
     }
 
@@ -52,8 +57,8 @@ class Player
                       this.sprite.y,
                       this.size,
                       this.size,
-                      draw_center.min.x + this.position.x * tile_size + (this != online_players[main_player] ? + tile_offset.x : 0), 
-                      draw_center.min.y + this.position.y * tile_size + (this != online_players[main_player] ? + tile_offset.y : 0),
+                      draw_center.min.x + this.position.x * tile_size + (this != online_players[main_player] ? + this.offset.x + main_offset.x : 0), 
+                      draw_center.min.y + this.position.y * tile_size + (this != online_players[main_player] ? + this.offset.y + main_offset.y: 0),
                       tile_size,
                       tile_size);
   }
@@ -63,28 +68,28 @@ class Player
     this.PushDirection( this.position.x, 
                         this.position.y + 1);
 
-    tile_offset.y = tile_size;
+    main_offset.y = tile_size;
   }
   AddSequenceUp()   
   { 
     this.PushDirection( this.position.x,
                         this.position.y - 1);
 
-    tile_offset.y = -tile_size;
+    main_offset.y = -tile_size;
   }
   AddSequenceRight()
   { 
     this.PushDirection( this.position.x + 1, 
                         this.position.y);
 
-    tile_offset.x = tile_size;
+    main_offset.x = tile_size;
   }
   AddSequenceLeft() 
   { 
     this.PushDirection( this.position.x - 1, 
                         this.position.y);
 
-    tile_offset.x = -tile_size;
+    main_offset.x = -tile_size;
   }
 
   PushDirection(x, y)
@@ -92,14 +97,12 @@ class Player
     this.walk_sequence.push( { x, y } );
 
     CheckEgg( {x, y} );
-    
-    //online_players[main_player].SavePosition(new_position);
   }
 
-  MoveDown()  { this.sheet_row = 0; this.Move(); }
-  MoveUp()    { this.sheet_row = 1; this.Move(); }
-  MoveRight() { this.sheet_row = 2; this.Move(); }
-  MoveLeft()  { this.sheet_row = 3; this.Move(); }
+  MoveDown()  { this.sheet_row = 0; this.offset.y = -tile_size; this.Move(); }
+  MoveUp()    { this.sheet_row = 1; this.offset.y =  tile_size; this.Move(); }
+  MoveRight() { this.sheet_row = 2; this.offset.x = -tile_size; this.Move(); }
+  MoveLeft()  { this.sheet_row = 3; this.offset.x =  tile_size; this.Move(); }
 
   Move()      { this.moving = true; }
 
@@ -123,9 +126,6 @@ class Player
 
     xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     xhttp.send(jsonData);
-
-    console.log("Save my position");
-    console.log(jsonData);
   }
 
   AssembleArray()
@@ -160,21 +160,34 @@ class Player
     return new_position;
   }
 
-  Animate()
+  Animate(offset)
   {
+    if(offset.x > 0)
+      offset.x -= this.speed;
+    if(offset.x < 0)
+      offset.x += this.speed;
+
+    if(offset.y > 0)
+      offset.y -= this.speed;
+    if(offset.y < 0)
+      offset.y += this.speed;
+    
     this.sprite.y = this.sheet_row * this.size;
 
     this.step_distance = (tile_size / 1.5);
 
-    if(tile_offset.x > 0 && tile_offset.x <  this.step_distance ||
-       tile_offset.x < 0 && tile_offset.x > -this.step_distance ||
-       tile_offset.y > 0 && tile_offset.y <  this.step_distance ||
-       tile_offset.y < 0 && tile_offset.y > -this.step_distance)
-    {
-      this.sprite.x = 1 * this.size;
-    } else {
-      this.sprite.x = 0;
-    }
+    if( offset.x > 0 && offset.x <  this.step_distance ||
+        offset.x < 0 && offset.x > -this.step_distance ||
+        offset.y > 0 && offset.y <  this.step_distance ||
+        offset.y < 0 && offset.y > -this.step_distance)
+     {
+       this.sprite.x = 1 * this.size;
+     } else {
+       this.sprite.x = 0;
+     }
+
+     if(offset.x == 0 && offset.y == 0)
+      this.moving = false; 
   }
 }
 
@@ -226,9 +239,6 @@ function LoadOnlinePlayers()
 
             let new_sequence = []; 
 
-            if(online_players[player].loaded)
-              new_sequence.push(online_players[player].position);
-
             for(let index in new_vectors.x)
             {
               new_sequence.push( 
@@ -239,21 +249,12 @@ function LoadOnlinePlayers()
             }
 
             if( new_id != online_players[main_player].user_id )
-            {
-              console.log(new_sequence);
               online_players[player].walk_sequence = new_sequence;
-            } else {
-              //Only pass the last step in the sequence to the main player
-
-            }
-                
+                   
             //Only load the main player once
             if( new_id == online_players[main_player].user_id && !online_players[main_player].loaded)
-            {
               online_players[main_player].position = new_sequence[new_sequence.length - 1];
-              //online_players[main_player].walk_sequence.push(new_sequence[new_sequence.length - 1]);
-            }
-                
+        
             online_players[player].loaded = true;
           }
         }
@@ -262,7 +263,6 @@ function LoadOnlinePlayers()
   };
 
   xhttp.send();  
-  console.log("Load other Positions");
 }
 
 function MovePlayers()
@@ -299,10 +299,9 @@ function MovePlayers()
 
           player.position = player.walk_sequence[player.step];
           
-          player.step ++;
-            
+          player.step ++;       
         }  
-      }  
+      }
     }  
   }
 }

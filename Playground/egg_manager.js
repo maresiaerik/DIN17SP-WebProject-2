@@ -63,8 +63,8 @@ class Egg
     DrawSprite(x, y)
     {
         context.drawImage(  this.image, 
-                            draw_center.min.x + (x * tile_size) + tile_offset.x, 
-                            draw_center.min.y + (y * tile_size) + tile_offset.y,
+                            draw_center.min.x + (x * tile_size) + main_offset.x, 
+                            draw_center.min.y + (y * tile_size) + main_offset.y,
                             tile_size, tile_size);
     } 
 }

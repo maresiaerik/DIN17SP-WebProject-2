@@ -8,7 +8,8 @@ let tile_size = 50;
 let tile_sheet = new Image();
 tile_sheet.src = 'tiles.png';
 
-let refresh_rate = 10;
+let base_refresh_rate = 250;
+let refresh_rate = 0;
 
 let draw_center = {
   min : {
@@ -40,8 +41,8 @@ class Tile
                       this.sprite.y, 
                       fixed_tile_size, 
                       fixed_tile_size, 
-                      draw_center.min.x + (x * tile_size) + tile_offset.x, 
-                      draw_center.min.y + (y * tile_size) + tile_offset.y, 
+                      draw_center.min.x + (x * tile_size) + main_offset.x, 
+                      draw_center.min.y + (y * tile_size) + main_offset.y, 
                       tile_size, 
                       tile_size);
   }
@@ -136,7 +137,7 @@ let foreground = [
     [bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush, bush],
   ];
 
-let tile_offset = {
+let main_offset = {
   x : 0,
   y : 0
 }
@@ -150,7 +151,7 @@ function Start()
 
 function Update()
 {
-  if(refresh_rate >= 500)
+  if(refresh_rate >= base_refresh_rate)
   {
     online_players[main_player].SavePosition();
     LoadOnlinePlayers();
@@ -178,22 +179,16 @@ function SetGrid()
 
   function MoveGrid()
   { 
-    if(tile_offset.x > 0)
-      tile_offset.x -= online_players[main_player].speed;
-    if(tile_offset.x < 0)
-      tile_offset.x += online_players[main_player].speed;
-
-    if(tile_offset.y > 0)
-      tile_offset.y -= online_players[main_player].speed;
-    if(tile_offset.y < 0)
-      tile_offset.y += online_players[main_player].speed;
-
-      online_players[main_player].Animate();
+    for(let player in online_players)
+    {
+      //The main player controls the main offset to influence the grid, rather than itself
+      if(player == main_player)
+        online_players[player].Animate(main_offset);
+      else
+        online_players[player].Animate(online_players[player].offset);
+    }
 
     DrawGrid();
-
-    if(tile_offset.x == 0 && tile_offset.y == 0)
-      online_players[main_player].moving = false; 
   }
 }
 
@@ -260,7 +255,7 @@ function DrawGrid()
       for(let x = -1; x <= Math.ceil(canvas.width / tile_size) + 1; x++)
       {
         if(CheckBorder(x,y))
-          context.drawImage(tile_sheet, 0, 0, fixed_tile_size, fixed_tile_size, (tile_size * x) + tile_offset.x, (tile_size * y) + tile_offset.y, tile_size, tile_size);
+          context.drawImage(tile_sheet, 0, 0, fixed_tile_size, fixed_tile_size, (tile_size * x) + main_offset.x, (tile_size * y) + main_offset.y, tile_size, tile_size);
       }
     } 
   }
@@ -293,9 +288,9 @@ function DrawGrid()
 
   function DrawPlayers()
   {
-    for(let index in online_players)
+    for(let player in online_players)
     {
-      let new_player = online_players[index];  
+      let new_player = online_players[player];  
 
       if(CheckInnerBorder(new_player.position.x, new_player.position.y))
       {
