@@ -9,6 +9,8 @@
   background-color: rgba(137, 153, 252,0.8);
   /*display: none;*/
   font-family: 'lato', sans-serif;
+  border-radius: 1em;
+  display: none;
 }
 
 #loadingScreen p
@@ -25,13 +27,18 @@
   margin-left: 30.5%;
   color: white;
   opacity: 1;
+  visibility: hidden;
   /*margin-bottom: -60px;*/
 }
-
+#loadingScreen #c
+{
+  margin-top: 105px;
+  margin-bottom: -170px;
+}
 
 #startbutton
 {
-  width: 200px;
+  width: 250px;
   height: 50px;
   font-size: 20px;
   border-radius: 5em;

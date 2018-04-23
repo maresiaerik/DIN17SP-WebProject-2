@@ -82,8 +82,8 @@
         <input type="text" placeholder="Username" required>
         <input type="password" id="passInput" placeholder="Password" required>
         <input type="checkbox" onclick="showPass()">Show password
-        <button class="signupbtn">Login</button>
-        <button type="button" onclick="document.getElementById('form02').style.display='none'" class="cancelbtn"><b>Cancel</b></button>
+        <button class="signupbtn" id="signupbtn">Login</button>
+        <button type="button" onclick="document.getElementById('form02').style.display='none';StartLoading()"  class="cancelbtn" id="signupbtn"><b>Cancel</b></button>
         <p class="message"><a href="#">First time logging in?</a></p>
         </form>
 
@@ -155,6 +155,7 @@
 
         <h1 id="h1">Egg Hunt is loading</h1>
         <p>This game was developed by students of OAMK</p><br>
+        <p id="c">&copyAll rights reserved</p><br>
         <!-- <p>Massive Multiplayer Online Game</p> -->
         <div class="animation">
           <div class="bunny"> </div>
@@ -190,7 +191,8 @@
         <script src="../JS/egg_manager.js"></script>
 
       </div>
-
+      <!-- User id <input type="number" id="user_id" value="1">
+      <p id="egg_counter">Score: 0</p> -->
     </div>
   <script>
     document.getElementById("defaultOpen").click();
