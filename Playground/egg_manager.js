@@ -103,7 +103,7 @@ function GetPosition()
 
     while(  foreground[random_position.y][random_position.x] != null && 
             foreground[random_position.y][random_position.x].collision ||
-            egg_layer[random_position.y][random_position.x] != null)
+             egg_layer[random_position.y][random_position.x] != null)
             {
                 random_position.x = Math.floor((Math.random() * background[0].length));
                 random_position.y = Math.floor((Math.random() * background.length));

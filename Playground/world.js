@@ -150,7 +150,7 @@ function Start()
 
 function Update()
 {
-  if(refresh_rate >= 1000)
+  if(refresh_rate >= 500)
   {
     online_players[main_player].SavePosition();
     LoadOnlinePlayers();
