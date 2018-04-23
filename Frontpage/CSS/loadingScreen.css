@@ -1,0 +1,85 @@
+
+
+#loadingScreen
+{
+  padding: 20px;
+  margin: 10% auto auto auto;
+  width: 750px;
+  height: 450px;
+  background-color: rgba(137, 153, 252,0.8);
+  /*display: none;*/
+  font-family: 'lato', sans-serif;
+}
+
+#loadingScreen p
+{
+  margin-top: 100px;
+  margin-bottom: -120px;
+  margin-left: 27%;
+  color: white;
+  opacity: 0.8;
+}
+#loadingScreen h1
+{
+  /*margin-top: 160px;*/
+  margin-left: 30.5%;
+  color: white;
+  opacity: 1;
+  /*margin-bottom: -60px;*/
+}
+
+
+#startbutton
+{
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 5em;
+  border:none;
+  margin-left: 35%;
+  margin-top: 10%;
+  background: black;
+  color: white;
+  font-family: 'lato', sans-serif;
+  cursor: pointer;
+  display: none;
+}
+#startbutton:hover
+{
+  background: white;
+  color: black;
+}
+.animation
+{
+  margin-top: 25%;
+}
+.bunny
+{
+  margin-left: 36%;
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  background: url('../images/rightRun.png') left center;
+  animation: play 0.3s steps(2) infinite;
+}
+
+@keyframes play
+{
+  100% { background-position: -64px; }
+}
+
+/*
+#loadingScreen
+{
+  width: 650px;
+  background: blue;
+  padding: 2px;
+}*/
+
+#eggimg
+{
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  margin-left:  200px;
+}
