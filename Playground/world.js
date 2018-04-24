@@ -8,7 +8,7 @@ let tile_size = 50;
 let tile_sheet = new Image();
 tile_sheet.src = 'tiles.png';
 
-let base_refresh_rate = 250;
+let base_refresh_rate = 50;
 let refresh_rate = 0;
 
 let draw_center = {
@@ -246,7 +246,7 @@ function DrawGrid()
 
   DrawLayer(foreground);
 
-  //DrawGrid();
+  DrawGrid();
 
   function DrawMeadow()
   {

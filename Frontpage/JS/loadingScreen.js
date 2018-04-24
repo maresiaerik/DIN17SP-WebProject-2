@@ -5,7 +5,8 @@
 
 function StartGame()
 {
-  $('#canvas').fadeIn(100, 'swing');
+  $('#myCanvas').fadeIn(100, 'swing');
+  $('#myCanvas').css('display', 'inline');
   $('#loadingScreen').fadeOut(100, 'swing');
 }
 

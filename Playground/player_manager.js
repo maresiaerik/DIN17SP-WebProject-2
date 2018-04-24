@@ -1,5 +1,5 @@
 
-let online_player_ids = [1,3];
+let online_player_ids = [1,3,4];
 
 let online_players = [];
 
@@ -199,7 +199,7 @@ function InitializePlayers()
     { 
         online_players.push(new Player(online_player_ids[index]));  
         
-        if(online_players[online_players.length - 1].user_id == document.getElementById("user_id").value)
+        if(online_players[online_players.length - 1].user_id == main_user_id)
             main_player = index;
     }
 }
