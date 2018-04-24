@@ -82,7 +82,7 @@
         <input type="text" placeholder="Username" required>
         <input type="password" id="passInput" placeholder="Password" required>
         <input type="checkbox" onclick="showPass()">Show password
-        <button class="signupbtn" id="signupbtn">Login</button>
+        <button class="signupbtn" id="signupbtn" onclick="StartLoading()">Login</button>
         <button type="button" onclick="document.getElementById('form02').style.display='none';StartLoading()"  class="cancelbtn" id="signupbtn"><b>Cancel</b></button>
         <p class="message"><a href="#">First time logging in?</a></p>
         </form>
@@ -155,11 +155,12 @@
 
         <h1 id="h1">Egg Hunt is loading</h1>
         <p>This game was developed by students of OAMK.</p><br>
-        <p id="c">&copyAll rights reserved.</p><br>
+        <p id="copyright">&copyAll rights reserved.</p><br>
         <!-- <p>Massive Multiplayer Online Game</p> -->
         <div class="animation">
           <div class="bunny"> </div>
           <img id="eggimg">
+          <div class="bunnyStatic"></div>
         </div>
         <br>
         <button type="button" id="startbutton" onclick="StartGame()">Start</button>

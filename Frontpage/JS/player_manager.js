@@ -3,7 +3,9 @@ let online_player_ids = [1,3];
 
 let online_players = [];
 
+// let main_user_id = document.getElementById("user_id").value;
 let main_user_id = 1;
+// console.log(main_user_id);
 let main_player = 0;
 
 class Player
