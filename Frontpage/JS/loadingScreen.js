@@ -4,7 +4,8 @@
 
 function StartGame()
 {
-  $('#canvas').fadeIn(100, 'swing');
+  $('#myCanvas').fadeIn(100, 'swing');
+  document.getElementById('myCanvas').style.display = 'block';
   $('#loadingScreen').fadeOut(100, 'swing');
 }
 
@@ -28,20 +29,29 @@ function StartLoading()
   let dotDotDotInterval = setInterval( () =>
   { loadingScreenH1.innerHTML.length < h1Length  ?  loadingScreenH1.innerHTML += '.'  :   loadingScreenH1.innerHTML = 'Egg Hunt is loading'; }, 390);
 
+  let margin_left = 150;
+  let bunny_position = -5;
+
+  // makes the egg move left until it hits the bunny
+  let eggLoadingAnimation = setInterval( () => {( margin_left < bunny_position ) ? (margin_left = 150) : (margin_left -= 10), (egg.style.marginLeft = margin_left + 'px'); }, 100);
+
+
   //The start button fades in and heading changes text and margin
   // is changed when loading is done
-
   setTimeout( () =>
   {
     $('#startbutton').fadeIn(600, 'swing');
     clearInterval(dotDotDotInterval);
     loadingScreenH1.innerHTML = 'Start Playing!';
-    loadingScreenH1.style.marginLeft = 38.7 + '%';
-  }, 5000);
+    loadingScreenH1.style.textAlign = 'center';
+    loadingScreenH1.style.margin = 'auto';
+    $('.bunny').css('animation-play-state', 'paused');
+    $('.bunny').css('visibility', 'hidden');
+    clearInterval(eggLoadingAnimation);
+    $('#startbutton').css('display', 'flex');
+    $('#eggimg').css('visibility', 'hidden');
+    $('.bunnyStatic').css('display', 'inline-block');
+  }, 1000);
 
-  let margin_left = 150;
-  let bunny_position = -5
 
-  // makes the egg move left until it hits the bunny
-  let timer = setInterval( () => {( margin_left < bunny_position ) ? (margin_left = 150) : (margin_left -= 10), (egg.style.marginLeft = margin_left + 'px'); }, 100);
 }

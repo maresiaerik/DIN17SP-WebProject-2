@@ -17,7 +17,8 @@
 {
   margin-top: 100px;
   margin-bottom: -120px;
-  margin-left: 27%;
+  margin-left: auto;
+  text-align: center;
   color: white;
   opacity: 0.8;
 }
@@ -30,7 +31,7 @@
   visibility: hidden;
   /*margin-bottom: -60px;*/
 }
-#loadingScreen #c
+#loadingScreen #copyright
 {
   margin-top: 105px;
   margin-bottom: -170px;
@@ -43,13 +44,15 @@
   font-size: 20px;
   border-radius: 5em;
   border:none;
-  margin-left: 35%;
+  margin-left: 32%;
   margin-top: 10%;
   background: #FFFFFF;
   color: black;
   font-family: 'lato', sans-serif;
   cursor: pointer;
   display: none;
+  align-items: center;
+  justify-content: center;
   letter-spacing: 1px;
 }
 #startbutton:focus
@@ -83,9 +86,8 @@
 
 @keyframes play
 {
-  100% { background-position: -64px; }
+  100% {background-position: -64px;}
 }
-
 
 #eggimg
 {
