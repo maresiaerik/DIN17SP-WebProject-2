@@ -45,17 +45,28 @@
   border:none;
   margin-left: 35%;
   margin-top: 10%;
-  background: black;
-  color: white;
+  background: #FFFFFF;
+  color: black;
   font-family: 'lato', sans-serif;
   cursor: pointer;
   display: none;
+  letter-spacing: 1px;
+}
+#startbutton:focus
+{
+  outline:0;
 }
 #startbutton:hover
 {
-  background: white;
+  background: #E4E4E4;
   color: black;
 }
+#startbutton:active
+{
+  background: #A6A6A6;
+  color: white;
+}
+
 .animation
 {
   margin-top: 25%;

@@ -3,8 +3,10 @@ let online_player_ids = [1,3];
 
 let online_players = [];
 
-let main_user_id = document.getElementById("user_id").value;
-let main_player = null;
+// let main_user_id = document.getElementById("user_id").value;
+let main_user_id = 1;
+// console.log(main_user_id);
+let main_player = 0;
 
 class Player
 {
@@ -198,7 +200,7 @@ function InitializePlayers()
     {
         online_players.push(new Player(online_player_ids[index]));
 
-        if(online_players[online_players.length - 1].user_id == document.getElementById("user_id").value)
+        if(online_players[online_players.length - 1].user_id == main_user_id)
             main_player = index;
     }
 }
