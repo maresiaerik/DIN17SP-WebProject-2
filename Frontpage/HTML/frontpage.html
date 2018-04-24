@@ -19,7 +19,7 @@
     <title>Egg hunt</title>
     </script>
   </head>
-  <body onload="SetGrid()" >
+  <body onload="Start()" >
 
     <ul class="top-ul">
       <li><a href="#"><i class="fas fa-user"></i></a></li>
@@ -154,8 +154,8 @@
       <div id="loadingScreen">
 
         <h1 id="h1">Egg Hunt is loading</h1>
-        <p>This game was developed by students of OAMK</p><br>
-        <p id="c">&copyAll rights reserved</p><br>
+        <p>This game was developed by students of OAMK.</p><br>
+        <p id="c">&copyAll rights reserved.</p><br>
         <!-- <p>Massive Multiplayer Online Game</p> -->
         <div class="animation">
           <div class="bunny"> </div>
@@ -184,15 +184,13 @@
 
       <div id="game-canvas">
         <canvas id="myCanvas"></canvas>
-
         <script src="../JS/world.js"></script>
         <script src="../JS/player_manager.js"></script>
         <script src="../JS/player.js"></script>
         <script src="../JS/egg_manager.js"></script>
-
       </div>
-      <!-- User id <input type="number" id="user_id" value="1">
-      <p id="egg_counter">Score: 0</p> -->
+      User id <input type="number" id="user_id" value="1">
+      <p id="egg_counter">Score: 0</p>
     </div>
   <script>
     document.getElementById("defaultOpen").click();

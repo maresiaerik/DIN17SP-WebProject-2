@@ -63,8 +63,8 @@ class Egg
     DrawSprite(x, y)
     {
         context.drawImage(  this.image,
-                            draw_center.min.x + (x * tile_size) + tile_offset.x,
-                            draw_center.min.y + (y * tile_size) + tile_offset.y,
+                            draw_center.min.x + (x * tile_size) + main_offset.x,
+                            draw_center.min.y + (y * tile_size) + main_offset.y,
                             tile_size, tile_size);
     }
 }
@@ -103,7 +103,7 @@ function GetPosition()
 
     while(  foreground[random_position.y][random_position.x] != null &&
             foreground[random_position.y][random_position.x].collision ||
-            egg_layer[random_position.y][random_position.x] != null)
+             egg_layer[random_position.y][random_position.x] != null)
             {
                 random_position.x = Math.floor((Math.random() * background[0].length));
                 random_position.y = Math.floor((Math.random() * background.length));
