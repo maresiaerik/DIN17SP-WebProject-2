@@ -1,19 +1,6 @@
 
-// Start button is pressed after 'loading' is done,
-// loading screen goes away and canvas becomes visible
 
-function StartGame()
-{
-  $('#myCanvas').fadeIn(100, 'swing');
-<<<<<<< HEAD
-  $('#myCanvas').css('display', 'inline');
-=======
-  document.getElementById('myCanvas').style.display = 'block';
->>>>>>> d80ea0fcc4c2247af6667c5f73a3fc01f202f1c4
-  $('#loadingScreen').fadeOut(100, 'swing');
-}
-
-
+// function is called when login is done
 function StartLoading()
 {
   // the loading screen fades in when login button is pressed
@@ -29,7 +16,9 @@ function StartLoading()
   // the heading of loading screen fades in with a small delay
   setTimeout( () => { $('#h1').css('visibility', 'visible').hide().fadeIn(2000, 'swing')}, 50 );
 
-  // if the length of the heading is
+  // if the total heading length doesn't include four dots
+  // add one by one and keep checking until loadingScreenH1 < h1Length
+  // else go back to default state
   let dotDotDotInterval = setInterval( () =>
   { loadingScreenH1.innerHTML.length < h1Length  ?  loadingScreenH1.innerHTML += '.'  :   loadingScreenH1.innerHTML = 'Egg Hunt is loading'; }, 390);
 
@@ -38,7 +27,6 @@ function StartLoading()
 
   // makes the egg move left until it hits the bunny
   let eggLoadingAnimation = setInterval( () => {( margin_left < bunny_position ) ? (margin_left = 150) : (margin_left -= 10), (egg.style.marginLeft = margin_left + 'px'); }, 100);
-
 
   //The start button fades in and heading changes text and margin
   // is changed when loading is done
@@ -56,6 +44,18 @@ function StartLoading()
     $('#eggimg').css('visibility', 'hidden');
     $('.bunnyStatic').css('display', 'inline-block');
   }, 1000);
+}
 
+// Start button is pressed after 'loading' is done,
+// loading screen goes away and canvas becomes visible
 
+function StartGame()
+{
+  $('#myCanvas').fadeIn(500, 'swing');
+// <<<<<<< HEAD
+  // $('#myCanvas').css('visibility', 'visible').css('display', 'none').fadeIn(200, 'swing');
+// =======
+  // document.getElementById('myCanvas').style.display = 'inline';
+// // >>>>>>> d80ea0fcc4c2247af6667c5f73a3fc01f202f1c4
+  $('#loadingScreen').fadeOut(100, 'swing');
 }

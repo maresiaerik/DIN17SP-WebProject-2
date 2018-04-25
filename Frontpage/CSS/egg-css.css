@@ -47,10 +47,6 @@ a
   transition: all 0.3s ease-in-out;
 }
 
-
-
-
-
 .boxed_item
 {
   font-family: 'Orbitron';
@@ -163,9 +159,7 @@ li a {
 {
   opacity: 1;
   transition: all 0.3s ease-in-out;
-
 }
-
 
 /*************************************/
 
@@ -287,7 +281,7 @@ hr
 
 #game-canvas
 {
-    margin-top: 0%;
+    margin-top: 100px;
     display: flex;
    /* This centers our sketch horizontally. */
    justify-content: center;
@@ -392,6 +386,7 @@ padding: 15px;
   height: 450px;
   border: 1px solid white;
   display: none;
+  margin:auto;
 }
 
 .canvas2
