@@ -8,7 +8,8 @@
 
 body
 {
-  background-color: rgb(12, 18, 28);
+  background-color: rgb(66, 134, 244);
+  /*background-color: rgb(12, 18, 28);*/
 }
 
 a
@@ -49,7 +50,7 @@ a
 
 .boxed_item
 {
-  font-family: 'Orbitron';
+  font-family: 'Open Sans', sans-serif;
   padding: 10px 10px;
   display: inline-block;
   border: solid 2px white;
@@ -70,7 +71,7 @@ a
 .logo_title
 {
   color: white;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 15px;
   text-align: center;
   padding: 5px 0;
@@ -88,12 +89,10 @@ a
 {
   font-size: 22px;
   font-weight: 200;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: rgb(64, 255, 0);
   padding: 5px;
-  box-sizing: border-box;
-  border: 0;
-  margin: 2px;
+
   background-color: rgb(31, 48, 76);
   transition: all 0.3s ease-in-out;
   cursor: pointer;
@@ -102,7 +101,6 @@ a
 .navigation_item:hover
 {
   color: rgb(218, 255, 206);
-  border-bottom: 2px solid;
 }
 
 .top-ul {
@@ -194,7 +192,7 @@ input[type=text]:hover, input[type=password]:hover
 
 .modal
 {
-    font-family: 'Orbitron';
+    font-family: 'Open Sans', sans-serif;
     display: none;
     position: fixed;
     z-index: 1;
@@ -204,7 +202,7 @@ input[type=text]:hover, input[type=password]:hover
     overflow: auto;
     padding-top: 50px;
     flex: auto;
-    background-color:rgba(49, 53, 75, 0);
+    background-color:rgb(255, 255, 255);
     color: black;
 }
 
@@ -229,7 +227,7 @@ hr
 
 .cancelbtn
 {
-  font-family: 'Orbitron';
+  font-family: 'Open Sans', sans-serif;
   font-size: 20px;
   padding: 5px 30px;
   background-color: rgba(20, 17, 0, 0.5);
@@ -249,7 +247,7 @@ hr
 
 .signupbtn
 {
-  font-family: 'Orbitron';
+  font-family: 'Open Sans', sans-serif;
   font-size: 20px;
   padding: 5px 30px;
   background-color: rgba(20, 17, 0, 0.5);
@@ -273,7 +271,7 @@ hr
 
 #signh1
 {
-  font-family: 'Orbitron';
+  font-family: 'Open Sans', sans-serif;
   text-align: center;
   padding: 10px;
   border-bottom: 2px solid rgba(20, 17, 0, 0.5);
@@ -295,7 +293,7 @@ font-family: sans-serif;
 margin: 5% auto 15% auto;
 border: 2px solid rgba(20, 17, 0, 0.5);
 border-radius: 10px;
-background-color: rgba(255,255,255,0.6);
+background-color: rgb(175, 206, 255);
 width: 500px;
 padding: 15px;
 }
@@ -306,7 +304,7 @@ padding: 15px;
   margin: 5% auto 15% auto;
   border: 2px solid rgba(20, 17, 0, 0.5);
   border-radius: 10px;
-  background-color: rgba(255,255,255,0.6);
+  background-color: rgb(175, 206, 255);
   width: 500px;
   padding: 15px;
 }
@@ -329,7 +327,7 @@ padding: 15px;
 
 .tablinks-in
 {
-  font-family: 'Orbitron';
+  font-family: 'Open Sans', sans-serif;
   font-size: 20px;
   padding: 10px 36px;
   background-color: rgba(20, 17, 0, 0.5);
@@ -343,7 +341,7 @@ padding: 15px;
 
 .tablinks-out
 {
-  font-family: 'Orbitron';
+  font-family: 'Open Sans', sans-serif;
   font-size: 20px;
   padding: 10px 25px;
   background-color: rgba(20, 17, 0, 0.5);
@@ -443,7 +441,7 @@ padding: 15px;
 
 .graphpage
 {
-  font-family: 'Orbitron';
+  font-family: 'Open Sans', sans-serif;
   width: 50%;
   border: 2px solid white;
   background-color: rgba(31, 48, 76, 1);
@@ -453,7 +451,7 @@ padding: 15px;
 
 .leaderpage
 {
-  font-family: 'Orbitron';
+  font-family: 'Open Sans', sans-serif;
   width: 50%;
   border: 2px solid white;
   background-color: rgba(31, 48, 76, 1);
@@ -491,7 +489,7 @@ padding: 15px;
 #egg_counter
 {
   color: white;
-  font-family: 'Orbitron';
+  font-family: 'Open Sans', sans-serif;
   padding: 1px;
 }
 

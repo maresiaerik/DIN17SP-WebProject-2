@@ -13,7 +13,7 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script src="../JS/egg.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/egg-css.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
     <title>Egg hunt</title>
@@ -26,7 +26,6 @@
       <li><a href="#" class="how-tooltip"><i class="fas fa-question"></i></a></li>
       <li><a href="#"><i class="fas fa-search-plus"></i></a></li>
       <li><a href='#'><i class="fas fa-search-minus"></i></a></li>
-      <li><a href="#"><i class="fas fa-volume-up"></i></a></li>
       <li><a href="#"><p id="egg_counter">Eggs collected: 0</p></a></li>
       </li>
       <li style="float:right"><a class="active" href="https://github.com/maresiaerik/DIN17SP-WebProject-2" target="_blank"><i class="fab fa-github-square"></i></a></li>
@@ -55,11 +54,11 @@
         <a href="#"><h1 class="boxed_item">EGG <span class="logo_bold">HUNT</span></h1></a>
         <h2 class="logo_title">An Egg Hunting Game</h2>
       </center>
-
+      <center>
       <ul class="navigation_select">
-        <button class="navigation_item" id="leaderbtn">LEADERBOARD</button>
-        <button class="navigation_item" id="graphbtn">GRAPHS</button>
+        <a href="#" class="navigation_item" id="leaderbtn">SCOREBOARD</a>
       </ul>
+    </center>
       <center>
           <button class="tablinks-in" onclick="document.getElementById('form02').style.display='block'" id="defaultOpen">
               <i class="fas fa-sign-in-alt"></i>
@@ -75,6 +74,7 @@
     </div>
 
       <div class="login-page modal" id="form02">
+        <h1 style="color:white; font-size:45px; font-family:'Open Sans', sans-serif; text-align: center;text-shadow:1px 1px 2px black, 0 0 25px black, 0 0 5px black;">Welcome to EggHunt</h1>
         <div class="form">
         <span onclick="document.getElementById('form02').style.display='none'" class="close" title="Close Modal">&times;</span>
         <form class="login-form" action="action_page.php" method="post">
