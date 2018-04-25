@@ -184,7 +184,7 @@
       </audio>
 
       <div id="game-canvas">
-        <canvas id="myCanvas"></canvas>
+        <canvas id="myCanvas" width="750" height="450"></canvas>
         <script src="../JS/world.js"></script>
         <script src="../JS/player_manager.js"></script>
         <script src="../JS/player.js"></script>
@@ -198,10 +198,17 @@
     $('.message a').click(function(){
           $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
       });
-
+/*
     $('.fa-search-plus').click(function(){
         $('canvas').toggleClass('canvas2');
       });
+*/
+$('.fa-search-plus').click(function()
+{
+  let canvas = document.getElementById('myCanvas');
+  canvas.width = 950;
+  canvas.height = 650;
+});
 
 
     $(document).ready(function(){

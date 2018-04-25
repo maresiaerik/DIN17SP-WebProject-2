@@ -382,8 +382,8 @@ padding: 15px;
 
 #myCanvas
 {
-  width: 750px;
-  height: 450px;
+  /* width: 850px; */
+  /* height: 450px; */
   border: 1px solid white;
   display: none;
   margin:auto;
