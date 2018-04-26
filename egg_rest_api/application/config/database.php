@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'sql7.freemysqlhosting.net',
-	'username' => 'sql7234003',
-	'password' => 'cg8BfR9IEV',
-	'database' => 'sql7234003',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => 'test',
+	'database' => 'egg_db',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

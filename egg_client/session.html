@@ -2,31 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="user.js"></script>
+    <script src="session.js"></script>
     <title>REEEEEEEEEEEEEst Client</title>
 </head>
 <body>
-    <h1>User Data</h1>
-    <h2>Users</h2>
-    <button onclick="GetUsers()">Get All Users</button>
-    <button onclick="GetPositions()">Get All Positions</button>
+    <h1>Session Data</h1>
+    <h2>Sessions</h2>
+    <button onclick="GetSessions()">Get all Sessions</button>
 
     <div id='results'> </div>
 
-    <h2>Add User</h2>
+    <h2>Add Session</h2>
 
-    <form id='UserForm'>
+    <form id='SessionForm'>
 
-        <label for="">username</label>
+        <label for="">user id</label>
         <br>
-        <input type="text" name="username" id="username"><br>
-
-        <label for="">password</label>
-        <br>
-        <input type="password" name="password" id="password"><br>
+        <input type="number" name="user_id" id="user_id"><br>
 
     </form>
-    <button onclick="AddUser()">Add User</button>
+    <button onclick="AddSession()">New Session</button>
 
     <h2>Update User</h2>
     <label for="">id</label>

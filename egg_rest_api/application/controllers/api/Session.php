@@ -17,7 +17,7 @@ require APPPATH . 'libraries/REST_Controller.php';
  * @license         MIT
  * @link            https://github.com/chriskacerguis/codeigniter-restserver
  */
-class User extends REST_Controller {
+class Session extends REST_Controller {
 
     function __construct()
     {
@@ -26,16 +26,16 @@ class User extends REST_Controller {
 
         // Configure limits on our controller methods
         // Ensure you have created the 'limits' table and enabled 'limits' within application/config/rest.php
-        $this->methods['users_get']['limit'] = 500; // 500 requests per hour per user/key
-        $this->methods['users_post']['limit'] = 500; // 500 requests per hour per user/key
-        $this->methods['users_delete']['limit'] = 50; // 50 requests per hour per user/key
-        $this->load->model('User_model');
+        $this->methods['sessions_get']['limit'] = 500; // 500 requests per hour per user/key
+        $this->methods['sessions_post']['limit'] = 100; // 100 requests per hour per user/key
+        $this->methods['sessions_delete']['limit'] = 50; // 50 requests per hour per user/key
+        $this->load->model('Session_model');
     }
 
-    public function users_get()
+    public function sessions_get()
     {
-        // Users from a data store e.g. database
-        $users = $this->User_model->get_users();
+        // Sessions from a data store e.g. database
+        $sessions = $this->Session_model->get_sessions();
 
         $id = $this->get('id');
 
@@ -44,17 +44,17 @@ class User extends REST_Controller {
         if ($id === NULL)
         {
             // Check if the users data store contains users (in case the database result returns NULL)
-            if ($users)
+            if ($sessions)
             {
                 // Set the response and exit
-                $this->response($users, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+                $this->response($sessions, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
             }
             else
             {
                 // Set the response and exit
                 $this->response([
                     'status' => FALSE,
-                    'message' => 'No users were found'
+                    'message' => 'No sessions were found'
                 ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
             }
         }
@@ -73,41 +73,39 @@ class User extends REST_Controller {
         // Get the user from the array, using the id as key for retrieval.
         // Usually a model is to be used for this.
 
-        $user = NULL;
+        $sessions = NULL;
 
-        if (!empty($users))
+        if (!empty($sessions))
         {
             //Get the user from database
-            $user=$this->User_model->get_user($id);
+            $session=$this->Session_model->get_session($id);
         }
 
-        if (!empty($user))
+        if (!empty($session))
         {
-            $this->set_response($user, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+            $this->set_response($session, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
         }
         else
         {
             $this->set_response([
                 'status' => FALSE,
-                'message' => 'User could not be found'
+                'message' => 'Session could not be found'
             ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
         }
     }
 
-    public function users_post()
+    public function sessions_post()
     {
         // Add a new user
         $add_data=array(
-          'username'=>$this->post('username'),
-          'password'=>$this->post('password')
+          'user_id'=>$this->post('user_id')
         );
 
-        $this->User_model->add_user($add_data);
+        $this->Session_model->add_session($add_data);
 
         $message = [
 
-            'username' => $this->post('username'),
-            'password' => $this->post('password'),
+            'user_id' => $this->post('user_id'),
             'message' => 'Added a resource'
         ];
 
