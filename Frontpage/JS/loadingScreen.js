@@ -39,7 +39,7 @@ function StartLoading()
     loadingScreenH1.style.margin = 'auto';
     $('#startbutton').css('display', 'flex');
 
-  }, 4000);
+  }, 1000);
 }
 
 // Start button is pressed after 'loading' is done,
@@ -47,6 +47,7 @@ function StartLoading()
 
 function StartGame()
 {
+  $('#loadingScreen').fadeOut(100, 'swing');
   $('#myCanvas').fadeIn(500, 'swing');
   $('.bunny').css('animation-play-state', 'paused');
   clearInterval(eggLoadingAnimation);
@@ -57,5 +58,5 @@ function StartGame()
 // =======
   // document.getElementById('myCanvas').style.display = 'inline';
 // // >>>>>>> d80ea0fcc4c2247af6667c5f73a3fc01f202f1c4
-  $('#loadingScreen').fadeOut(100, 'swing');
+
 }

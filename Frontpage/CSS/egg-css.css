@@ -383,6 +383,7 @@ padding: 15px;
 
 #myCanvas
 {
+  border-radius: 1em;
   border: 1px solid white;
   display: none;
   margin:auto;
