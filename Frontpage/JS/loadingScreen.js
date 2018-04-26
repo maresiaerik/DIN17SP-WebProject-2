@@ -37,13 +37,9 @@ function StartLoading()
     loadingScreenH1.innerHTML = 'Start Playing!';
     loadingScreenH1.style.textAlign = 'center';
     loadingScreenH1.style.margin = 'auto';
-    $('.bunny').css('animation-play-state', 'paused');
-    $('.bunny').css('visibility', 'hidden');
-    clearInterval(eggLoadingAnimation);
     $('#startbutton').css('display', 'flex');
-    $('#eggimg').css('visibility', 'hidden');
-    $('.bunnyStatic').css('display', 'inline-block');
-  }, 1000);
+
+  }, 4000);
 }
 
 // Start button is pressed after 'loading' is done,
@@ -52,6 +48,10 @@ function StartLoading()
 function StartGame()
 {
   $('#myCanvas').fadeIn(500, 'swing');
+  $('.bunny').css('animation-play-state', 'paused');
+  clearInterval(eggLoadingAnimation);
+  $('#eggimg').css('visibility', 'hidden');
+  $('.bunnyStatic').css('display', 'inline-block');
 // <<<<<<< HEAD
   // $('#myCanvas').css('visibility', 'visible').css('display', 'none').fadeIn(200, 'swing');
 // =======
