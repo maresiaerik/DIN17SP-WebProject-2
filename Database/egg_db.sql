@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 26, 2018 at 12:27 PM
+-- Generation Time: Apr 26, 2018 at 08:01 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.1.1
 
@@ -43,9 +43,9 @@ CREATE TABLE `egg` (
 CREATE TABLE `session` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `start_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `start_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `end_time` timestamp NULL DEFAULT NULL,
-  `steps` int(10) UNSIGNED DEFAULT '0'
+  `steps` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
