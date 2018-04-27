@@ -46,6 +46,7 @@ class Player
     };
 
     this.collected_eggs = 0;
+    this.taken_steps = 0;
   }
 
   DrawSprite(sprite_x, sprite_y)

@@ -23,19 +23,12 @@ class Session_model extends CI_model
   {
     $this->db->insert('session', $add_data);
   }
-/*
-  function update_user($id, $update_data)
-  {
-    $this->db->where('id',$id);
-    $this->db->update('user',$update_data);
-  }
 
-  function delete_user($id)
+  function update_session($id, $update_data)
   {
     $this->db->where('id',$id);
-    $this->db->delete('user');
+    $this->db->update('session',$update_data);
   }
-*/
 }
 
 

@@ -81,7 +81,7 @@ function UpdateUser()
 
     data.id = document.getElementById('update_id').value;
     data.vector_x = document.getElementById('update_x').value;
-    //data.vector_y = document.getElementById('update_y').value;
+    data.vector_y = document.getElementById('update_y').value;
 
     var jsonData = JSON.stringify(data);
 

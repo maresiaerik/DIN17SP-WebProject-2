@@ -80,6 +80,10 @@ function PlayerInput()
 
       default : null;
     }
+
+    online_players[main_player].taken_steps += 1;
+
+    document.getElementById("step_counter").innerHTML = "Steps: " + online_players[main_player].taken_steps;
   }
 }
 

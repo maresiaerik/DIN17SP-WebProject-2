@@ -246,7 +246,7 @@ function DrawGrid()
 
   DrawLayer(foreground);
 
-  DrawGrid();
+  //DrawGrid();
 
   function DrawMeadow()
   {

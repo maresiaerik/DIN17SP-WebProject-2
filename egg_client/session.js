@@ -16,14 +16,12 @@ function GetSessions()
 
             for(x in jsonData)
             {
-                if(jsonData[x].id == 1)
+                if(jsonData[x].id == document.getElementById("update_id").value)
                 {
                     start_time = jsonData[x].start_time;
-                    console.log(start_time);
+                    console.log("Tracking new start time: " + start_time);
                 }
             }
-
-            console.log(this.responseText);
         }
     };
 
@@ -66,13 +64,17 @@ function UpdateSession()
 
     data.id = document.getElementById('update_id').value;
     data.user_id = document.getElementById('update_user_id').value;
-    data.start_time = start_time;
 
-    console.log(new Date().toISOString().slice(0, 19).replace('T', ' '));
-    data.end_time = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    data.start_time = start_time;
+    data.end_time = GetTime();
+
+    console.log(data.start_time + " " + data.end_time);
+
     data.steps = document.getElementById('update_steps').value;
+    data.eggs = document.getElementById('update_eggs').value;
 
     var jsonData = JSON.stringify(data);
+
 
     xhttp.onreadystatechange=function()
     {
@@ -86,4 +88,31 @@ function UpdateSession()
 
     xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     xhttp.send(jsonData);
+}
+
+function GetTime()
+{
+    let now;
+
+    let date = new Date();
+
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+
+    let hour = date.getHours();
+    if(hour < 10)
+        hour = "0" + date.getHours();
+
+    let minute = date.getMinutes();
+    if(minute < 10)
+        minute = "0" + date.getMinutes();
+
+    let second = date.getSeconds();
+    if(second < 10)
+        second = "0" + date.getSeconds();
+
+    now = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+
+    return now;
 }
