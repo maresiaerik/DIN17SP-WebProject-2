@@ -301,6 +301,7 @@ hr
 .login-form
 {
   margin: auto;
+  display: block;
   border-top: none;
   /*border: 2px solid rgba(20, 17, 0, 0.5);*/
   border-radius: 1em;
