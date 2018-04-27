@@ -73,32 +73,30 @@
       </center>
     </div>
 
-      <div class="login-page modal" id="form02">
-        <h1 style="color:white; font-size:45px; font-family:'Open Sans', sans-serif; text-align: center;text-shadow:1px 1px 2px black, 0 0 25px black, 0 0 5px black;">Welcome to EggHunt</h1>
+      <!-- <div class="login-page modal" id="form02">
         <div class="form">
-        <span onclick="document.getElementById('form02').style.display='none'" class="close" title="Close Modal">&times;</span>
-        <form class="login-form" action="action_page.php" method="post">
-        <h1 id="signh1">Login</h1>
-        <input type="text" placeholder="Username" required>
-        <input type="password" id="passInput" placeholder="Password" required>
-        <input type="checkbox" onclick="showPass()">Show password
-        <button class="signupbtn" id="signupbtn" onclick="StartLoading()">Login</button>
-        <button type="button" onclick="document.getElementById('form02').style.display='none';StartLoading()"  class="cancelbtn" id="signupbtn"><b>Cancel</b></button>
-        <p class="message"><a href="#">First time logging in?</a></p>
-        </form>
-
-        <form class="register-form" action="action_page.php" method="post">
-          <h1 id="signh1">Register</h1>
-          <input type="text" placeholder="Username" required>
-          <input type="password" id="passInput" placeholder="Password" required>
-          <input type="password" id="passInput" placeholder="Confirm password" required>
-          <input type="checkbox" onclick="showPass()">Show password
-          <button class="signupbtn">Register!</button>
-          <button type="button" onclick="document.getElementById('form02').style.display='none'" class="cancelbtn"><b>Cancel</b></button>
-          <p class="message"><a href="#">Already registered?</a></p>
-        </form>
+          <span onclick="document.getElementById('form02').style.display='none'" class="close" title="Close Modal">&times;</span>
+          <form class="login-form" action="action_page.php" method="post">
+            <h1 id="signh1">Login</h1>
+            <input type="text" placeholder="Username" required>
+            <input type="password" id="passInput" placeholder="Password" required>
+            <input type="checkbox" onclick="showPass()">Show password
+            <button class="signupbtn" id="signupbtn" onclick="StartLoading()">Login</button>
+            <button type="button" onclick="document.getElementById('form02').style.display='none';StartLoading()"  class="cancelbtn" id="signupbtn"><b>Cancel</b></button>
+            <p class="message"><a href="#">First time logging in?</a></p>
+          </form>
+          <form class="register-form" action="action_page.php" method="post">
+            <h1 id="signh1">Register</h1>
+            <input type="text" placeholder="Username" required>
+            <input type="password" id="passInput" placeholder="Password" required>
+            <input type="password" id="passInput" placeholder="Confirm password" required>
+            <input type="checkbox" onclick="showPass()">Show password
+            <button class="signupbtn">Register!</button>
+            <button type="button" onclick="document.getElementById('form02').style.display='none'" class="cancelbtn"><b>Cancel</b></button>
+            <p class="message"><a href="#">Already registered?</a></p>
+          </form>
         </div>
-      </div>
+      </div> -->
      <div class="logout-page modal" id="logoutform">
        <div class="form">
          <span onclick="document.getElementById('logoutform').style.display='none'" class="close" title="Close modal">&times;</span>
@@ -106,12 +104,10 @@
            <h1 id="signh1">Do you wish to logout?</h1>
            <h3><a href="logout.php">Yes</a></h3>
            <h3><a href="#" onclick="document.getElementById('logoutform').style.display='none'">No, i want to keep playing</a></h3>
-
          </form>
        </div>
      </div>
-
-      <div class="leaderpage modal" id="leader-close">
+     <div class="leaderpage modal" id="leader-close">
         <div class="leaderform">
         <span onclick="document.getElementById('leader-close').style.display='none'" class="close" title="Close Modal">&times;</span>
         <h1 id="signh1">Leaderboard</h1>
@@ -150,22 +146,52 @@
     <br>
     <!-- Actual Web page -->
     <div>
-
+      <h1 id="heading">Egg Hunt</h1>
       <div id="loadingScreen">
-        <h1 id="h1">Egg Hunt is loading</h1>
-        <p>This game was developed by students of OAMK.</p><br>
-        <p id="copyright">&copyAll rights reserved.</p><br>
-        <!-- <p>Massive Multiplayer Online Game</p> -->
-        <div class="animation">
-          <div class="bunny"> </div>
-          <img id="eggimg">
-          <div class="bunnyStatic"></div>
+        <div class="login-page" id="form02">
+          <div class="form">
+            <span onclick="document.getElementById('form02').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <form class="login-form" action="action_page.php" method="post">
+              <h1 id="signh1">Login</h1>
+              <div class="formdiv">
+                <input type="text" placeholder="Username" required>
+                <input type="password" id="passInput" placeholder="Password" required>
+                <input type="checkbox" onclick="showPass()">Show password
+                <button class="signupbtn" id="signupbtn" onclick="StartLoading()">Login</button>
+                <button type="button" onclick="document.getElementById('form02').style.display='none';StartLoading()"  class="cancelbtn" id="signupbtn"><b>Cancel</b></button>
+                <p class="message"><a href="#">First time logging in?</a></p>
+            </div>
+            </form>
+            <form class="register-form" action="action_page.php" method="post">
+              <h1 id="signh1">Register</h1>
+              <input type="text" placeholder="Username" required>
+              <input type="password" id="passInput" placeholder="Password" required>
+              <input type="password" id="passInput" placeholder="Confirm password" required>
+              <input type="checkbox" onclick="showPass()">Show password
+              <button class="signupbtn">Register!</button>
+              <button type="button" onclick="document.getElementById('form02').style.display='none'" class="cancelbtn"><b>Cancel</b></button>
+              <p class="message"><a href="#">Already registered?</a></p>
+            </form>
+          </div>
         </div>
-        <br>
-        <button type="button" id="startbutton" onclick="StartGame()">Start</button>
-
+      <div class="">
+          <h1 id="h1">Egg Hunt is loading</h1>
       </div>
-
+      <br>
+      <div class="button">
+        <button type="button" id="startbutton" onclick="StartGame()">Start</button>
+      </div>
+      <div class="animation">
+        <div class="bunny"></div>
+        <div class="">
+          <img id="eggimg">
+        </div>
+      </div>
+        <div class="">
+          <p>This game was developed by students of OAMK.</p><br>
+          <p id="copyright">&copyAll rights reserved.</p><br>
+        </div>
+      </div>
       <audio id="blop">
               <!-- <source src="./audio/blop.mp3"> -->
               <source src="../audio/blop.wav">
@@ -189,75 +215,6 @@
         <script src="../JS/player.js"></script>
         <script src="../JS/egg_manager.js"></script>
       </div>
-      User id <input type="number" id="user_id" value="1">
-      <p id="egg_counter">Score: 0</p>
     </div>
-  <script>
-
-    $(document).ready(() =>
-    {
-      $('#leaderbtn').click( () =>
-      {
-        $('.leaderpage').toggle();
-      });
-
-      $('#graphbtn').click( () =>
-      {
-        $('.graphpage').toggle();
-      });
-      $('.how-tooltip').hover( () =>
-      {
-      $('#tooltip').css("display","block");
-      }
-      , () =>
-      {
-      $('#tooltip').css("display","none");
-      });
-
-      $('.fa-user').hover( () =>
-      {
-      $('#tooltip2').css("display","block");
-      }
-      , () =>
-      {
-      $('#tooltip2').css("display","none");
-    });
-    document.getElementById("defaultOpen").click();
-    $('.message a').click(function(){
-          $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
-      });
-/*
-    $('.fa-search-plus').click(function(){
-      let canvas = document.getElementById('myCanvas');
-      canvas.width = 950;
-      canvas.height = 650;
-      });
-*/
-    $('.fa-search-minus').click(function(){
-      let canvas = document.getElementById('myCanvas');
-      canvas.width = 750;
-      canvas.height = 450;
-      });
-
-$('.fa-search-plus').click(function()
-{
-  let canvas = document.getElementById('myCanvas');
-  canvas.width = 950;
-  canvas.height = 650;
-});
-
-  });
-
-    $(document).mouseover(function(event){
-      var mx = event.pageX+50;
-      var my = event.pageY+15;
-      $('#tooltip').css('left',mx+'px').css('top',my+'px');
-
-      var mx = event.pageX+50;
-      var my = event.pageY+15;
-      $('#tooltip2').css('left',mx+'px').css('top',my+'px');
-    });
-
-  </script>
   </body>
 </html>

@@ -82,7 +82,6 @@ function GetEggs()
 
         SpawnEgg(new_position);
     }
-    console.log("Get Eggs");
     EggSpawner();
 }
 

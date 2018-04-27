@@ -2,6 +2,7 @@
 
 #loadingScreen
 {
+
   padding: 20px;
   margin: 100px auto;
   width: 750px;
@@ -10,20 +11,28 @@
   /*background-size: 50px 50px;*/
   font-family: 'lato', sans-serif;
   border-radius: 1em;
-  display: none;
+  display: grid;
+  grid-template-rows: 100px;
+  grid-row-gap: 30px;
 }
+
+
+/*#loadingScreen > div
+{
+  background-color: gray;
+}*/
 
 
 #loadingScreen p
 {
-  margin-top: 100px;
-  margin-bottom: -120px;
+  /*margin-top: 100px;*/
+  /*margin-bottom: -120px;*/
   margin-left: auto;
   text-align: center;
   color: white;
   opacity: 0.6;
 }
-#loadingScreen h1
+#loadingScreen #h1
 {
   /*margin-top: 160px;*/
   margin-left: 30.5%;
@@ -34,31 +43,31 @@
 }
 #loadingScreen #copyright
 {
-  margin-top: 105px;
-  margin-bottom: -170px;
+  /*margin-bottom: -170px;*/
+
 }
 
 #startbutton
 {
   width: 250px;
   height: 50px;
-  font-size: 20px;
+  font-size: 24px;
   border-radius: 0.5em;
-  border:none;
-  margin-left: 32%;
-  margin-top: 10%;
+  border: none;
+  margin: auto;
+  margin-top: -30px;
+
+  /*margin-top: 10%;*/
   background: #FFFFFF;
   color: black;
   font-family: 'lato', sans-serif;
   cursor: pointer;
   display: none;
-  align-items: center;
-  justify-content: center;
   letter-spacing: 1px;
 }
 #startbutton:focus
 {
-  outline:0;
+  outline: 0;
 }
 #startbutton:hover
 {
@@ -73,14 +82,17 @@
 
 .animation
 {
-  margin-top: 25%;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 10px 10px;
+  justify-content: center;
 }
 .bunny
 {
-  margin-left: 36%;
+  margin-left: -162px;
   width: 32px;
   height: 32px;
-  display: inline-block;
+  /*display: inline-block;*/
   background: url('../images/rightRun.png') left center;
   animation: play 0.3s steps(2) infinite;
 }
@@ -94,6 +106,6 @@
 {
   width: 32px;
   height: 32px;
-  display: inline-block;
+  /*display: inline-block;*/
   margin-left:  200px;
 }
