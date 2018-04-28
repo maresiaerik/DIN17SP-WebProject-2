@@ -1,11 +1,16 @@
 
-
 // function is called when login is done
 $(document).ready( () =>
 {
   // the loading screen fades in when login button is pressed
-  $('#loadingScreen').fadeIn(900, 'swing');
+  // $('#loadingScreen').fadeIn(900, 'swing');
 
+  $('#already, .cancelbtn').click( () => {  $('.animation').css('visibility', 'visible');});
+
+  $('#registermsg').click( () =>
+  {
+    $('.animation').css('visibility', 'hidden');
+  });
   let startbutton = $('#startbutton');
   let egg = document.getElementById('eggimg');
 
