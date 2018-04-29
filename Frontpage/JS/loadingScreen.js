@@ -3,8 +3,9 @@
 $(document).ready( () =>
 {
   // the loading screen fades in when login button is pressed
-  // $('#loadingScreen').fadeIn(900, 'swing');
-
+  $('#loadingScreen').fadeIn(500).css('display', 'grid');
+  // Login form fades in 1/4th of a second later
+  setTimeout( () => { $('.login-form').fadeIn(800).css('display','block') }, 400);
   $('#already, .cancelbtn').click( () => {  $('.animation').css('visibility', 'visible');});
 
   $('#registermsg').click( () =>
@@ -50,7 +51,7 @@ setTimeout( () =>
   loadingScreenH1.innerHTML = 'Start Playing!';
   loadingScreenH1.style.textAlign = 'center';
   loadingScreenH1.style.margin = 'auto';
-}, 1000);
+}, 2000);
 }
 
 
