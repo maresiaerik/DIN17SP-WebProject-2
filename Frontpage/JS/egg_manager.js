@@ -1,24 +1,25 @@
-//1. Check egg limit before spawning
-//2. Try Spawn Egg
-//3. Randomize position
-//4. Check Tile (collision, egg)
-//5. Place Egg
-//6. Add placed egg (int)
-//7. Place all active eggs
-//8. Else set interval (5s)
+//1. Load all eggs
+//2. Check if egg is active
+//3. Yes: place egg on position
+//4. No: check if enough time has passed
+//5. Activate egg, save position
 
-let spawned_eggs = 0;
-let egg_limit = 50;
+let time_in_seconds;
 
 let cooldown = 1000;
 
-let egg_sprites = [
-    '../images/yoshiegg.png'
-];
+let egg_data;
+
+let egg_sheet = new Image();
+egg_sheet.src = '../images/MetallicEggs.png'
 
 let egg_values = [
-    1
+    1, 3, 10
 ];
+
+let respawn_time = [
+    20, 60, 120
+]
 
 let egg_layer =
 [
@@ -35,25 +36,26 @@ for(let y = 0; y < background.length; y++)
 
 class Egg
 {
-    constructor(new_x, new_y, new_type)
+    constructor(new_vector_x, new_vector_y, new_type)
     {
+        this.id = 0;
+
         this.type = new_type;
+
+        this.active = false;
 
         this.value = egg_values[this.type];
 
-        this.image = new Image(tile_size, tile_size);
-        this.image.src  =  egg_sprites[this.type];
-
         this.position = {
-            x : new_x,
-            y : new_y
+            x : new_vector_x,
+            y : new_vector_y
         }
 
         this.size = 32;
 
         this.sprite =
         {
-            x : 0,
+            x : this.size * this.type,
             y : 0
         };
 
@@ -62,38 +64,149 @@ class Egg
 
     DrawSprite(x, y)
     {
-        context.drawImage(  this.image,
+        context.drawImage(  egg_sheet,
+                            this.type * this.size,
+                            0,
+                            this.size,
+                            this.size,
                             draw_center.min.x + (x * tile_size) + main_offset.x,
                             draw_center.min.y + (y * tile_size) + main_offset.y,
-                            tile_size, tile_size);
+                            tile_size,
+                            tile_size);
     }
 }
 
-GetEggs();
+//.Load eggs once every refresh rate
+//.Activate available eggs
+//.(Loop)Draw activated eggs
+function LoadEggs()
+{
+    var url = "http://localhost/DIN17SP-WebProject-2/egg_rest_api/index.php/api/egg/eggs";
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", url, true);
+
+    xhttp.onreadystatechange=function()
+    {
+        if (this.readyState == 4 && this.status == 200)
+        {
+            egg_data = JSON.parse(xhttp.responseText);
+
+            GetEggs();
+        }
+    }
+
+    xhttp.send();
+}
 
 function GetEggs()
 {
-    for(let i = 0; i < 5; i++)
+    time_in_seconds = TimeInSeconds(GetTime());
+
+    for(let egg in egg_data)
     {
-        let new_position = {
-            x: 0,
-            y: 0
+        new_egg = egg_data[egg];
+
+        let new_time = TimeInSeconds(new_egg.collect_time) + respawn_time[new_egg.type];
+
+        if(time_in_seconds > new_time)
+        { 
+            SpawnEgg(new_egg);
+
+        } else if(new_time > 86400) {        
+            //Seconds in a day: 86400
+            if(time_in_seconds > respawn_time[new_egg.type])
+            {
+                SpawnEgg(new_egg);
+            }
         }
-
-        SpawnEgg(new_position);
-    }
-    EggSpawner();
+    }   
 }
 
-function EggSpawner()
+function SpawnEgg(new_egg)
 {
-    if(spawned_eggs < egg_limit)
-        SpawnEgg(GetPosition());
+    //New egg = JSON data
+    //(Old) egg = egg Class
+    let egg = egg_layer[new_egg.vector_y][new_egg.vector_x];
 
-    setTimeout(EggSpawner, cooldown);
+    if(egg == null)
+    {
+        egg = new Egg(new_egg.vector_x, new_egg.vector_y, 0);
+        egg_layer[new_egg.vector_y][new_egg.vector_x] = egg;
+    }
+
+    if(!egg.active)
+    {
+        //console.log("Activate egg " + new_egg.type);
+
+        egg.id = new_egg.id;
+        egg.type = new_egg.type;
+
+        egg.vector_x = new_egg.vector_x;
+        egg.vector_y = new_egg.vector_y;
+
+        egg.active = true;
+    }
 }
 
-function GetPosition()
+function TimeInSeconds(new_time)
+{
+    let time = new_time.split(':');
+
+    let hour_to_second = parseInt(time[0] * 60 * 60);
+    let minute_to_second = parseInt(time[1] * 60);
+    let seconds = hour_to_second + minute_to_second + parseInt(time[2]);
+
+    return seconds;
+}
+
+function GetTime()
+{
+    let date = new Date();
+
+    let hour = date.getHours();
+    if(hour < 10)
+        hour = "0" + date.getHours();
+
+    let minute = date.getMinutes();
+    if(minute < 10)
+        minute = "0" + date.getMinutes();
+
+    let second = date.getSeconds(); 
+    if(second < 10)
+        second = "0" + date.getSeconds();
+
+    //Get time in this format for MySQL
+    let current_time = hour + ":" + minute + ":" + second;
+
+    return current_time;
+}
+
+
+function UpdateEgg(new_egg)
+{
+    var url = "http://localhost/DIN17SP-WebProject-2/egg_rest_api/index.php/api/egg/eggs";
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.open('PUT', url, true);
+
+    var data = {};
+
+    data.id = new_egg.id;
+    data.type = new_egg.type;
+
+    let new_position = RandomPosition();
+
+    data.vector_x = new_position.x;
+    data.vector_y = new_position.y;
+    data.collect_time = GetTime();
+
+    var jsonData = JSON.stringify(data);
+
+    xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhttp.send(jsonData);
+}
+
+function RandomPosition()
 {
     let random_position = {
         x: Math.floor((Math.random() * background[0].length)),
@@ -111,11 +224,12 @@ function GetPosition()
     return random_position;
 }
 
-function SpawnEgg(new_position)
+function RandomizeEggs()
 {
-    let new_egg = new Egg(new_position.x, new_position.y, 0);
+    for(let egg in egg_data)
+    {
+        UpdateEgg(egg_data[egg]);
+    }
 
-    egg_layer[new_position.y][new_position.x] = new_egg;
-
-    spawned_eggs ++;
+    console.log("Randomized eggs");
 }

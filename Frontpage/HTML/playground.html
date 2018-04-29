@@ -29,14 +29,18 @@
       <source src="./audio/gravel.wav">
     </audio>
 
-    User id <input type="number" id="user_id" value="1">
-    <p id="egg_counter">Score: 0</p>
-    <p id="step_counter">Steps: 0</p>
+    <p id="egg_counter"></p>
 
     <canvas id="myCanvas" width="750" height="650" style="border:1px solid #000000;"></canvas>
     <script src="../JS/world.js"></script>
     <script src="../JS/player_manager.js"></script>
     <script src="../JS/player.js"></script>
     <script src="../JS/egg_manager.js"></script>
+
+    <br>
+    <br>
+
+    <button onclick="RandomizeEggs()">Randomize Eggs</button>
+    
   </body>
 </html>

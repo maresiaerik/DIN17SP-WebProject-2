@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 26, 2018 at 08:01 PM
+-- Generation Time: Apr 28, 2018 at 01:43 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.1.1
 
@@ -28,9 +28,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `egg` (
   `id` int(11) NOT NULL,
+  `type` tinyint(4) NOT NULL DEFAULT '0',
   `vector_x` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   `vector_y` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
-  `type` varchar(6) NOT NULL DEFAULT 'bronze',
   `collect_time` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -60,16 +60,16 @@ CREATE TABLE `user` (
   `password` varchar(20) NOT NULL,
   `vector_x` varchar(255) NOT NULL DEFAULT '1',
   `vector_y` varchar(255) NOT NULL DEFAULT '1',
-  `gold_egg_collected` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `silver_egg_collected` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `bronze_egg_collected` int(10) UNSIGNED NOT NULL
+  `bronze_egg_collected` int(11) NOT NULL DEFAULT '0',
+  `silver_egg_collected` int(11) NOT NULL DEFAULT '0',
+  `gold_egg_collected` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `vector_x`, `vector_y`, `gold_egg_collected`, `silver_egg_collected`, `bronze_egg_collected`) VALUES
+INSERT INTO `user` (`id`, `username`, `password`, `vector_x`, `vector_y`, `bronze_egg_collected`, `silver_egg_collected`, `gold_egg_collected`) VALUES
 (1, 'Florian', 'test', '15', '10', 0, 0, 0),
 (3, 'Erik', 'test', '6', '11', 0, 0, 0),
 (4, 'Jaakko', 'test', '1', '1', 0, 0, 0);

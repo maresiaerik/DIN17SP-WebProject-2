@@ -25,8 +25,6 @@ function GetSessions()
         }
     };
 
-
-
     xhttp.send();
 }
 
@@ -96,19 +94,18 @@ function GetTime()
 
     let date = new Date();
 
-    let year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-
     let hour = date.getHours();
+
     if(hour < 10)
         hour = "0" + date.getHours();
 
     let minute = date.getMinutes();
+
     if(minute < 10)
         minute = "0" + date.getMinutes();
 
     let second = date.getSeconds();
+
     if(second < 10)
         second = "0" + date.getSeconds();
 

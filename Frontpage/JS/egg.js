@@ -1,4 +1,5 @@
 
+//Change the name of this file to be more representative
 
 //Sidemenu script
 $(document).ready( () =>

@@ -31,6 +31,8 @@ class Tile
       y : (sprite_index_y * fixed_tile_size)
     };
 
+    this.active = true;
+
     this.collision = collision;
   }
 
@@ -146,6 +148,8 @@ function Start()
 {
   LoadOnlinePlayers();
 
+  LoadEggs();
+
   Update();
 }
 
@@ -153,14 +157,17 @@ function Update()
 {
   if(refresh_rate >= base_refresh_rate)
   {
-    online_players[main_player].SavePosition();
+    online_players[main_player].UpdateUser();
+
     LoadOnlinePlayers();
 
+    LoadEggs();
+    
     refresh_rate = 0;
   }
 
   if(online_players[main_player].loaded)
-  {
+  { 
     SetGrid();
 
     PlayerInput();
@@ -280,7 +287,7 @@ function DrawGrid()
 
         tile = layer[y][x];
 
-        if(tile != null)
+        if(tile != null && tile.active)
           tile.DrawSprite(x, y);
       }
     }

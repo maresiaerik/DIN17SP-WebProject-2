@@ -45,8 +45,7 @@ class Player
         y : 0
     };
 
-    this.collected_eggs = 0;
-    this.taken_steps = 0;
+    this.collected_eggs = [0,0,0];
   }
 
   DrawSprite(sprite_x, sprite_y)
@@ -108,7 +107,7 @@ class Player
 
   Move()      { this.moving = true; }
 
-  SavePosition()
+  UpdateUser()
   {
     var url = "http://localhost/DIN17SP-WebProject-2/egg_rest_api/index.php/api/user/users";
     var xhttp = new XMLHttpRequest();
@@ -123,6 +122,10 @@ class Player
 
     data.vector_x = new_position.x;
     data.vector_y = new_position.y;
+
+    data.bronze_egg_collected = this.collected_eggs[0];
+    data.silver_egg_collected = this.collected_eggs[1];
+    data.gold_egg_collected = this.collected_eggs[2];
 
     var jsonData = JSON.stringify(data);
 
@@ -255,7 +258,14 @@ function LoadOnlinePlayers()
 
             //Only load the main player once
             if( new_id == online_players[main_player].user_id && !online_players[main_player].loaded)
+            {
               online_players[main_player].position = new_sequence[new_sequence.length - 1];
+
+              SetScore( jsonData[index].bronze_egg_collected,
+                        jsonData[index].silver_egg_collected,
+                        jsonData[index].gold_egg_collected  );
+            }
+              
 
             online_players[player].loaded = true;
           }

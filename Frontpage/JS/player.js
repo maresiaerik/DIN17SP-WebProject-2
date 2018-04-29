@@ -80,10 +80,6 @@ function PlayerInput()
 
       default : null;
     }
-
-    online_players[main_player].taken_steps += 1;
-
-    document.getElementById("step_counter").innerHTML = "Steps: " + online_players[main_player].taken_steps;
   }
 }
 
@@ -103,19 +99,34 @@ $(document).keyup(function(event)
   pressed_keys.splice(index, 1);
 });
 
+function SetScore(bronze, silver, gold)
+{
+  online_players[main_player].collected_eggs[0] = bronze;
+  online_players[main_player].collected_eggs[1] = silver;
+  online_players[main_player].collected_eggs[2] = gold;
+
+  document.getElementById("egg_counter").innerHTML =  "Gold: "   + online_players[main_player].collected_eggs[2] + " " +
+                                                      "Silver: " + online_players[main_player].collected_eggs[1] + " " +
+                                                      "Bronze: " + online_players[main_player].collected_eggs[0];
+}
+
 function CheckEgg(new_position)
 {
-  if(egg_layer[new_position.y][new_position.x] != null)
+  let new_egg = egg_layer[new_position.y][new_position.x];
+
+  if(new_egg != null && new_egg.active)
   {
-    let new_egg = egg_layer[new_position.y][new_position.x];
+    online_players[main_player].collected_eggs[new_egg.type] ++;
 
-    online_players[main_player].collected_eggs += new_egg.value;
+    new_egg.active = false;
 
-    spawned_eggs --;
+    //Create a new egg save
+    UpdateEgg(new_egg);
+    
+    document.getElementById("egg_counter").innerHTML = "Gold: "   + online_players[main_player].collected_eggs[2] + " " +
+                                                       "Silver: " + online_players[main_player].collected_eggs[1] + " " +
+                                                       "Bronze: " + online_players[main_player].collected_eggs[0];
 
-    document.getElementById("egg_counter").innerHTML = "Score: " + online_players[main_player].collected_eggs;
-
-    egg_layer[new_position.y][new_position.x] = null;
     blop.play();
   }
 }
