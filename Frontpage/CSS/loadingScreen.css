@@ -11,7 +11,8 @@
   /*background-size: 50px 50px;*/
   font-family: 'lato', sans-serif;
   border-radius: 1em;
-  display: grid;
+  display: none;
+  /*display: grid;*/
   grid-template-rows: 100px;
   grid-row-gap: 30px;
 }
