@@ -1,0 +1,111 @@
+
+
+#loadingScreen
+{
+
+  padding: 20px;
+  margin: 100px auto;
+  width: 750px;
+  height: 450px;
+  background: url('../images/grassTile.png') ;
+  /*background-size: 50px 50px;*/
+  font-family: 'lato', sans-serif;
+  border-radius: 1em;
+  display: grid;
+  grid-template-rows: 100px;
+  grid-row-gap: 30px;
+}
+
+
+/*#loadingScreen > div
+{
+  background-color: gray;
+}*/
+
+
+#loadingScreen p
+{
+  /*margin-top: 100px;*/
+  /*margin-bottom: -120px;*/
+  margin-left: auto;
+  text-align: center;
+  color: white;
+  opacity: 0.6;
+}
+#loadingScreen #h1
+{
+  /*margin-top: 160px;*/
+  margin-left: 30.5%;
+  color: white;
+  opacity: 1;
+  visibility: hidden;
+  /*margin-bottom: -60px;*/
+}
+#loadingScreen #copyright
+{
+  /*margin-bottom: -170px;*/
+
+}
+
+#startbutton
+{
+  width: 250px;
+  height: 50px;
+  font-size: 24px;
+  border-radius: 0.5em;
+  border: none;
+  margin: auto;
+  margin-top: -30px;
+
+  /*margin-top: 10%;*/
+  background: #FFFFFF;
+  color: black;
+  font-family: 'lato', sans-serif;
+  cursor: pointer;
+  display: none;
+  letter-spacing: 1px;
+}
+#startbutton:focus
+{
+  outline: 0;
+}
+#startbutton:hover
+{
+  background: #E4E4E4;
+  color: black;
+}
+#startbutton:active
+{
+  background: #A6A6A6;
+  color: white;
+}
+
+.animation
+{
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 10px 10px;
+  justify-content: center;
+}
+.bunny
+{
+  margin-left: -162px;
+  width: 32px;
+  height: 32px;
+  /*display: inline-block;*/
+  background: url('../images/rightRun.png') left center;
+  animation: play 0.3s steps(2) infinite;
+}
+
+@keyframes play
+{
+  100% {background-position: -64px;}
+}
+
+#eggimg
+{
+  width: 32px;
+  height: 32px;
+  /*display: inline-block;*/
+  margin-left:  200px;
+}
