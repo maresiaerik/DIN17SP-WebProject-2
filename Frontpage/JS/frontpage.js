@@ -1,6 +1,4 @@
 
-//Change the name of this file to be more representative
-
 //Sidemenu script
 $(document).ready( () =>
 {
@@ -16,7 +14,7 @@ $(document).ready( () =>
     $(".toggle_menu").removeClass("opacity_one");
   });
 
-  $('#leaderbtn').click( () =>
+  $('.leaderbtn1').click( () =>
   {
     $('.leaderpage').toggle();
   });
@@ -25,6 +23,7 @@ $(document).ready( () =>
   {
     $('.graphpage').toggle();
   });
+
   $('.how-tooltip').hover( () =>
   {
     $('#tooltip').css("display","block");
@@ -45,24 +44,33 @@ $(document).ready( () =>
 
   $("#defaultOpen").click();
 
-  $('.message a').click( () =>
+  $('.registerbtn').click( () =>
   {
     $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+    $('.animation').css('visibility', 'hidden');
   });
 
 // Resizes the canvas bacck to default width and height
+
   $('.fa-search-minus').click( () =>
   {
-    let canvas = document.getElementById('myCanvas');
-    canvas.width = 750;
-    canvas.height = 450;
+    console.log(isCanvasVisible);
+    if (isCanvasVisible)
+    {
+      let canvas = document.getElementById('myCanvas');
+      canvas.width = 750;
+      canvas.height = 450;
+    }
   });
 // Resizes the canvas larger
   $('.fa-search-plus').click( () =>
   {
-    let canvas = document.getElementById('myCanvas');
-    canvas.width = 950;
-    canvas.height = 650;
+    if (isCanvasVisible)
+    {
+      let canvas = document.getElementById('myCanvas');
+      canvas.width = 950;
+      canvas.height = 650;
+    }
   });
 
   $(document).mouseover( (event) =>
@@ -89,7 +97,7 @@ window.onclick =  (event) =>
 };
 
 //Code for showing/hiding password on input
-function showPass()
+function ShowPass()
 {
   var x = document.getElementById("passInput");
   if (x.type === "password")

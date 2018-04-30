@@ -13,6 +13,10 @@ body
   background-color: rgb(66, 134, 244);
   /*background-color: rgb(12, 18, 28);*/
 }
+.top-ul, #tab
+{
+  display: none;
+}
 
 a
 {
@@ -60,10 +64,31 @@ a
   opacity: 0.9;
   transition: all 0.3s ease-in-out;
 }
+.leaderbtn
+{
+  margin-top: 100px;
+}
+#githubbutton
+{
+  margin-top: 50px;
+}
+
+#sidebarmargin:last-child
+{
+  margin-top: 100px;
+}
+/*.sidebar_menu > center
+{
+  margin-top: 50px;
+}
+.sidebar_menu > center:first-child
+{
+  margin-top: 0px;
+}*/
+
 
 .boxed_item
 {
-  /*font-family: 'Open Sans', sans-serif;*/
   padding: 10px 10px;
   display: inline-block;
   border: solid 2px white;
@@ -84,7 +109,7 @@ a
 .logo_title
 {
   color: white;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
   font-size: 15px;
   text-align: center;
   padding: 5px 0;
@@ -102,10 +127,8 @@ a
 {
   font-size: 22px;
   font-weight: 200;
-  /*font-family: 'Open Sans', sans-serif;*/
   color: rgb(64, 255, 0);
   padding: 5px;
-
   background-color: rgb(31, 48, 76);
   transition: all 0.3s ease-in-out;
   cursor: pointer;
@@ -205,7 +228,6 @@ input[type=text]:hover, input[type=password]:hover
 
 .modal
 {
-    /*font-family: 'Open Sans', sans-serif;*/
     display: none;
     position: fixed;
     z-index: 1;
@@ -239,12 +261,11 @@ hr
 
 .cancelbtn
 {
-  /*font-family: 'Open Sans', sans-serif;*/
   font-size: 20px;
   padding: 5px 30px;
   background-color: rgba(20, 17, 0, 0.5);
   border: 2px solid black;
-  border-bottom-color: red;
+  /*border-bottom-color: red;*/
   color: white;
   border-radius: 2px;
   margin: 5px;
@@ -259,12 +280,11 @@ hr
 
 .signupbtn
 {
-  /*font-family: 'Open Sans', sans-serif;*/
   font-size: 20px;
   padding: 5px 30px;
   background-color: rgba(20, 17, 0, 0.5);
   border: 2px solid black;
-  border-bottom-color: blue;
+  /*border-bottom-color: blue;*/
   color: white;
   border-radius: 2px;
   margin: 5px;
@@ -283,7 +303,6 @@ hr
 
 #signh1
 {
-  /*font-family: 'Open Sans', sans-serif;*/
   text-align: center;
   padding: 10px;
   /*border-bottom: 2px solid rgba(20, 17, 0, 0.5);*/
@@ -308,7 +327,7 @@ hr
   border-radius: 1em;
   background-color: rgb(66, 134, 244);
   width: 500px;
-  height: 270px;
+  height: 250px;
   padding: 15px;
 }
 .login-form h1
@@ -321,6 +340,7 @@ hr
 .formdiv
 {
   margin-top: -20px;
+  color: white;
 }
 body button
 {
@@ -357,12 +377,11 @@ body button
 
 .tablinks-in
 {
-  /*font-family: 'Open Sans', sans-serif;*/
   font-size: 20px;
   padding: 10px 36px;
   background-color: rgba(20, 17, 0, 0.5);
   border: 2px solid black;
-  border-bottom-color: #406b23;
+  /*border-bottom-color: #406b23;*/
   color: white;
   border-radius: 2px;
   margin: 5px;
@@ -371,12 +390,11 @@ body button
 
 .tablinks-out
 {
-  /*font-family: 'Open Sans', sans-serif;*/
   font-size: 20px;
   padding: 10px 25px;
   background-color: rgba(20, 17, 0, 0.5);
   border: 2px solid black;
-  border-bottom-color: #9c3435;
+  /*border-bottom-color: #9c3435;*/
   color: white;
   border-radius: 2px;
   margin: 5px;
@@ -390,7 +408,7 @@ body button
 }
 .tablinks-out:hover
 {
-  background-color: #4e575e;
+  background-color: rgb(148, 2, 2);
   transition: all 0.3s ease-in-out;
 }
 
@@ -472,7 +490,6 @@ body button
 
 .graphpage
 {
-  /*font-family: 'Open Sans', sans-serif;*/
   width: 50%;
   border: 2px solid white;
   background-color: rgba(31, 48, 76, 1);
@@ -482,7 +499,6 @@ body button
 
 .leaderpage
 {
-  /*font-family: 'Open Sans', sans-serif;*/
   width: 50%;
   border: 2px solid white;
   background-color: rgba(31, 48, 76, 1);
@@ -520,23 +536,14 @@ body button
 #egg_counter
 {
   color: white;
-  /*font-family: 'Open Sans', sans-serif;*/
   padding: 1px;
-}
-
-.logout-page
-{
-  align-content: center;
-  font-family: sans-serif;
-  margin: 5% auto 15% auto;
-  border: 2px solid rgba(20, 17, 0, 0.5);
-  border-radius: 10px;
-  background-color: rgba(255,255,255,0.6);
-  width: 500px;
-  padding: 15px;
 }
 
 input[type=checkbox]
 {
   color: green;
+}
+#check
+{
+  color: white;
 }

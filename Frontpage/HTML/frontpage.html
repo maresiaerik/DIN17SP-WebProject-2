@@ -12,14 +12,14 @@
     <script src="../JS/loadingScreen.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <script src="../JS/egg.js"></script>
+    <script src="../JS/frontpage.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/egg-css.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
     <title>Egg hunt</title>
     </script>
   </head>
-  <body onload="Start()" >
+  <body onload="StartLoading()" id="body">
 
     <ul class="top-ul">
       <li><a href="#"><i class="fas fa-user"></i></a></li>
@@ -47,25 +47,20 @@
 
     </div>
 
-    <i class="fab fa-whmcs toggle_menu opacity_one"></i>
+    <i class="fab fa-whmcs toggle_menu opacity_one" id="tab"></i>
     <div class="sidebar_menu hide_menu">
       <i class="fas fa-times"></i>
       <center>
         <a href="#"><h1 class="boxed_item">EGG <span class="logo_bold">HUNT</span></h1></a>
         <h2 class="logo_title">An Egg Hunting Game</h2>
       </center>
-      <center>
-      <ul class="navigation_select">
-        <a href="#" class="navigation_item" id="leaderbtn">SCOREBOARD</a>
-      </ul>
-    </center>
-      <center>
-          <button class="tablinks-in" onclick="document.getElementById('form02').style.display='block'" id="defaultOpen">
-              <i class="fas fa-sign-in-alt"></i>
-              LOG IN
-            </button>
+      <center class="leaderbtn leaderbtn1">
+          <a href="#" class="navigation_item">SCOREBOARD</a>
       </center>
-      <center>
+      <center id="githubbutton">
+        <a href="http://www.github.com/maresiaerik/DIN17SP-WebProject-2"  class="navigation_item">GITHUB</a>
+      </center>
+      <center id="sidebarmargin">
         <button class="tablinks-out" onclick="document.getElementById('logoutform').style.display='block'">
           <i class="fas fa-sign-out-alt"></i>
           LOG OUT
@@ -100,11 +95,6 @@
      <div class="logout-page modal" id="logoutform">
        <div class="form">
          <span onclick="document.getElementById('logoutform').style.display='none'" class="close" title="Close modal">&times;</span>
-         <form class="logout-form">
-           <h1 id="signh1">Do you wish to logout?</h1>
-           <h3><a href="logout.php">Yes</a></h3>
-           <h3><a href="#" onclick="document.getElementById('logoutform').style.display='none'">No, i want to keep playing</a></h3>
-         </form>
        </div>
      </div>
      <div class="leaderpage modal" id="leader-close">
@@ -148,45 +138,19 @@
     <div>
       <h1 id="heading">Egg Hunt</h1>
       <div id="loadingScreen">
-        <div class="login-page" id="form02">
-          <div class="form">
-            <!-- <span onclick="document.getElementById('form02').style.display='none'" class="close" title="Close Modal">&times;</span> -->
-            <form class="login-form" action="action_page.php" method="post">
-              <h1 id="signh1">Login</h1>
-              <div class="formdiv">
-                <input type="text" placeholder="Username" required>
-                <input type="password" id="passInput" placeholder="Password" required>
-                <input type="checkbox" onclick="showPass()">Show password
-                <button class="signupbtn" id="signupbtn" onclick="StartLoading()">Login</button>
-                <button type="button" onclick="document.getElementById('form02').style.display='none';StartLoading()"  class="cancelbtn" id="signupbtn"><b>Cancel</b></button>
-                <p class="message"><a href="#" id="registermsg">First time logging in?</a></p>
-            </div>
-            </form>
-            <form class="register-form" action="action_page.php" method="post">
-              <h1 id="signh1">Register</h1>
-              <input type="text" placeholder="Username" required>
-              <input type="password" id="passInput" placeholder="Password" required>
-              <input type="password" id="passInput" placeholder="Confirm password" required>
-              <input type="checkbox" onclick="showPass()">Show password
-              <button class="signupbtn">Register!</button>
-              <button type="button" onclick="document.getElementById('form02').style.display='none'" class="cancelbtn"><b>Cancel</b></button>
-              <p class="message"><a  id="already" href="#">Already registered?</a></p>
-            </form>
+          <div class="">
+              <h1 id="h1">Egg Hunt is loading</h1>
+          </div>
+        <br>
+        <div class="button">
+          <button type="button" id="startbutton" onclick="StartGame()">Start</button>
+        </div>
+        <div class="animation">
+          <div class="bunny"></div>
+          <div class="">
+            <img id="eggimg">
           </div>
         </div>
-      <div class="">
-          <h1 id="h1">Egg Hunt is loading</h1>
-      </div>
-      <br>
-      <div class="button">
-        <button type="button" id="startbutton" onclick="StartGame()">Start</button>
-      </div>
-      <div class="animation">
-        <div class="bunny"></div>
-        <div class="">
-          <img id="eggimg">
-        </div>
-      </div>
         <div class="">
           <p>This game was developed by students of OAMK.</p><br>
           <p id="copyright">&copyAll rights reserved.</p><br>
