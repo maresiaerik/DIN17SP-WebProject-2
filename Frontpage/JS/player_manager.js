@@ -109,7 +109,7 @@ class Player
 
   UpdateUser()
   {
-    var url = "http://localhost/DIN17SP-WebProject-2/egg_rest_api/index.php/api/user/users";
+    var url = "http://www.egghunt.tech/DIN17SP-WebProject-2/egg_rest_api/index.php/api/user/users";
     var xhttp = new XMLHttpRequest();
 
     xhttp.open('PUT', url, true);
@@ -211,7 +211,7 @@ function InitializePlayers()
 
 function LoadOnlinePlayers()
 {
-  var url = "http://localhost/DIN17SP-WebProject-2/egg_rest_api/index.php/api/user/users";
+  var url = "http://www.egghunt.tech/DIN17SP-WebProject-2/egg_rest_api/index.php/api/user/users";
   var xhttp = new XMLHttpRequest();
 
   xhttp.open('GET', url, true);

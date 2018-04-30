@@ -81,7 +81,7 @@ class Egg
 //.(Loop)Draw activated eggs
 function LoadEggs()
 {
-    var url = "http://localhost/DIN17SP-WebProject-2/egg_rest_api/index.php/api/egg/eggs";
+    var url = "http://www.egghunt.tech/DIN17SP-WebProject-2/egg_rest_api/index.php/api/egg/eggs";
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", url, true);
 
@@ -150,11 +150,21 @@ function SpawnEgg(new_egg)
 
 function TimeInSeconds(new_time)
 {
-    let time = new_time.split(':');
+    let date_time = new_time.split(' ');
+
+    let date = date_time[0].split('-');
+
+    let year_to_second = parseInt(date[0] * 365 * 24 * 60 * 60);
+    let month_to_second = parseInt(date[1] * (365 / 12) * 24 * 60 * 60);
+    let day_to_second = parseInt(date[2]) * 24 * 60 * 60;
+
+    let time = date_time[1].split(':');
 
     let hour_to_second = parseInt(time[0] * 60 * 60);
     let minute_to_second = parseInt(time[1] * 60);
-    let seconds = hour_to_second + minute_to_second + parseInt(time[2]);
+
+    let seconds =   year_to_second + month_to_second + day_to_second + 
+                    hour_to_second + minute_to_second + parseInt(time[2]);
 
     return seconds;
 }
@@ -162,6 +172,10 @@ function TimeInSeconds(new_time)
 function GetTime()
 {
     let date = new Date();
+
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
 
     let hour = date.getHours();
     if(hour < 10)
@@ -171,12 +185,13 @@ function GetTime()
     if(minute < 10)
         minute = "0" + date.getMinutes();
 
-    let second = date.getSeconds(); 
+    let second = date.getSeconds();
     if(second < 10)
         second = "0" + date.getSeconds();
 
-    //Get time in this format for MySQL
-    let current_time = hour + ":" + minute + ":" + second;
+    let current_time =  year + "-" + month + "-" + day + " " + 
+                        hour + ":" + minute + ":" + second;
+
 
     return current_time;
 }
@@ -184,7 +199,7 @@ function GetTime()
 
 function UpdateEgg(new_egg)
 {
-    var url = "http://localhost/DIN17SP-WebProject-2/egg_rest_api/index.php/api/egg/eggs";
+    var url = "http://www.egghunt.tech/DIN17SP-WebProject-2/egg_rest_api/index.php/api/egg/eggs";
     var xhttp = new XMLHttpRequest();
 
     xhttp.open('PUT', url, true);
