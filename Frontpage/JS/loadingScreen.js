@@ -28,10 +28,7 @@ $(document).ready( () =>
   let margin_left = -90;
   let bunny_position = -140;
 
-  $('.cancelregister').click( () =>
-  {
-    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
-  });
+  
 
   // makes the egg move left until it hits the bunny
   let eggLoadingAnimation = setInterval( () =>

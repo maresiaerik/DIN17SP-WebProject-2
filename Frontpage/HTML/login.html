@@ -27,24 +27,31 @@
       <div id="loadingScreen">
         <div class="login-page" id="form02">
           <div class="form">
+            <div class="loginForm">
+              <form class="login-form" action="frontpage.html" method="post">
+                <h1 id="signh1">Login</h1>
+                <div class="formdiv">
+                  <input type="text" class="loginfield" placeholder="Username" required />
+                  <input type="password" id="pass_input" class='loginfield' placeholder="Password" required />
+                  <div class="buttons">
+                    <button class="signupbtn" id="signupbtn" onclick='frontpage.html'>Login</button>
+                    <button type="button"  class="cancelbtn registerbtn" id="signupbtn">Register</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="registerForm">
+              <form class="register-form">
+                <h1 id="signh1">Register</h1>
+                <input type="text" placeholder="Username" required>
+                <input type="password" id="pass_input" placeholder="Password" required>
+                <div class="buttons">
+                  <button class="signupbtn register">Register</button>
+                  <button type="button"  class="cancelregister cancelbtn">Cancel</button>
+                </div>
+              </form>
+            </div>
 
-            <form class="login-form" action="frontpage.html" method="post">
-              <h1 id="signh1">Login</h1>
-              <div class="formdiv">
-                <input type="text" class="loginfield" placeholder="Username" required />
-                <input type="password" id="pass_input" class='loginfield' placeholder="Password" required />
-                <button class="signupbtn" id="signupbtn" onclick='frontpage.html'>Login</button>
-                <button type="button"  class="cancelbtn registerbtn" id="signupbtn">Register</button>
-
-              </div>
-            </form>
-            <form class="register-form">
-              <h1 id="signh1">Register</h1>
-              <input type="text" placeholder="Username" required>
-              <input type="password" id="pass_input" placeholder="Password" required>
-              <button class="signupbtn register" onclick="Register()">Register</button>
-              <button type="button"  class="cancelregister cancelbtn"><b>Cancel</b></button>
-            </form>
           </div>
         </div>
       <div class="">

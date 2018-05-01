@@ -13,7 +13,6 @@ $(document).ready( () =>
     $(".sidebar_menu").removeClass("hide_menu");
     $(".toggle_menu").removeClass("opacity_one");
   });
-
   $('.how-tooltip').hover( () =>
   {
     $('#tooltip').css("display","block");
@@ -27,8 +26,10 @@ $(document).ready( () =>
 
   $('.registerbtn').click( () =>
   {
-    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
-    $('.animation').css('visibility', 'hidden');
+
+    $('.login-form').css('visibility', 'hidden');
+    $('.register-form').fadeIn().css('margin-top', '-250px');
+
   });
 
 // Resizes the canvas bacck to default width and height
@@ -52,6 +53,11 @@ $(document).ready( () =>
       canvas.height = 650;
     }
   });
+  $('.cancelregister').click( () =>
+  {
+    $('.register-form').fadeOut(400);
+    $('.login-form').css('visibility', 'visible').hide().fadeIn(400);
+  });
 
   $(document).mouseover( (event) =>
   {
@@ -63,8 +69,3 @@ $(document).ready( () =>
     $('#tooltip2').css('left',mx+'px').css('top',my+'px');
   });
 });
-
-function Register()
-{
-  console.log("register bitch");
-}
