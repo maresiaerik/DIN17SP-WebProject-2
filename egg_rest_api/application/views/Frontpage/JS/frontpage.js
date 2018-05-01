@@ -1,5 +1,4 @@
 
-
 //Sidemenu script
 $(document).ready( () =>
 {
@@ -15,15 +14,6 @@ $(document).ready( () =>
     $(".toggle_menu").removeClass("opacity_one");
   });
 
-  $('#leaderbtn').click( () =>
-  {
-    $('.leaderpage').toggle();
-  });
-
-  $('#graphbtn').click( () =>
-  {
-    $('.graphpage').toggle();
-  });
   $('.how-tooltip').hover( () =>
   {
     $('#tooltip').css("display","block");
@@ -33,35 +23,34 @@ $(document).ready( () =>
       $('#tooltip').css("display","none");
     });
 
-  $('.fa-user').hover( () =>
-  {
-  $('#tooltip2').css("display","block");
-  },
-    () =>
-    {
-      $('#tooltip2').css("display","none");
-    });
-
   $("#defaultOpen").click();
 
-  $('.message a').click( () =>
+  $('.registerbtn').click( () =>
   {
     $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+    $('.animation').css('visibility', 'hidden');
   });
 
 // Resizes the canvas bacck to default width and height
+
   $('.fa-search-minus').click( () =>
   {
-    let canvas = document.getElementById('myCanvas');
-    canvas.width = 750;
-    canvas.height = 450;
+    if (isCanvasVisible)
+    {
+      let canvas = document.getElementById('myCanvas');
+      canvas.width = 750;
+      canvas.height = 450;
+    }
   });
 // Resizes the canvas larger
   $('.fa-search-plus').click( () =>
   {
-    let canvas = document.getElementById('myCanvas');
-    canvas.width = 950;
-    canvas.height = 650;
+    if (isCanvasVisible)
+    {
+      let canvas = document.getElementById('myCanvas');
+      canvas.width = 950;
+      canvas.height = 650;
+    }
   });
 
   $(document).mouseover( (event) =>
@@ -75,26 +64,7 @@ $(document).ready( () =>
   });
 });
 
-//Login form script
-// Get the modal
-var modal = document.getElementById('form01');
-
-window.onclick =  (event) =>
+function Register()
 {
-    if (event.target == modal)
-    {
-        modal.style.display = "none";
-    }
-};
-
-//Code for showing/hiding password on input
-function showPass()
-{
-  var x = document.getElementById("passInput");
-  if (x.type === "password")
-  {
-      x.type = "text";
-  } else {
-      x.type = "password";
-  }
+  console.log("register bitch");
 }

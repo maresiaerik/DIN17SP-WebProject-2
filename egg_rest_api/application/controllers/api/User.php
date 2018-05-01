@@ -108,7 +108,7 @@ class User extends REST_Controller
 
             'username' => $this->post('username'),
             'password' => $this->post('password'),
-            'message' => 'Added a resource'
+            'message' => 'Added a new user'
         ];
 
         $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code

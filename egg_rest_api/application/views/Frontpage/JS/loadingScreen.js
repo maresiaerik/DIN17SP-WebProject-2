@@ -1,33 +1,62 @@
 
+let goldEgg = '../images/Gold_Egg.png';
+let silverEgg = '../images/Silver_Egg.png';
+let bronzeEgg = '../images/Bronze_Egg.png';
+let eggIndex = 0;
+let eggArr = [ bronzeEgg, silverEgg, goldEgg ];
+let isCanvasVisible = false;
+
+
 // function is called when login is done
 $(document).ready( () =>
 {
+  $('.top-ul,#tab').fadeIn(1000, 'swing');
   // the loading screen fades in when login button is pressed
-  // $('#loadingScreen').fadeIn(900, 'swing');
+  $('#loadingScreen').fadeIn(500).css('display', 'grid');
+  // Login form fades in 1/4th of a second later
+  setTimeout( () => { $('.login-form').fadeIn(800).css('display','block') }, 400);
+  $('#already, .cancelbtn').click( () => {  $('.animation').css('visibility', 'visible'); } );
 
-  $('#already, .cancelbtn').click( () => {  $('.animation').css('visibility', 'visible');});
 
-  $('#registermsg').click( () =>
-  {
-    $('.animation').css('visibility', 'hidden');
-  });
   let startbutton = $('#startbutton');
   let egg = document.getElementById('eggimg');
 
-  egg.src = '../images/yoshiegg.png';
+  // egg.src = '../images/Gold_Egg.png';
+  egg.src = eggArr[0];
   egg.style.marginLeft = '200px';
 
   let margin_left = -90;
   let bunny_position = -140;
 
-  // makes the egg move left until it hits the bunny
-  let eggLoadingAnimation = setInterval( () => {( margin_left < bunny_position ) ? (margin_left = 150) : (margin_left -= 10), (egg.style.marginLeft = margin_left + 'px'); }, 100);
+  $('.cancelregister').click( () =>
+  {
+    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+  });
 
+  // makes the egg move left until it hits the bunny
+  let eggLoadingAnimation = setInterval( () =>
+  {
+    if (margin_left < bunny_position)
+    {
+      margin_left = 150
+      eggIndex = eggIndex < eggArr.length - 1 ? eggIndex += 1 : 0;
+    }
+    else
+    {
+      margin_left -= 10;
+      egg.style.marginLeft = margin_left + 'px';
+      egg.src = eggArr[eggIndex];
+    }
+  }, 90);
 });
 
 function StartLoading()
 {
+  let loginField = document.getElementsByClassName('loginfield');
+
   $('.login-form').css('display', 'block').fadeOut(900)
+  $('.animation').css('margin-top', '87.4px');
+
 
   // the heading of loading screen fades in with a small delay
   setTimeout( () => { $('#h1').css('visibility', 'visible').hide().fadeIn(2000, 'swing')}, 50 );
@@ -49,7 +78,8 @@ function StartLoading()
     loadingScreenH1.innerHTML = 'Start Playing!';
     loadingScreenH1.style.textAlign = 'center';
     loadingScreenH1.style.margin = 'auto';
-  }, 1000);
+    $('.animation').css('margin-top', '67px');
+  }, 2000);
 }
 
 
@@ -58,12 +88,10 @@ function StartLoading()
 
 function StartGame()
 {
+  isCanvasVisible = true;
   $('#loadingScreen').fadeOut(400, 'swing', () =>  $('#myCanvas').fadeIn(200, 'swing') );
   $('.bunny').css('animation-play-state', 'paused');
-
-  if(eggLoadingAnimation != null)
-    clearInterval(eggLoadingAnimation);
-
+  clearInterval(eggLoadingAnimation);
   $('#eggimg').css('visibility', 'hidden');
   $('.bunnyStatic').css('display', 'inline-block');
 }

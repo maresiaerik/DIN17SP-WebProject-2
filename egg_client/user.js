@@ -63,7 +63,7 @@ function AddUser()
         {
             document.getElementById('results').innerHTML="User added succesfully";
         } else {
-            document.getElementById('results').innerHTML="Something went wrong";
+            document.getElementById('results').innerHTML="Username is not available";
         }
     };
 

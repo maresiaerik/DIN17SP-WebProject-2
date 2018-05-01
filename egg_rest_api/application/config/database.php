@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'mysql.hostinger.com',
-	'username' => 'u767921766_admin',
-	'password' => 'test123',
-	'database' => 'u767921766_egg',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => 'test',
+	'database' => 'egg_db',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

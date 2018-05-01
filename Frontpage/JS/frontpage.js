@@ -14,16 +14,6 @@ $(document).ready( () =>
     $(".toggle_menu").removeClass("opacity_one");
   });
 
-  $('.leaderbtn1').click( () =>
-  {
-    $('.leaderpage').toggle();
-  });
-
-  $('#graphbtn').click( () =>
-  {
-    $('.graphpage').toggle();
-  });
-
   $('.how-tooltip').hover( () =>
   {
     $('#tooltip').css("display","block");
@@ -31,15 +21,6 @@ $(document).ready( () =>
     () =>
     {
       $('#tooltip').css("display","none");
-    });
-
-  $('.fa-user').hover( () =>
-  {
-  $('#tooltip2').css("display","block");
-  },
-    () =>
-    {
-      $('#tooltip2').css("display","none");
     });
 
   $("#defaultOpen").click();
@@ -54,7 +35,6 @@ $(document).ready( () =>
 
   $('.fa-search-minus').click( () =>
   {
-    console.log(isCanvasVisible);
     if (isCanvasVisible)
     {
       let canvas = document.getElementById('myCanvas');
@@ -84,26 +64,7 @@ $(document).ready( () =>
   });
 });
 
-//Login form script
-// Get the modal
-var modal = document.getElementById('form01');
-
-window.onclick =  (event) =>
+function Register()
 {
-    if (event.target == modal)
-    {
-        modal.style.display = "none";
-    }
-};
-
-//Code for showing/hiding password on input
-function ShowPass()
-{
-  var x = document.getElementById("passInput");
-  if (x.type === "password")
-  {
-      x.type = "text";
-  } else {
-      x.type = "password";
-  }
+  console.log("register bitch");
 }

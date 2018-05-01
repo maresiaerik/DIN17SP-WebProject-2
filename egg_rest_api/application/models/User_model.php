@@ -3,7 +3,6 @@
 
 class User_model extends CI_model
 {
-
   function get_users()
   {
     $this->db->select('*');
@@ -35,6 +34,7 @@ class User_model extends CI_model
     $this->db->where('id',$id);
     $this->db->delete('user');
   }
+
   function check_user($user_form)
   {
     $this->db->select('password');
@@ -42,13 +42,6 @@ class User_model extends CI_model
     $this->db->where('username',$user_form);
     return $this->db->get()->row('password');
   }
-
-  public function insert_user($insert_data)
-  {
-    $this->db->db_debug=false;
-    $test=$this->db->insert('user',$insert_data);
-    return $test;
-}
 }
 
 
