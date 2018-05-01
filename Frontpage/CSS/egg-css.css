@@ -494,6 +494,12 @@ body button
   color: greenyellow;
 }
 
+.fa-github-square
+{
+  color: white;
+  padding-right: 5px;
+}
+
 .graphpage
 {
   width: 50%;

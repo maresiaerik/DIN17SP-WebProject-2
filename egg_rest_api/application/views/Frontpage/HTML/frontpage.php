@@ -26,7 +26,6 @@
       <li><a href='#'><i class="fas fa-search-minus"></i></a></li>
       <li><a href="#"><p id="egg_counter"></p></a></li>
       </li>
-      <li style="float:right"><a class="active" href="https://github.com/maresiaerik/DIN17SP-WebProject-2" target="_blank"><i class="fab fa-github-square"></i></a></li>
     </ul>
 
     <div id="tooltip">
@@ -46,7 +45,7 @@
           <a href="#" class="navigation_item">SCOREBOARD</a>
       </center>
       <center id="githubbutton">
-        <a href="http://www.github.com/maresiaerik/DIN17SP-WebProject-2"  class="navigation_item">GITHUB</a>
+        <a href="http://www.github.com/maresiaerik/DIN17SP-WebProject-2" target="_blank" class="navigation_item"><i class="fab fa-github-square"></i>GITHUB</a>
       </center>
       <center id="sidebarmargin">
         <button class="tablinks-out" onclick="Logout()">
