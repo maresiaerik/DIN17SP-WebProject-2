@@ -13,6 +13,14 @@ body
   background-color: rgb(66, 134, 244);
   /*background-color: rgb(12, 18, 28);*/
 }
+
+.darkmode
+{
+  background-color: rgb(30, 43, 63);
+  color: black;
+  transition: background-color 1s;
+}
+
 .top-ul, #tab
 {
   display: none;
@@ -498,6 +506,11 @@ body button
 {
   color: white;
   padding-right: 5px;
+}
+
+.fa-lightbulb
+{
+
 }
 
 .graphpage
