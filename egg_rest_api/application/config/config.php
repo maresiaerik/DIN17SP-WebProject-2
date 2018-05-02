@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://www.egghunt.tech/';
+$config['base_url'] = 'http://www.egghunt.tech/DIN17SP-WebProject-2/egg_rest_api/';
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ $config['base_url'] = 'http://www.egghunt.tech/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'public_html/DIN17SP-WebProject-2/Frontpage/HTML/playground.html';
+$config['index_page'] = 'index.php';
 
 /*
 |--------------------------------------------------------------------------

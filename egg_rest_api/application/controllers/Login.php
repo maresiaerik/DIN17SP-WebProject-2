@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller
 {
-  public function login_form()
-  {
-    $data['page']='login/login_form';
-    $this->load->view('menu/content',$data);
+  public function index()
+	{
+    $data['page']='frontpage/login';
+		$this->load->view('menu/content',$data);
   }
 
   public function log_in()
@@ -15,26 +15,25 @@ class Login extends CI_Controller
     $pass_form=$this->input->post('password');
 
     $this->load->model('User_model');
-    $check_pass=$this->User_model->check_user($user_form);
-
+    
+    $check_pass=$this->User_model->check_pass($user_form);
+    $user_id=$this->User_model->check_id($user_form);
+    
     if($check_pass==$pass_form)
     {
       $_SESSION['logged_in']=true;
-      $_SESSION['user']=$user_form;
-      $data['message']="You have logged in";
-    } else {
-      $data['message']= $pass_form.' '.$check_pass;
+      $_SESSION['user_id']=$user_id;
+
+      $data['page']='frontpage/frontpage';
+      $this->load->view('menu/content',$data);
     }
-    
-    $data['page']='book/add_book_to_db';
-    $this->load->view('menu/content',$data);
   }
+
   public function logout()
   {
     session_destroy();
 
-    $data['message']="You have logged out";
-    $data['page']='book/add_book_to_db';
+    $data['page']='frontpage/login';
     $this->load->view('menu/content',$data);
   }
 }

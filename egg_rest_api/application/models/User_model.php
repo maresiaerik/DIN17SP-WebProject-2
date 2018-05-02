@@ -35,14 +35,21 @@ class User_model extends CI_model
     $this->db->delete('user');
   }
 
-  function check_user($user_form)
+  function check_pass($user_form)
   {
     $this->db->select('password');
     $this->db->from('user');
     $this->db->where('username',$user_form);
     return $this->db->get()->row('password');
   }
-}
 
+  function check_id($user_form)
+  {
+    $this->db->select('id');
+    $this->db->from('user');
+    $this->db->where('username',$user_form);
+    return $this->db->get()->row('id');
+  }
+}
 
  ?>

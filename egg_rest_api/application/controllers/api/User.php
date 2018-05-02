@@ -99,7 +99,9 @@ class User extends REST_Controller
         // Add a new user
         $add_data=array(
           'username'=>$this->post('username'),
-          'password'=>$this->post('password')
+          'password'=>$this->post('password'),
+          'vector_x'=>$this->post('vector_x'),
+          'vector_y'=>$this->post('vector_y')
         );
 
         $this->User_model->add_user($add_data);
@@ -120,11 +122,12 @@ class User extends REST_Controller
         $id=$this->put('id');
 
         $update_data=array(
-          'vector_x'=>$this->put('vector_x'),
-          'vector_y'=>$this->put('vector_y'),
-          'bronze_egg_collected'=>$this->put('bronze_egg_collected'),
-          'silver_egg_collected'=>$this->put('silver_egg_collected'),
-          'gold_egg_collected'=>$this->put('gold_egg_collected')
+            'online'=>$this->put('online'),
+            'vector_x'=>$this->put('vector_x'),
+            'vector_y'=>$this->put('vector_y'),
+            'bronze_egg_collected'=>$this->put('bronze_egg_collected'),
+            'silver_egg_collected'=>$this->put('silver_egg_collected'),
+            'gold_egg_collected'=>$this->put('gold_egg_collected')
         );
 
         $this->User_model->update_user($id, $update_data);
